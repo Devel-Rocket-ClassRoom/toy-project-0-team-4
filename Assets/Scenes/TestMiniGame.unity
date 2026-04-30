@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickSpawner
   brickPrefab: {fileID: 1251133272042424503, guid: 1e18d0f89652a4347be3ca500ec58d68, type: 3}
+  agreeButtonPrefab: {fileID: 7109101193889045689, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
   brickContainer: {fileID: 111740073}
 --- !u!1 &363510508
 GameObject:
