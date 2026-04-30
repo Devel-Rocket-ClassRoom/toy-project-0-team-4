@@ -19,11 +19,13 @@ public class BallController : MonoBehaviour
         {
             Vector2 currentVel = rb.linearVelocity;
 
-            // 1. X축 속도가 너무 작으면(수직으로만 움직이면) 강제로 밀어줌
+            // 수직 움직임 감지 (X축 속도가 매우 낮을 때)
             if (Mathf.Abs(currentVel.x) < minHorizontalVelocity)
             {
-                float nudge = (currentVel.x >= 0) ? minHorizontalVelocity : -minHorizontalVelocity;
-                currentVel.x = nudge;
+                float pushDirection = (transform.localPosition.x < 0) ? 1f : -1f;
+
+                // 강제로 X축 속도를 부여하여 벽에서 떼어냄
+                currentVel.x = pushDirection * minHorizontalVelocity;
             }
 
             rb.linearVelocity = currentVel.normalized * constantSpeed;
