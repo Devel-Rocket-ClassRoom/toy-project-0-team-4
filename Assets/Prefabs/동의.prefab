@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4140326206105427260}
   - component: {fileID: 7846033671418302951}
   - component: {fileID: 5361120638487837917}
-  - component: {fileID: -5947329392853462007}
+  - component: {fileID: -361981592181162468}
   m_Layer: 5
   m_Name: "\uB3D9\uC758"
   m_TagString: Untagged
@@ -258,8 +258,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7846033671418302951}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &-5947329392853462007
+      m_Calls:
+      - m_Target: {fileID: -361981592181162468}
+        m_TargetAssemblyTypeName: OnClickButton, Assembly-CSharp
+        m_MethodName: OnClickToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-361981592181162468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,14 +280,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7109101193889045689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f463ba7f6394cca438f4a11807b79a39, type: 3}
+  m_Script: {fileID: 11500000, guid: ec1d9f44db0a1dd4390b8721f1ab8d1e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonChange
-  agreePrefab: {fileID: 7109101193889045689}
-  disagreePrefab: {fileID: 7109101193889045689, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
-  agreeColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
-  disagreeColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
-  game1StartScale: 0.3
-  game2StartScale: 1
-  game2MaxScale: 15
-  game2GrowSpeed: 3
+  m_EditorClassIdentifier: Assembly-CSharp::OnClickButton
+  MainScreen: {fileID: 5952402661683950795, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+  Stage1: {fileID: 4313375543725046562, guid: 5a5a4fa156a196142a71856362c5d632, type: 3}
+  Stage2: {fileID: 4313375543725046562, guid: 6414c1f6c570ddb43818ca886e1ac243, type: 3}
