@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BrickSpawner : MonoBehaviour
 {
     public GameObject brickPrefab;
-    public GameObject agreeButtonPrefab;
+    public GameObject agreeButton;
     public Transform brickContainer;
 
     private List<GameObject> spawnedBricks = new List<GameObject>();
@@ -45,11 +45,14 @@ public class BrickSpawner : MonoBehaviour
         int randomIndex = Random.Range(0, spawnedBricks.Count);
         GameObject targetBrick = spawnedBricks[randomIndex];
 
-        GameObject btn = Instantiate(agreeButtonPrefab, brickContainer);
+        // 버튼의 부모를 BrickGrid로 변경
+        agreeButton.transform.SetParent(brickContainer);
 
         // 버튼을 계층 구조의 맨 위로 보내서 벽돌 뒤에 숨김
-        btn.transform.SetAsFirstSibling();
+        agreeButton.transform.SetAsFirstSibling();
 
-        btn.transform.localPosition = targetBrick.transform.localPosition;
+        agreeButton.transform.localPosition = targetBrick.transform.localPosition;
+
+        agreeButton.SetActive(true);
     }
 }
