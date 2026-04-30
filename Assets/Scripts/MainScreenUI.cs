@@ -23,10 +23,9 @@ public class MainScreenUI : MonoBehaviour
     [Header("메인화면 스테이지 버튼 목록")]
     [SerializeField] private StageButtonInfo[] stageButtons;
 
+
     private void OnEnable()
     {
-        RefreshStageButtons();
-
         StartCoroutine(RefreshNextFrame());
     }
 
