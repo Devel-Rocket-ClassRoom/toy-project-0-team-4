@@ -28,6 +28,9 @@ public class ButtonChange : MonoBehaviour
     private RectTransform agreeRect;
     private RectTransform disagreeRect;
 
+    [Header("이 프리팹이 담당할 게임 번호 (1, 2, 3)")]
+    [SerializeField] private int gameIndex = 1;
+
     private enum MiniGameState { None, Game1, Game2, Game3 }
     private MiniGameState currentState = MiniGameState.None;
 
@@ -47,30 +50,27 @@ public class ButtonChange : MonoBehaviour
 
     void OnEnable()
     {
-MiniGameManager.OnGame1Start += StartGame1;
-        MiniGameManager.OnGame2Start += StartGame2;
-        MiniGameManager.OnGame3Start += StartGame3;
+        if (gameIndex == 1) MiniGameManager.OnGame1Start += StartGame1;
+        if (gameIndex == 2) MiniGameManager.OnGame2Start += StartGame2;
+        if (gameIndex == 3) MiniGameManager.OnGame3Start += StartGame3;
     }
 
     void OnDisable()
     {
-        MiniGameManager.OnGame1Start -= StartGame1;
-        MiniGameManager.OnGame2Start -= StartGame2;
-        MiniGameManager.OnGame3Start -= StartGame3;
+        if (gameIndex == 1) MiniGameManager.OnGame1Start -= StartGame1;
+        if (gameIndex == 2) MiniGameManager.OnGame2Start -= StartGame2;
+        if (gameIndex == 3) MiniGameManager.OnGame3Start -= StartGame3;
     }
 
     void ShowButtons()
     {
         if (agreeButton == null)
         {
-            Canvas canvas = FindFirstObjectByType<Canvas>();
-            if (canvas == null)      { Debug.LogError("[ButtonChange] Canvas를 찾을 수 없음"); return; }
-            if (agreePrefab == null) { Debug.LogError("[ButtonChange] agreePrefab이 비어있음"); return; }
+            if (agreePrefab == null)    { Debug.LogError("[ButtonChange] agreePrefab이 비어있음"); return; }
             if (disagreePrefab == null) { Debug.LogError("[ButtonChange] disagreePrefab이 비어있음"); return; }
-            Transform parent = canvas.transform;
 
-            GameObject agreeGO    = Instantiate(agreePrefab,    parent);
-            GameObject disagreeGO = Instantiate(disagreePrefab, parent);
+            GameObject agreeGO    = Instantiate(agreePrefab,    transform);
+            GameObject disagreeGO = Instantiate(disagreePrefab, transform);
 
             // 생성된 버튼의 ButtonChange가 또 버튼을 만들지 못하도록 비활성화
             var agreeBC    = agreeGO.GetComponent<ButtonChange>();

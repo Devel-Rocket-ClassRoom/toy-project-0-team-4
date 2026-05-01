@@ -67,20 +67,10 @@ public class MiniGameManager : MonoBehaviour
     private void HandleSuccess()
     {
         Debug.Log($"[MiniGameManager] 게임 {currentGameIndex} 성공");
-
-        if (currentGameIndex >= totalGames)
-        {
-            OnAllGamesCleared?.Invoke();
-            Debug.Log("[MiniGameManager] 모든 미니게임 클리어!");
-            return;
-        }
-
-        StartGame(currentGameIndex + 1);
     }
 
     private void HandleFail()
     {
-        Debug.Log($"[MiniGameManager] 게임 {currentGameIndex} 실패 — 재시작");
-        StartGame(currentGameIndex);
+        Debug.Log($"[MiniGameManager] 게임 {currentGameIndex} 실패");
     }
 }
