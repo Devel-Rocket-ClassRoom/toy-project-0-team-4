@@ -7,6 +7,8 @@ public class BallController : MonoBehaviour
     [SerializeField] private float constantSpeed = 5f;
     [SerializeField] private float minHorizontalVelocity = 0.5f;
 
+    public OnClickButton buttonHandler;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,6 +47,19 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("Brick"))
         {
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DeadZone"))
+        {
+            if (buttonHandler != null)
+            {
+                Debug.Log("게임 오버");
+
+                buttonHandler.OnClickCancle();
+            }
         }
     }
 }
