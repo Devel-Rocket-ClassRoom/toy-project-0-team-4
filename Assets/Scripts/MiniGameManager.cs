@@ -8,6 +8,7 @@ public class MiniGameManager : MonoBehaviour
     public static event Action OnGame1Start;
     public static event Action OnGame2Start;
     public static event Action OnGame3Start;
+    public static event Action OnGame4Start;
     public static event Action OnMiniGameSuccess;
     public static event Action OnMiniGameFail;
 
@@ -24,6 +25,7 @@ public class MiniGameManager : MonoBehaviour
             case 1: OnGame1Start?.Invoke(); break;
             case 2: OnGame2Start?.Invoke(); break;
             case 3: OnGame3Start?.Invoke(); break;
+            case 4: OnGame4Start?.Invoke(); break;
         }
     }
 
