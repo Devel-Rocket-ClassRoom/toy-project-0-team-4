@@ -3,6 +3,7 @@ using UnityEngine;
 public class MiniGameSpawner : MonoBehaviour
 {
     [Header("화면")]
+    [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject mainScreen;
 
     [Header("미니게임이 생성될 부모")]
@@ -78,12 +79,15 @@ public class MiniGameSpawner : MonoBehaviour
         Debug.Log($"{stageNumber} 스테이지 클리어");
 
         if (stageClearManager != null)
-        {
             stageClearManager.ClearStage(stageNumber);
-        }
 
-        DestroyCurrentMiniGame();
-        ShowMainScreen();
+        ShowSuccessPopup();
+    }
+
+    public void ShowMainScreen()
+    {
+        if (mainScreen != null) mainScreen.SetActive(true);
+        if (mainScreenUI != null) mainScreenUI.RefreshStageButtons();
     }
 
     private void HandleGameOver()
