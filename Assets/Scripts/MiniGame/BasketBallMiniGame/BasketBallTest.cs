@@ -19,7 +19,7 @@ public class BasketballTest : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public float rotationSpeed = 2f;
     public float rotationAngle = 45f;
     public float chargeSpeed = 0.8f;
-    public float launchForce = 25f;
+    public float launchForce = 10f;
 
     [Header("Animation Settings")]
     public float spawnDelay = 0.5f;    // 발사 후 생성 대기 시간
@@ -71,10 +71,12 @@ public class BasketballTest : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     // 공 발사 로직
     void LaunchBall()
     {
+        float currentPower = powerSlider.value;
+
         powerSlider.value = 0f;
 
-        // 화살표의 방향에 맞춰져 있던 공을 캔버스 루트로 이동시켜서 발사 (움직이는 화살표 방향과 독립적 작동 시작)
-        currentBall.transform.SetParent(canvasRoot, true);
+        // 발사할 때는 화살표의 회전에 영향을 받지 않기 위해 부모를 캔버스로 변경
+        currentBall.transform.SetParent(canvasRoot, true);  
         Vector3 currentPos = currentBall.transform.position;
         currentPos.z = 0f;
         currentBall.transform.position = currentPos;
@@ -83,9 +85,9 @@ public class BasketballTest : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (rb != null)
         {
             rb.simulated = true;
-            Vector2 shootDirection = arrowUI.up;
+            Vector2 shootDirection = arrowUI.up; // up 프로퍼티 : 화살표가 바라보는 방향을 정규화하여 반환
             // 최소 게이지 보정해서 발사
-            rb.AddForce(shootDirection * launchForce * (powerSlider.value + 0.2f), ForceMode2D.Impulse);
+            rb.AddForce(shootDirection * launchForce * (currentPower + 0.2f), ForceMode2D.Impulse);
         }
 
         Destroy(currentBall, 5f);
@@ -98,14 +100,14 @@ public class BasketballTest : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         }
     }
 
-    // [연출 3] 공 생성 및 스케일 업 애니메이션 코루틴
+    // 공 생성 및 스케일 업 애니메이션 코루틴
     IEnumerator SpawnBallRoutine()
     {
         isSpawnRoutineRunning = true;
         yield return new WaitForSeconds(spawnDelay);
 
         currentBall = Instantiate(ballPrefab);
-        currentBall.transform.SetParent(spawnPoint, false);
+        currentBall.transform.SetParent(spawnPoint, false); // 로컬 좌표 유지
         currentBall.transform.localPosition = Vector3.zero;
 
         // 물리 정지
