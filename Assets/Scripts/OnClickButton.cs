@@ -49,18 +49,6 @@ public class OnClickButton : MonoBehaviour
         }
     }
 
-    public void OnClickToStage(int stageNumber)
-    {
-        audioManager.PlaySfx(0); // Click 효과음
-        if (miniGameSpawner == null)
-        {
-            Debug.LogWarning("MiniGameSpawner가 연결되지 않았습니다.");
-            return;
-        }
-
-        miniGameSpawner.StartStage(stageNumber);
-    }
-
     public void OnClickTitle()
     {
         audioManager.PlaySfx(1); // Close 효과음

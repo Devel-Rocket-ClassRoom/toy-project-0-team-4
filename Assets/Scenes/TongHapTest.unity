@@ -189,7 +189,7 @@ MonoBehaviour:
   mainScreenUI: {fileID: 2071113348}
   successResultObject: {fileID: 2135329448}
   failResultObject: {fileID: 1265862377}
-  audioManager: {fileID: 1664007079}
+  audioManager: {fileID: 0}
 --- !u!114 &210731801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,6 +775,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &817184792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7327436748805592464, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+  m_PrefabInstance: {fileID: 1754920241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &817184797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817184792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a6e25cda697045bd0c3f8e0476c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageStartButton
+  stageNumber: 1
+  miniGameSpawner: {fileID: 210731800}
+  audioManager: {fileID: 1664007079}
 --- !u!1 &904113318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1174,26 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1265862379}
   m_SourcePrefab: {fileID: 100100000, guid: 8898a2ec5c0e3e444af841a8a6d2b488, type: 3}
+--- !u!1 &1257206469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2550273122261338747, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+  m_PrefabInstance: {fileID: 1754920241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1257206474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257206469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a6e25cda697045bd0c3f8e0476c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageStartButton
+  stageNumber: 5
+  miniGameSpawner: {fileID: 210731800}
+  audioManager: {fileID: 1664007079}
 --- !u!1 &1265862377 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 741892654902310323, guid: 8898a2ec5c0e3e444af841a8a6d2b488, type: 3}
@@ -1651,6 +1691,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1477743821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6535279079344185185, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+  m_PrefabInstance: {fileID: 1754920241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1477743826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477743821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a6e25cda697045bd0c3f8e0476c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageStartButton
+  stageNumber: 3
+  miniGameSpawner: {fileID: 210731800}
+  audioManager: {fileID: 1664007079}
 --- !u!1001 &1486260563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2012,6 +2072,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1761206998245805927, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761206998245805927, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 210731801}
@@ -2145,6 +2209,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4668838949343818836, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863325142387379097, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863325142387379097, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
@@ -2288,13 +2356,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6819922550067417228, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819922550067417228, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 210731801}
     - target: {fileID: 6852236931709039699, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852236931709039699, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 210731801}
+    - target: {fileID: 7035900495522208381, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7035900495522208381, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2366,8 +2446,43 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5081192370270881541, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1289162912}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7327436748805592464, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 817184797}
+    - targetCorrespondingSourceObject: {fileID: 7209553426665369935, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1877299465}
+    - targetCorrespondingSourceObject: {fileID: 6535279079344185185, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1477743826}
+    - targetCorrespondingSourceObject: {fileID: 8677156619235839621, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1990268722}
+    - targetCorrespondingSourceObject: {fileID: 2550273122261338747, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1257206474}
   m_SourcePrefab: {fileID: 100100000, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+--- !u!1 &1877299460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7209553426665369935, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+  m_PrefabInstance: {fileID: 1754920241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1877299465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877299460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a6e25cda697045bd0c3f8e0476c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageStartButton
+  stageNumber: 2
+  miniGameSpawner: {fileID: 210731800}
+  audioManager: {fileID: 1664007079}
 --- !u!1 &1911181042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2497,6 +2612,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1990268717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8677156619235839621, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
+  m_PrefabInstance: {fileID: 1754920241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1990268722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990268717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a6e25cda697045bd0c3f8e0476c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageStartButton
+  stageNumber: 4
+  miniGameSpawner: {fileID: 210731800}
+  audioManager: {fileID: 1664007079}
 --- !u!1 &2071113346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5952402661683950795, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
