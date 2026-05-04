@@ -206,8 +206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 592, y: -475}
-  m_SizeDelta: {x: 1060, y: 600}
+  m_AnchoredPosition: {x: 598.0858, y: -425.97272}
+  m_SizeDelta: {x: 1111.1208, y: 532.5201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3634324548626352537
 CanvasRenderer:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -756,7 +756,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3520179065059876847
 CanvasRenderer:
@@ -868,7 +868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8527568592950175283, guid: 75298136c68d01344affbbc783ce8f6c, type: 3}
+  m_Sprite: {fileID: 753593551238448, guid: 6adfab24061b1d1449c053b5d1005c6f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -938,7 +938,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 561.1349, y: -0.000061035156}
+  m_Offset: {x: 577.5421, y: -0.000061035156}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -948,7 +948,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 73.84985, y: 798.97437}
+  m_Size: {x: 41.0354, y: 798.97437}
   m_EdgeRadius: 0
 --- !u!61 &900554681359296912
 BoxCollider2D:
@@ -984,7 +984,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -569.9866, y: 0.000030517578}
+  m_Offset: {x: -579.83093, y: 0.000030517578}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -994,7 +994,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 60.69336, y: 800.2856}
+  m_Size: {x: 41.0047, y: 800.2856}
   m_EdgeRadius: 0
 --- !u!61 &3858526703946048644
 BoxCollider2D:
@@ -1030,7 +1030,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.3902588, y: -379.5276}
+  m_Offset: {x: 1.3902588, y: -348.90082}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1040,7 +1040,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1197.886, y: 41.23047}
+  m_Size: {x: 1197.886, y: 102.48401}
   m_EdgeRadius: 0
 --- !u!61 &9139438381608814698
 BoxCollider2D:
@@ -1076,7 +1076,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.3901978, y: 310.017}
+  m_Offset: {x: -1.3901978, y: 322.04895}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1086,7 +1086,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1197.8859, y: 180.25153}
+  m_Size: {x: 1197.8859, y: 156.18762}
   m_EdgeRadius: 0
 --- !u!114 &5938512625126469385
 MonoBehaviour:
@@ -1101,7 +1101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageScreen
   clearButton: {fileID: 6876577669407944785}
-  gameOverButton: {fileID: 0}
 --- !u!1 &5911841245901698136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallInitialDrop
   constantSpeed: 5
   minHorizontalVelocity: 0.5
-  buttonHandler: {fileID: 8066509388496188048}
+  buttonHandler: {fileID: 0}
 --- !u!1001 &1515465827550530700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1344,7 +1343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1423,17 +1422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &8066509388496188048 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -361981592181162468, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
-  m_PrefabInstance: {fileID: 1515465827550530700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8620063387451871285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1d9f44db0a1dd4390b8721f1ab8d1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnClickButton
 --- !u!1 &8620063387451871285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7109101193889045689, guid: c3e20654cbb430840a9528b7faa79666, type: 3}

@@ -13,6 +13,13 @@ public class OnClickButton : MonoBehaviour
     {
         titleScreen.SetActive(false);
         mainScreen.SetActive(true);
+
+        MainScreenUI mainScreenUI = mainScreen.GetComponent<MainScreenUI>();
+
+        if (mainScreenUI != null)
+        {
+            mainScreenUI.RefreshStageButtons();
+        }
     }
 
     public void OnClickToTitle()
