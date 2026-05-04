@@ -49,13 +49,12 @@ public class MiniGameSpawner : MonoBehaviour
         currentMiniGame.OnStageClearButtonClicked += HandleStageClear;
         currentMiniGame.OnGameOver += HandleGameOver;
 
-        var buttonChange = currentMiniGame.GetComponent<ButtonChange>();
-        int gameIdx = buttonChange != null ? buttonChange.gameIndex : randomIndex + 1;
-        if (MiniGameManager.Instance != null)
-            MiniGameManager.Instance.StartGame(gameIdx);
-        Debug.Log($"[Spawner] StartGame 후 존재여부: {currentMiniGame != null}");
+        if (currentMiniGame.TryGetComponent<ButtonChange>(out var buttonChange))
+            buttonChange.StartMiniGame();
+        else if (currentMiniGame.TryGetComponent<MiniGames>(out var miniGames))
+            miniGames.StartMiniGame();
 
-        Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name} (gameIndex: {randomIndex + 1})");
+        Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name}");
     }
 
     private void HandleStageClear(int stageNumber)

@@ -120,8 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonChange
   agreePrefab: {fileID: 2359104444297602579}
   disagreePrefab: {fileID: 6563754033279401335}
-  agreeSprite: {fileID: 0}
-  disagreeSprite: {fileID: 0}
+  agreeSprite: {fileID: 21300000, guid: 3e99c9a2d038d8642a33aa3bc5ecc961, type: 3}
+  disagreeSprite: {fileID: 21300000, guid: 3e99c9a2d038d8642a33aa3bc5ecc961, type: 3}
   game1StartScale: 0.3
   game2StartScale: 1
   game2MaxScale: 15

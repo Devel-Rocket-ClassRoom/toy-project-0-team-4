@@ -55,6 +55,18 @@ public class ButtonChange : MonoBehaviour
             child.gameObject.SetActive(false);
     }
 
+    public void StartMiniGame()
+    {
+        switch (gameIndex)
+        {
+            case 1: StartGame1(); break;
+            case 2: StartGame2(); break;
+            case 3: StartGame3(); break;
+            case 4: StartGame4(); break;
+            case 5: StartGame5(); break;
+        }
+    }
+
     void OnEnable()
     {
         if (gameIndex == 1) MiniGameManager.OnGame1Start += StartGame1;
@@ -167,12 +179,16 @@ public class ButtonChange : MonoBehaviour
     // ─── 미니게임 5: 그리드 셀 중 숨겨진 동의 버튼 찾기 ─────────────
     void StartGame5()
     {
+        Debug.Log("[Game5] StartGame5 호출됨");
         currentState = MiniGameState.Game5;
 
+        if (TryGetComponent<VerticalLayoutGroup>(out var vLayout)) vLayout.enabled = false;
+
         // 그리드 컨테이너 생성
-        game5Grid = new GameObject("Game5Grid");
+        game5Grid = new GameObject("Game5Grid", typeof(RectTransform));
         game5Grid.transform.SetParent(transform, false);
-        var gridRect = game5Grid.AddComponent<RectTransform>();
+        var gridRect = (RectTransform)game5Grid.transform;
+        Debug.Log($"[Game5] game5Grid 생성됨, 부모: {game5Grid.transform.parent.name}");
         gridRect.anchorMin = Vector2.zero;
         gridRect.anchorMax = Vector2.one;
         gridRect.offsetMin = Vector2.zero;
@@ -217,7 +233,7 @@ public class ButtonChange : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 clickCount++;
-                if (clickCount < 3) return;
+                if (clickCount < 2) return;
 
                 img.color = Color.clear;
                 btn.interactable = false;
