@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MiniGames : MonoBehaviour
+public class MovingMiniGame : MonoBehaviour
 {
     [Header("버튼 프리팹")]
     public GameObject agreePrefab;

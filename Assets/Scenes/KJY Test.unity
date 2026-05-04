@@ -1005,8 +1005,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC740\uD589 \uC774\uC6A9 \uC57D\uAD00"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1208,12 +1208,7 @@ MonoBehaviour:
   mainScreen: {fileID: 2135741897}
   miniGameParent: {fileID: 370999987}
   miniGamePrefabs:
-  - {fileID: 5938512625126469385, guid: 6538a4fc1c50e4044864bf8e7115cd50, type: 3}
-  - {fileID: 3000483862689402214, guid: f338318eaa362e040963ae5d8fcaed38, type: 3}
-  - {fileID: 4140518401417868971, guid: 7e9e046e81df79f4d995a00999cbc924, type: 3}
-  - {fileID: 3486320631883065774, guid: 94660b5d0fb09c44eb6d2aa5f2621cc1, type: 3}
-  - {fileID: 3076362969042246458, guid: 38145797dc6026d419feb67cf9c88711, type: 3}
-  - {fileID: -5835555982258864365, guid: 7bbf2fff1cdb7a14d9cfe3c600ced1be, type: 3}
+  - {fileID: 1480643255902735681, guid: eda34359bc65b124c942e02175d70b62, type: 3}
   stageClearManager: {fileID: 370999990}
   mainScreenUI: {fileID: 2135741898}
 --- !u!114 &370999989
