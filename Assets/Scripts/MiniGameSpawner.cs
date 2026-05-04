@@ -72,6 +72,8 @@ public class MiniGameSpawner : MonoBehaviour
             hiddenGame.StartMiniGame();
         else if (currentMiniGame.TryGetComponent<WallButtonGame>(out var wallGame))
             wallGame.StartMiniGame();
+        else if (currentMiniGame.TryGetComponent<JumpButtonGame>(out var jumpGame))
+            jumpGame.StartMiniGame();
 
         Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name}");
     }
