@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ButtonChange : MonoBehaviour
 {
@@ -11,10 +10,6 @@ public class ButtonChange : MonoBehaviour
     // 런타임에 생성된 버튼 인스턴스
     private Button agreeButton;
     private Button disagreeButton;
-
-    [Header("미니게임1 - 역할 스왑 색상")]
-    public Color agreeColor = new(0.2f, 0.8f, 0.2f);
-    public Color disagreeColor = new(0.9f, 0.2f, 0.2f);
 
     [Header("미니게임3 - 이미지 스왑")]
     public Sprite agreeSprite;    // 동의 버튼에 원래 표시할 이미지
@@ -46,27 +41,18 @@ public class ButtonChange : MonoBehaviour
     public Color game5AgreeFound    = new Color(0.2f, 0.8f, 0.2f);
     public Color game5DisagreeFound = new Color(0.9f, 0.2f, 0.2f);
 
-    private GameObject game5Grid; // Game5에서 생성한 그리드 컨테이너
+    private GameObject game5Grid;
 
     [Header("이 프리팹이 담당할 게임 번호 (1~5)")]
-    [SerializeField] private int gameIndex = 1;
+    public int gameIndex = 1;
 
     private enum MiniGameState { None, Game1, Game2, Game3, Game4, Game5 }
     private MiniGameState currentState = MiniGameState.None;
-    private RectTransform canvasRect;
 
     void Awake()
     {
-        // Canvas 밖에 있으면 매니저 역할 → 시각 컴포넌트 숨김
-        if (GetComponentInParent<Canvas>() == null)
-        {
-            var img = GetComponent<Image>();
-            var btn = GetComponent<Button>();
-            var txt = GetComponentInChildren<TextMeshProUGUI>();
-            if (img != null) img.enabled = false;
-            if (btn != null) btn.enabled = false;
-            if (txt != null) txt.enabled = false;
-        }
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(false);
     }
 
     void OnEnable()
@@ -126,7 +112,7 @@ public class ButtonChange : MonoBehaviour
         currentState = MiniGameState.Game1;
         agreeRect.localScale    = Vector3.one * game1StartScale;
         disagreeRect.localScale = Vector3.one * game1StartScale;
-        ResetColors();
+        
         RegisterListeners(
             () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
             ()   => MiniGameManager.NotifyFail()
@@ -141,7 +127,6 @@ public class ButtonChange : MonoBehaviour
         currentScale = game2StartScale;
         agreeRect.localScale    = Vector3.one;
         disagreeRect.localScale = Vector3.one * game2StartScale;
-        ResetColors();
         RegisterListeners(
             () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
             ()   => MiniGameManager.NotifyFail()
@@ -155,13 +140,14 @@ public class ButtonChange : MonoBehaviour
         currentState = MiniGameState.Game3;
         agreeRect.localScale    = Vector3.one;
         disagreeRect.localScale = Vector3.one;
-        ResetColors();
+        
         // 이미지를 서로 바꿔서 어떤 버튼이 어느 역할인지 헷갈리게 함
         SetButtonImage(agreeButton,    disagreeSprite);
         SetButtonImage(disagreeButton, agreeSprite);
+        // 이미지가 바뀌었으므로 역할도 반대로 등록
         RegisterListeners(
-            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
-            ()   => MiniGameManager.NotifyFail()
+            () => MiniGameManager.NotifyFail(),
+            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); }
         );
     }
 
@@ -172,8 +158,6 @@ public class ButtonChange : MonoBehaviour
         currentState = MiniGameState.Game4;
         agreeRect.localScale    = Vector3.one;
         disagreeRect.localScale = Vector3.one;
-        canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
-        ResetColors();
         RegisterListeners(
             () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
             ()   => MiniGameManager.NotifyFail()
@@ -228,20 +212,37 @@ public class ButtonChange : MonoBehaviour
             outline.effectDistance = new Vector2(1f, -1f);
 
             var btn = cellGO.GetComponent<Button>();
+            int clickCount = 0;
+
             btn.onClick.AddListener(() =>
             {
-                if (cellType == 1) // Agree
-                {
-                    img.color    = game5AgreeFound;
-                    currentState = MiniGameState.None;
-                    MiniGameManager.NotifySuccess();
-                }
-                else if (cellType == 2) // Disagree
-                {
-                    img.color = game5DisagreeFound;
-                    MiniGameManager.NotifyFail();
-                }
-                btn.interactable = false; // 중복 클릭 방지
+                clickCount++;
+                if (clickCount < 3) return;
+
+                img.color = Color.clear;
+                btn.interactable = false;
+
+                if (cellType == 0) return;
+
+                var prefab = cellType == 1 ? agreePrefab : disagreePrefab;
+                var realGO = Instantiate(prefab, cellGO.transform);
+                var rt     = realGO.GetComponent<RectTransform>();
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.offsetMin = rt.offsetMax = Vector2.zero;
+
+                if (realGO.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+
+                var realBtn = realGO.GetComponent<Button>();
+                realBtn.onClick = new Button.ButtonClickedEvent();
+                if (cellType == 1)
+                    realBtn.onClick.AddListener(() =>
+                    {
+                        currentState = MiniGameState.None;
+                        MiniGameManager.NotifySuccess();
+                    });
+                else
+                    realBtn.onClick.AddListener(() => MiniGameManager.NotifyFail());
             });
         }
     }
@@ -255,12 +256,17 @@ public class ButtonChange : MonoBehaviour
             disagreeRect.localScale = Vector3.one * currentScale;
         }
 
-        if (currentState == MiniGameState.Game4 && agreeRect != null && canvasRect != null)
+        if (currentState == MiniGameState.Game4 && agreeRect != null)
         {
+            var parentRect = agreeRect.parent as RectTransform;
+            if (parentRect == null) return;
+
+            Canvas canvas = GetComponentInParent<Canvas>();
+            Camera uiCamera = canvas != null ? canvas.worldCamera : null;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                agreeRect.parent as RectTransform,
+                parentRect,
                 Input.mousePosition,
-                null,
+                uiCamera,
                 out Vector2 localMouse
             );
 
@@ -272,8 +278,7 @@ public class ButtonChange : MonoBehaviour
                 Vector2 escapeDir = Vector2.zero == diff ? Vector2.right : diff.normalized;
                 agreePos += escapeDir * game4EscapeSpeed * Time.deltaTime;
 
-                // 캔버스 범위 안에서만 이동
-                Vector2 half = canvasRect.rect.size * 0.5f;
+                Vector2 half = parentRect.rect.size * 0.5f;
                 agreePos.x = Mathf.Clamp(agreePos.x, -half.x, half.x);
                 agreePos.y = Mathf.Clamp(agreePos.y, -half.y, half.y);
 
@@ -285,27 +290,10 @@ public class ButtonChange : MonoBehaviour
     // ─── 공통 유틸 ───────────────────────────────────────────────────
     void RegisterListeners(UnityEngine.Events.UnityAction onAgree, UnityEngine.Events.UnityAction onDisagree)
     {
-        agreeButton.onClick.RemoveAllListeners();
-        disagreeButton.onClick.RemoveAllListeners();
+        agreeButton.onClick    = new Button.ButtonClickedEvent();
+        disagreeButton.onClick = new Button.ButtonClickedEvent();
         agreeButton.onClick.AddListener(onAgree);
         disagreeButton.onClick.AddListener(onDisagree);
-    }
-
-    void ResetColors()
-    {
-        SetButtonColor(agreeButton,    agreeColor);
-        SetButtonColor(disagreeButton, disagreeColor);
-    }
-
-    void SetButtonColor(Button btn, Color color)
-    {
-        btn.interactable = true;
-        ColorBlock cb = btn.colors;
-        cb.normalColor    = color;
-        cb.colorMultiplier = 1f;
-        btn.colors = cb;
-        if (btn.targetGraphic != null)
-            btn.targetGraphic.color = color;
     }
 
     void SetButtonImage(Button btn, Sprite sprite)

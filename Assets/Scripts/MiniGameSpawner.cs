@@ -41,12 +41,21 @@ public class MiniGameSpawner : MonoBehaviour
         StageScreen prefab = miniGamePrefabs[randomIndex];
 
         currentMiniGame = Instantiate(prefab, miniGameParent);
+        Debug.Log($"[Spawner] 생성됨: {currentMiniGame.name}, 부모: {currentMiniGame.transform.parent?.name}, activeInHierarchy: {currentMiniGame.gameObject.activeInHierarchy}");
+
         currentMiniGame.Init(currentStageNumber);
+        Debug.Log($"[Spawner] Init 후 존재여부: {currentMiniGame != null}");
 
         currentMiniGame.OnStageClearButtonClicked += HandleStageClear;
         currentMiniGame.OnGameOver += HandleGameOver;
 
-        Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name}");
+        var buttonChange = currentMiniGame.GetComponent<ButtonChange>();
+        int gameIdx = buttonChange != null ? buttonChange.gameIndex : randomIndex + 1;
+        if (MiniGameManager.Instance != null)
+            MiniGameManager.Instance.StartGame(gameIdx);
+        Debug.Log($"[Spawner] StartGame 후 존재여부: {currentMiniGame != null}");
+
+        Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name} (gameIndex: {randomIndex + 1})");
     }
 
     private void HandleStageClear(int stageNumber)
