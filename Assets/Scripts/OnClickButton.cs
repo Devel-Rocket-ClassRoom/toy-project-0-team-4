@@ -11,7 +11,12 @@ public class OnClickButton : MonoBehaviour
 
     public void OnClickStart()
     {
-        titleScreen.SetActive(false);
+        if (miniGameSpawner != null)
+        {
+            miniGameSpawner.HideResultObjects();
+        }
+
+        titleScreen.SetActive(true);
         mainScreen.SetActive(true);
 
         MainScreenUI mainScreenUI = mainScreen.GetComponent<MainScreenUI>();
@@ -20,17 +25,6 @@ public class OnClickButton : MonoBehaviour
         {
             mainScreenUI.RefreshStageButtons();
         }
-    }
-
-    public void OnClickToTitle()
-    {
-        if (miniGameSpawner != null)
-        {
-            miniGameSpawner.DestroyCurrentMiniGame();
-        }
-
-        titleScreen.SetActive(true);
-        mainScreen.SetActive(false);
     }
 
     public void OnClickToStage(int stageNumber)
@@ -48,10 +42,27 @@ public class OnClickButton : MonoBehaviour
     {
         if (miniGameSpawner != null)
         {
-            miniGameSpawner.DestroyCurrentMiniGame();
+            miniGameSpawner.ShowTitleScreen();
+            return;
         }
 
         titleScreen.SetActive(true);
         mainScreen.SetActive(false);
+    }
+
+    public void OnClickSuccessConfirm()
+    {
+        if (miniGameSpawner != null)
+        {
+            miniGameSpawner.ConfirmSuccess();
+        }
+    }
+
+    public void OnClickFailConfirm()
+    {
+        if (miniGameSpawner != null)
+        {
+            miniGameSpawner.ConfirmFail();
+        }
     }
 }
