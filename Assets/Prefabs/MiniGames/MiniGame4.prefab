@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a9d0fd06949a91408969d4f5ab6c6ee, type: 3}
+  m_Sprite: {fileID: 753593551238448, guid: 6adfab24061b1d1449c053b5d1005c6f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -142,6 +142,14 @@ MonoBehaviour:
   game2GrowSpeed: 5
   game4EscapeRadius: 150
   game4EscapeSpeed: 400
+  game5Columns: 8
+  game5Rows: 10
+  game5DisagreeCount: 5
+  game5CellSize: {x: 60, y: 40}
+  game5CellSpacing: {x: 4, y: 4}
+  game5NormalColor: {r: 1, g: 1, b: 1, a: 1}
+  game5AgreeFound: {r: 0.2, g: 0.8, b: 0.2, a: 1}
+  game5DisagreeFound: {r: 0.9, g: 0.2, b: 0.2, a: 1}
   gameIndex: 4
 --- !u!1001 &4026791186445086509
 PrefabInstance:
