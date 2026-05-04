@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class MainScreenUI : MonoBehaviour
@@ -10,11 +9,14 @@ public class MainScreenUI : MonoBehaviour
         [Header("스테이지 번호")]
         public int stageNumber;
 
-        [Header("확인하기 버튼")]
-        public GameObject checkButton;
+        [Header("해당 스테이지 시작 버튼")]
+        public GameObject startButton;
 
-        [Header("클리어 아이콘")]
-        public GameObject clearIcon;
+        [Header("생성할 클리어 프리팹")]
+        public GameObject clearPrefab;
+
+        [HideInInspector]
+        public GameObject spawnedClearObject;
     }
 
     [Header("스테이지 클리어 매니저")]
@@ -23,16 +25,8 @@ public class MainScreenUI : MonoBehaviour
     [Header("메인화면 스테이지 버튼 목록")]
     [SerializeField] private StageButtonInfo[] stageButtons;
 
-
     private void OnEnable()
     {
-        StartCoroutine(RefreshNextFrame());
-    }
-
-    private IEnumerator RefreshNextFrame()
-    {
-        yield return null;
-
         RefreshStageButtons();
     }
 
@@ -48,17 +42,68 @@ public class MainScreenUI : MonoBehaviour
         {
             bool isCleared = stageClearManager.IsStageCleared(stageButton.stageNumber);
 
-            if (stageButton.checkButton != null)
+            if (isCleared)
             {
-                stageButton.checkButton.SetActive(!isCleared);
+                ChangeToClearPrefab(stageButton);
             }
-
-            if (stageButton.clearIcon != null)
+            else
             {
-                stageButton.clearIcon.SetActive(isCleared);
+                ChangeToStartButton(stageButton);
             }
+        }
+    }
 
-            Debug.Log($"{stageButton.stageNumber}단계 클리어 상태: {isCleared}");
+    private void ChangeToClearPrefab(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton != null)
+        {
+            stageButton.startButton.SetActive(false);
+        }
+
+        if (stageButton.spawnedClearObject != null)
+            return;
+
+        if (stageButton.clearPrefab == null)
+        {
+            Debug.LogWarning($"{stageButton.stageNumber} 스테이지 ClearPrefab이 연결되지 않았습니다.");
+            return;
+        }
+
+        Transform parent = stageButton.startButton.transform.parent;
+
+        stageButton.spawnedClearObject = Instantiate(
+            stageButton.clearPrefab,
+            parent
+        );
+
+        RectTransform startRect = stageButton.startButton.GetComponent<RectTransform>();
+        RectTransform clearRect = stageButton.spawnedClearObject.GetComponent<RectTransform>();
+
+        if (startRect != null && clearRect != null)
+        {
+            clearRect.anchorMin = startRect.anchorMin;
+            clearRect.anchorMax = startRect.anchorMax;
+            clearRect.pivot = startRect.pivot;
+            clearRect.anchoredPosition = startRect.anchoredPosition;
+            clearRect.sizeDelta = startRect.sizeDelta;
+            clearRect.localScale = startRect.localScale;
+            clearRect.localRotation = startRect.localRotation;
+        }
+
+        stageButton.spawnedClearObject.SetActive(true);
+    }
+
+    private void ChangeToStartButton(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton != null)
+        {
+            stageButton.startButton.SetActive(true);
+        }
+
+        if (stageButton.spawnedClearObject != null)
+        {
+            Destroy(stageButton.spawnedClearObject);
+            stageButton.spawnedClearObject = null;
         }
     }
 }

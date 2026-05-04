@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4197595135396156838}
   - component: {fileID: 3784146484566337597}
   - component: {fileID: 1312443003139593008}
+  - component: {fileID: -239107269962625890}
   m_Layer: 5
   m_Name: Main
   m_TagString: Untagged
@@ -107,6 +108,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &-239107269962625890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952402661683950795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1fe2676f624dc4d91ea34a2c800cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainScreenUI
+  stageClearManager: {fileID: 0}
+  stageButtons: []
 --- !u!1001 &401851092572878434
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,52 +1,45 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StageClearManager : MonoBehaviour
 {
-    [SerializeField] private StageScreen[] stageScreens;
+    public event Action<int> OnStageCleared;
 
-    private const string StageClearKey = "StageClear_";
+    private HashSet<int> clearedStages = new HashSet<int>();
 
-    private void OnEnable()
+    public void ClearStage(int stageNumber)
     {
-        foreach (StageScreen stageScreen in stageScreens)
+        if (clearedStages.Contains(stageNumber))
         {
-            stageScreen.OnStageClearButtonClicked += HandleStageClear;
+            Debug.Log($"{stageNumber} 스테이지는 이미 클리어됨");
+            return;
         }
-        ResetAll(); // 테스트용으로 모든 클리어 데이터 초기화 (실제 게임에서는 제거)
-    }
 
-    private void OnDisable()
-    {
-        foreach (StageScreen stageScreen in stageScreens)
-        {
-            stageScreen.OnStageClearButtonClicked -= HandleStageClear;
-        }
-    }
-
-    private void HandleStageClear(int stageNumber)
-    {
-        PlayerPrefs.SetInt(StageClearKey + stageNumber, 1);
-        PlayerPrefs.Save();
+        clearedStages.Add(stageNumber);
 
         Debug.Log($"{stageNumber} 스테이지 클리어 저장 완료");
+
+        OnStageCleared?.Invoke(stageNumber);
     }
 
     public bool IsStageCleared(int stageNumber)
     {
-        return PlayerPrefs.GetInt(StageClearKey + stageNumber, 0) == 1;
+        return clearedStages.Contains(stageNumber);
     }
 
     public void ResetStageClear(int stageNumber)
     {
-        PlayerPrefs.DeleteKey(StageClearKey + stageNumber);
-        PlayerPrefs.Save();
+        if (clearedStages.Contains(stageNumber))
+        {
+            clearedStages.Remove(stageNumber);
+        }
     }
 
     public void ResetAll()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+        clearedStages.Clear();
 
-        Debug.Log("모든 클리어 데이터 초기화");
+        Debug.Log("모든 스테이지 클리어 상태 초기화");
     }
 }

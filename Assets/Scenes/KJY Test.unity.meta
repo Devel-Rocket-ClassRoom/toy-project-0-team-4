@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/TestMiniGame.unity.meta
+guid: 39e75cbf35f9bdd48bd129848381c09f
+========
 guid: 6f7e1b87554ecf9439795b1c1da89cd0
+>>>>>>>> main:Assets/Scenes/KJY Test.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

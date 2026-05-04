@@ -2,62 +2,49 @@ using UnityEngine;
 
 public class OnClickButton : MonoBehaviour
 {
+    [Header("화면")]
+    [SerializeField] private GameObject titleScreen;
+    [SerializeField] private GameObject mainScreen;
 
-    [SerializeField] private GameObject MainScreen;
-    [SerializeField] private GameObject Stage1;
-    [SerializeField] private GameObject Stage2;
-    [SerializeField] private GameObject Stage3;
-    [SerializeField] private GameObject Stage4;
-    public void OnClickToMain()
+    [Header("미니게임 생성 매니저")]
+    [SerializeField] private MiniGameSpawner miniGameSpawner;
+
+    public void OnClickStart()
     {
-        // Main 씬으로 이동하는 코드 작성
-        MainScreen.SetActive(true);
-        Stage1.SetActive(false);
-        Stage2.SetActive(false);
-        Stage3.SetActive(false);
-        Stage4.SetActive(false);
+        titleScreen.SetActive(false);
+        mainScreen.SetActive(true);
     }
+
+    public void OnClickToTitle()
+    {
+        if (miniGameSpawner != null)
+        {
+            miniGameSpawner.DestroyCurrentMiniGame();
+        }
+
+        titleScreen.SetActive(true);
+        mainScreen.SetActive(false);
+    }
+
+    public void OnClickToStage(int stageNumber)
+    {
+        if (miniGameSpawner == null)
+        {
+            Debug.LogWarning("MiniGameSpawner가 연결되지 않았습니다.");
+            return;
+        }
+
+        miniGameSpawner.StartStage(stageNumber);
+    }
+
     public void OnClickCancle()
     {
-        // Title 씬으로 이동하는 코드 작성
-        MainScreen.SetActive(false);
-        Stage1.SetActive(false);
-        Stage2.SetActive(false);
-        // Stage3.SetActive(false);
-        // Stage4.SetActive(false);
-    }
+        if (miniGameSpawner != null)
+        {
+            miniGameSpawner.DestroyCurrentMiniGame();
+        }
 
-    public void OnClickToStage1()
-    {
-        // Stage1 씬으로 이동하는 코드 작성
-        MainScreen.SetActive(false);
-        Stage1.SetActive(true);
-        Stage2.SetActive(false);
+        titleScreen.SetActive(true);
+        mainScreen.SetActive(false);
     }
-    public void OnClickToStage2()
-    {
-        // Stage2 씬으로 이동하는 코드 작성
-        MainScreen.SetActive(false);
-        Stage1.SetActive(false);
-        Stage2.SetActive(true);
-    }
-    public void OnClickToStage3()
-    {
-        // Stage3 씬으로 이동하는 코드 작성
-        MainScreen.SetActive(false);
-        Stage1.SetActive(false);
-        Stage2.SetActive(false);
-        Stage3.SetActive(true);
-    }
-    public void OnClickToStage4()
-    {
-        // Stage4 씬으로 이동하는 코드 작성
-        MainScreen.SetActive(false);
-        Stage1.SetActive(false);
-        Stage2.SetActive(false);
-        Stage3.SetActive(false);
-        Stage4.SetActive(true);
-    }
-
-
 }
