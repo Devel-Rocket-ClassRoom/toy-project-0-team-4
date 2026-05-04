@@ -17,6 +17,10 @@ public class MiniGameSpawner : MonoBehaviour
     [Header("메인화면 UI")]
     [SerializeField] private MainScreenUI mainScreenUI;
 
+    [Header("결과 팝업")]
+    [SerializeField] private GameObject successResultObject;
+    [SerializeField] private GameObject failResultObject;
+
     private StageScreen currentMiniGame;
     private int currentStageNumber;
 
@@ -28,7 +32,17 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
+        Time.timeScale = 1f;
+
         currentStageNumber = stageNumber;
+
+        HideResultObjects();
+
+        // 게임 중에는 배경은 보이고, 메인 팝업은 숨김
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
 
         if (mainScreen != null)
         {
@@ -61,6 +75,8 @@ public class MiniGameSpawner : MonoBehaviour
 
     private void HandleStageClear(int stageNumber)
     {
+        Debug.Log($"{stageNumber} 스테이지 클리어");
+
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
@@ -72,14 +88,56 @@ public class MiniGameSpawner : MonoBehaviour
 
     private void HandleGameOver()
     {
-        Debug.Log("게임오버 - 미니게임 삭제");
+        Debug.Log("게임오버");
 
-        DestroyCurrentMiniGame();
-        ShowMainScreen();
+        // 바로 타이틀로 가지 않음
+        // 현재 미니게임 화면 위에 실패 팝업만 표시
+        ShowFailPopup();
     }
 
-    public void ShowMainScreen()
+    private void ShowSuccessPopup()
     {
+        Time.timeScale = 0f;
+
+        if (successResultObject != null)
+        {
+            successResultObject.SetActive(true);
+        }
+
+        if (failResultObject != null)
+        {
+            failResultObject.SetActive(false);
+        }
+    }
+
+    private void ShowFailPopup()
+    {
+        Time.timeScale = 0f;
+
+        if (successResultObject != null)
+        {
+            successResultObject.SetActive(false);
+        }
+
+        if (failResultObject != null)
+        {
+            failResultObject.SetActive(true);
+        }
+    }
+
+    public void ConfirmSuccess()
+    {
+        Time.timeScale = 1f;
+
+        DestroyCurrentMiniGame();
+
+        HideResultObjects();
+
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
+
         if (mainScreen != null)
         {
             mainScreen.SetActive(true);
@@ -88,6 +146,85 @@ public class MiniGameSpawner : MonoBehaviour
         if (mainScreenUI != null)
         {
             mainScreenUI.RefreshStageButtons();
+        }
+
+        Debug.Log("성공 확인 버튼 클릭 - 메인화면으로 이동");
+    }
+
+    public void ConfirmFail()
+    {
+        Time.timeScale = 1f;
+
+        if (stageClearManager != null)
+        {
+            stageClearManager.ResetAll();
+        }
+
+        currentStageNumber = 0;
+
+        DestroyCurrentMiniGame();
+
+        HideResultObjects();
+
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
+
+        if (mainScreen != null)
+        {
+            mainScreen.SetActive(false);
+        }
+
+        if (mainScreenUI != null)
+        {
+            mainScreenUI.RefreshStageButtons();
+        }
+
+        Debug.Log("실패 확인 버튼 클릭 - 타이틀화면으로 이동");
+    }
+
+    public void ShowTitleScreen()
+    {
+        Time.timeScale = 1f;
+
+        if (stageClearManager != null)
+        {
+            stageClearManager.ResetAll();
+        }
+
+        currentStageNumber = 0;
+
+        DestroyCurrentMiniGame();
+
+        HideResultObjects();
+
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
+
+        if (mainScreen != null)
+        {
+            mainScreen.SetActive(false);
+        }
+
+        if (mainScreenUI != null)
+        {
+            mainScreenUI.RefreshStageButtons();
+        }
+    }
+
+    public void HideResultObjects()
+    {
+        if (successResultObject != null)
+        {
+            successResultObject.SetActive(false);
+        }
+
+        if (failResultObject != null)
+        {
+            failResultObject.SetActive(false);
         }
     }
 
