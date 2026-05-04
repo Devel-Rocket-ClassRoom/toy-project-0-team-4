@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4599488617004712202}
   - component: {fileID: 7157222722773317799}
   - component: {fileID: 3520879231060176070}
+  - component: {fileID: 3000483862689402214}
   m_Layer: 5
   m_Name: MiniGame1
   m_TagString: Untagged
@@ -151,6 +152,19 @@ MonoBehaviour:
   game5AgreeFound: {r: 0.2, g: 0.8, b: 0.2, a: 1}
   game5DisagreeFound: {r: 0.9, g: 0.2, b: 0.2, a: 1}
   gameIndex: 1
+--- !u!114 &3000483862689402214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703756290179461417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebeed60fcab295847a76cd3c8174c423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageScreen
+  clearButton: {fileID: 5253904414635200989}
 --- !u!1001 &184393505079373056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +302,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
+--- !u!114 &5253904414635200989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5361120638487837917, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
+  m_PrefabInstance: {fileID: 184393505079373056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928648615278342585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &5349075058831676926 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
