@@ -16,17 +16,25 @@ public class StageScreen : MonoBehaviour
     private void Awake()
     {
         if (clearButton != null)
-        {
             clearButton.onClick.AddListener(OnClickClearButton);
-        }
+    }
+
+    private void OnEnable()
+    {
+        MiniGameManager.OnMiniGameSuccess += ClearStage;
+        MiniGameManager.OnMiniGameFail    += GameOver;
+    }
+
+    private void OnDisable()
+    {
+        MiniGameManager.OnMiniGameSuccess -= ClearStage;
+        MiniGameManager.OnMiniGameFail    -= GameOver;
     }
 
     private void OnDestroy()
     {
         if (clearButton != null)
-        {
             clearButton.onClick.RemoveListener(OnClickClearButton);
-        }
     }
 
     public void Init(int stageNumber)

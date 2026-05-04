@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 1898692446855365981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.272645, y: 3.272645, z: 3.272645}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1536228435704074305}
@@ -39,7 +39,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -415.15063, y: -424.78217}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1200, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7330244994233012731
@@ -120,8 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonChange
   agreePrefab: {fileID: 2359104444297602579}
   disagreePrefab: {fileID: 6563754033279401335}
-  agreeColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
-  disagreeColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
   agreeSprite: {fileID: 0}
   disagreeSprite: {fileID: 0}
   game1StartScale: 0.3

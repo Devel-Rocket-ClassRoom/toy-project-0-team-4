@@ -3,7 +3,6 @@ using UnityEngine;
 public class MiniGameSpawner : MonoBehaviour
 {
     [Header("화면")]
-    [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject mainScreen;
 
     [Header("미니게임이 생성될 부모")]
@@ -31,11 +30,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         currentStageNumber = stageNumber;
 
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(false);
-        }
-
         if (mainScreen != null)
         {
             mainScreen.SetActive(false);
@@ -47,12 +41,21 @@ public class MiniGameSpawner : MonoBehaviour
         StageScreen prefab = miniGamePrefabs[randomIndex];
 
         currentMiniGame = Instantiate(prefab, miniGameParent);
+        Debug.Log($"[Spawner] 생성됨: {currentMiniGame.name}, 부모: {currentMiniGame.transform.parent?.name}, activeInHierarchy: {currentMiniGame.gameObject.activeInHierarchy}");
+
         currentMiniGame.Init(currentStageNumber);
+        Debug.Log($"[Spawner] Init 후 존재여부: {currentMiniGame != null}");
 
         currentMiniGame.OnStageClearButtonClicked += HandleStageClear;
         currentMiniGame.OnGameOver += HandleGameOver;
 
-        Debug.Log($"{currentStageNumber} 스테이지 시작");
+        var buttonChange = currentMiniGame.GetComponent<ButtonChange>();
+        int gameIdx = buttonChange != null ? buttonChange.gameIndex : randomIndex + 1;
+        if (MiniGameManager.Instance != null)
+            MiniGameManager.Instance.StartGame(gameIdx);
+        Debug.Log($"[Spawner] StartGame 후 존재여부: {currentMiniGame != null}");
+
+        Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name} (gameIndex: {randomIndex + 1})");
     }
 
     private void HandleStageClear(int stageNumber)
@@ -63,33 +66,19 @@ public class MiniGameSpawner : MonoBehaviour
         }
 
         DestroyCurrentMiniGame();
-
         ShowMainScreen();
     }
 
     private void HandleGameOver()
     {
-        Debug.Log("게임오버 - 타이틀 화면으로 이동");
-
-        if (stageClearManager != null)
-        {
-            stageClearManager.ResetAll();
-        }
-
-        currentStageNumber = 0;
+        Debug.Log("게임오버 - 미니게임 삭제");
 
         DestroyCurrentMiniGame();
-
-        ShowTitleScreen();
+        ShowMainScreen();
     }
 
-    private void ShowMainScreen()
+    public void ShowMainScreen()
     {
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(false);
-        }
-
         if (mainScreen != null)
         {
             mainScreen.SetActive(true);
@@ -98,19 +87,6 @@ public class MiniGameSpawner : MonoBehaviour
         if (mainScreenUI != null)
         {
             mainScreenUI.RefreshStageButtons();
-        }
-    }
-
-    private void ShowTitleScreen()
-    {
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(false);
-        }
-
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
         }
     }
 
