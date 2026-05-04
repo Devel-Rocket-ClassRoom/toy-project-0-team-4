@@ -18,6 +18,10 @@ public class MiniGameSpawner : MonoBehaviour
     [Header("메인화면 UI")]
     [SerializeField] private MainScreenUI mainScreenUI;
 
+    [Header("결과 팝업")]
+    [SerializeField] private GameObject successResultObject;
+    [SerializeField] private GameObject failResultObject;
+
     private StageScreen currentMiniGame;
     private int currentStageNumber;
 
@@ -29,11 +33,16 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
+        Time.timeScale = 1f;
+
         currentStageNumber = stageNumber;
 
+        HideResultObjects();
+
+        // 게임 중에는 배경은 보이고, 메인 팝업은 숨김
         if (titleScreen != null)
         {
-            titleScreen.SetActive(false);
+            titleScreen.SetActive(true);
         }
 
         if (mainScreen != null)
@@ -52,42 +61,73 @@ public class MiniGameSpawner : MonoBehaviour
         currentMiniGame.OnStageClearButtonClicked += HandleStageClear;
         currentMiniGame.OnGameOver += HandleGameOver;
 
-        Debug.Log($"{currentStageNumber} 스테이지 시작");
+        Debug.Log($"{currentStageNumber} 스테이지 시작 / 미니게임: {prefab.name}");
     }
 
     private void HandleStageClear(int stageNumber)
     {
+        Debug.Log($"{stageNumber} 스테이지 클리어");
+
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
         }
 
-        DestroyCurrentMiniGame();
-
-        ShowMainScreen();
+        // 바로 메인화면으로 가지 않음
+        // 현재 미니게임 화면 위에 성공 팝업만 표시
+        ShowSuccessPopup();
     }
 
     private void HandleGameOver()
     {
-        Debug.Log("게임오버 - 타이틀 화면으로 이동");
+        Debug.Log("게임오버");
 
-        if (stageClearManager != null)
+        // 바로 타이틀로 가지 않음
+        // 현재 미니게임 화면 위에 실패 팝업만 표시
+        ShowFailPopup();
+    }
+
+    private void ShowSuccessPopup()
+    {
+        Time.timeScale = 0f;
+
+        if (successResultObject != null)
         {
-            stageClearManager.ResetAll();
+            successResultObject.SetActive(true);
         }
 
-        currentStageNumber = 0;
+        if (failResultObject != null)
+        {
+            failResultObject.SetActive(false);
+        }
+    }
+
+    private void ShowFailPopup()
+    {
+        Time.timeScale = 0f;
+
+        if (successResultObject != null)
+        {
+            successResultObject.SetActive(false);
+        }
+
+        if (failResultObject != null)
+        {
+            failResultObject.SetActive(true);
+        }
+    }
+
+    public void ConfirmSuccess()
+    {
+        Time.timeScale = 1f;
 
         DestroyCurrentMiniGame();
 
-        ShowTitleScreen();
-    }
+        HideResultObjects();
 
-    private void ShowMainScreen()
-    {
         if (titleScreen != null)
         {
-            titleScreen.SetActive(false);
+            titleScreen.SetActive(true);
         }
 
         if (mainScreen != null)
@@ -99,18 +139,84 @@ public class MiniGameSpawner : MonoBehaviour
         {
             mainScreenUI.RefreshStageButtons();
         }
+
+        Debug.Log("성공 확인 버튼 클릭 - 메인화면으로 이동");
     }
 
-    private void ShowTitleScreen()
+    public void ConfirmFail()
     {
+        Time.timeScale = 1f;
+
+        if (stageClearManager != null)
+        {
+            stageClearManager.ResetAll();
+        }
+
+        currentStageNumber = 0;
+
+        DestroyCurrentMiniGame();
+
+        HideResultObjects();
+
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
+
         if (mainScreen != null)
         {
             mainScreen.SetActive(false);
         }
 
+        if (mainScreenUI != null)
+        {
+            mainScreenUI.RefreshStageButtons();
+        }
+
+        Debug.Log("실패 확인 버튼 클릭 - 타이틀화면으로 이동");
+    }
+
+    public void ShowTitleScreen()
+    {
+        Time.timeScale = 1f;
+
+        if (stageClearManager != null)
+        {
+            stageClearManager.ResetAll();
+        }
+
+        currentStageNumber = 0;
+
+        DestroyCurrentMiniGame();
+
+        HideResultObjects();
+
         if (titleScreen != null)
         {
             titleScreen.SetActive(true);
+        }
+
+        if (mainScreen != null)
+        {
+            mainScreen.SetActive(false);
+        }
+
+        if (mainScreenUI != null)
+        {
+            mainScreenUI.RefreshStageButtons();
+        }
+    }
+
+    public void HideResultObjects()
+    {
+        if (successResultObject != null)
+        {
+            successResultObject.SetActive(false);
+        }
+
+        if (failResultObject != null)
+        {
+            failResultObject.SetActive(false);
         }
     }
 
