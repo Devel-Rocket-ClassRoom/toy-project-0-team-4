@@ -9,22 +9,19 @@ public class PaddleController : MonoBehaviour
     [SerializeField] private float minX = -450f;
     [SerializeField] private float maxX = 455f;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
+    private void Start()
     {
         uiSlider.onValueChanged.AddListener(OnSliderValueChanged);
     }
 
-    void OnSliderValueChanged(float value)
+    private void OnSliderValueChanged(float value)
     {
         float targetX = Mathf.Lerp(minX, maxX, value);
-
-        Vector2 targetPos = new Vector2(targetX, transform.localPosition.y);
-
         transform.localPosition = new Vector3(targetX, transform.localPosition.y, 0);
     }
 }
