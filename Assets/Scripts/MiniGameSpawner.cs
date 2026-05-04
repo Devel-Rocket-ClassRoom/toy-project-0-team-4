@@ -22,6 +22,9 @@ public class MiniGameSpawner : MonoBehaviour
     [SerializeField] private GameObject successResultObject;
     [SerializeField] private GameObject failResultObject;
 
+    [Header("오디오 매니저")]
+    [SerializeField] private AudioManager audioManager;
+
     private StageScreen currentMiniGame;
     private int currentStageNumber;
 
@@ -133,6 +136,7 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void ConfirmSuccess()
     {
+        audioManager.PlaySfx(0); // Click 효과음
         Time.timeScale = 1f;
 
         DestroyCurrentMiniGame();
@@ -159,6 +163,7 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void ConfirmFail()
     {
+        audioManager.PlaySfx(0); // Click 효과음
         Time.timeScale = 1f;
 
         if (stageClearManager != null)
