@@ -8,13 +8,13 @@ public class BallController : MonoBehaviour
     private bool isGameStarted = false;
 
     [SerializeField] private float constantSpeed = 5f;
-    [SerializeField] private float minHorizontalVelocity = 0.5f;
+    [SerializeField] private float minVelocity = 0.5f;
+    [SerializeField] private float paddleInfluence = 0.05f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 1f;
-
         stageScreen = GetComponentInParent<StageScreen>();
     }
 
@@ -24,10 +24,18 @@ public class BallController : MonoBehaviour
         {
             Vector2 currentVel = rb.linearVelocity;
 
-            if (Mathf.Abs(currentVel.x) < minHorizontalVelocity)
+            // 상하 무한 루프 방지
+            if (Mathf.Abs(currentVel.x) < minVelocity)
             {
                 float pushDirection = (transform.localPosition.x < 0) ? 1f : -1f;
-                currentVel.x = pushDirection * minHorizontalVelocity;
+                currentVel.x = pushDirection * minVelocity;
+            }
+
+            // 좌우 무한 루프 방지
+            if (Mathf.Abs(currentVel.y) < minVelocity)
+            {
+                float pushDirection = (currentVel.y >= 0) ? 1f : -1f;
+                currentVel.y = pushDirection * minVelocity;
             }
 
             rb.linearVelocity = currentVel.normalized * constantSpeed;
