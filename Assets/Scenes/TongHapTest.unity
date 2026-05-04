@@ -177,6 +177,14 @@ MonoBehaviour:
   miniGameParent: {fileID: 210731799}
   miniGamePrefabs:
   - {fileID: 5938512625126469385, guid: 6538a4fc1c50e4044864bf8e7115cd50, type: 3}
+  - {fileID: 3000483862689402214, guid: f338318eaa362e040963ae5d8fcaed38, type: 3}
+  - {fileID: 4140518401417868971, guid: 7e9e046e81df79f4d995a00999cbc924, type: 3}
+  - {fileID: 3486320631883065774, guid: 94660b5d0fb09c44eb6d2aa5f2621cc1, type: 3}
+  - {fileID: 3076362969042246458, guid: 38145797dc6026d419feb67cf9c88711, type: 3}
+  - {fileID: -5835555982258864365, guid: 7bbf2fff1cdb7a14d9cfe3c600ced1be, type: 3}
+  - {fileID: 1189214614028077412, guid: 459f462b613d875419622d4e750e68ae, type: 3}
+  - {fileID: 1480643255902735681, guid: eda34359bc65b124c942e02175d70b62, type: 3}
+  - {fileID: 541750126927072166, guid: 134b36f73ef105247884b81ed4f81b2c, type: 3}
   stageClearManager: {fileID: 210731802}
   mainScreenUI: {fileID: 2071113348}
   successResultObject: {fileID: 2135329448}
