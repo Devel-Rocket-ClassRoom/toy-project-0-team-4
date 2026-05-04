@@ -4,12 +4,12 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 // IPointerDownHandler, IPointerUpHandler 인터페이스를 사용하면 버튼을 누르고 있는 동안과 뗄 때의 이벤트를 처리할 수 있음.
-public class BasketballTest : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class BasketballGame : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [Header("UI References")]
     public Slider powerSlider;
     public RectTransform arrowUI;
-    public RectTransform canvasRoot;
+    private RectTransform canvasRoot;
 
     [Header("Object References")]
     public GameObject ballPrefab;
@@ -31,6 +31,18 @@ public class BasketballTest : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     void Start()
     {
+        if (canvasRoot == null)
+        {
+            Canvas parentCanvas = GetComponentInParent<Canvas>();
+            if (parentCanvas != null)
+            {
+                canvasRoot = parentCanvas.GetComponent<RectTransform>();
+            }
+            else
+            {
+                Debug.LogError("BasketballGame: 부모 중에 Canvas가 없습니다! UI 구조를 확인하세요."); 
+            }
+        }
         StartCoroutine(SpawnBallRoutine());
     }
 
