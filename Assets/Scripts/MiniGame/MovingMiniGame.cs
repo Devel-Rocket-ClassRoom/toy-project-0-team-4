@@ -9,7 +9,7 @@ public class MovingMiniGame : MonoBehaviour
 
     [Header("거절 버튼 위치 (anchoredPosition)")]
     public Vector2 disagree1Position = new(-250f, -40f);
-    public Vector2 disagree2Position = new( 250f, -40f);
+    public Vector2 disagree2Position = new(250f, -40f);
 
     [Header("동의 버튼 등장 딜레이")]
     public float minDelay = 1f;
@@ -52,8 +52,8 @@ public class MovingMiniGame : MonoBehaviour
         SpawnDisagreeButtons();
 
         agreeMoving = false;
-        agreeTimer  = 0f;
-        agreeDelay  = Random.Range(minDelay, maxDelay);
+        agreeTimer = 0f;
+        agreeDelay = Random.Range(minDelay, maxDelay);
     }
 
     void SpawnDisagreeButtons()
@@ -85,7 +85,7 @@ public class MovingMiniGame : MonoBehaviour
         if (agreeRect != null) return;
 
         agreeDirection = Random.value > 0.5f ? 1f : -1f;
-        float startX   = agreeDirection > 0f ? -halfWidth - 100f : halfWidth + 100f;
+        float startX = agreeDirection > 0f ? -halfWidth - 100f : halfWidth + 100f;
 
         var go = Instantiate(agreePrefab, transform);
         if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
@@ -115,14 +115,14 @@ public class MovingMiniGame : MonoBehaviour
         if (agreeRect == null) return;
 
         var pos = agreeRect.anchoredPosition;
-        pos.x  += agreeDirection * agreeSpeed * Time.deltaTime;
+        pos.x += agreeDirection * agreeSpeed * Time.deltaTime;
         agreeRect.anchoredPosition = pos;
 
         float edge = halfWidth + 150f;
         if (Mathf.Abs(pos.x) > edge)
         {
             Destroy(agreeRect.gameObject);
-            agreeRect   = null;
+            agreeRect = null;
             agreeMoving = false;
             MiniGameManager.NotifyFail();
         }

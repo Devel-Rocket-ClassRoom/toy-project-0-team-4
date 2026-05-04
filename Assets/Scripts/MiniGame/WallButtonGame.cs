@@ -9,8 +9,8 @@ public class WallButtonGame : MonoBehaviour
 
     [Header("그리드 설정")]
     public int columns = 14;
-    public int rows    = 10;
-    public Vector2 cellSize    = new(80f, 50f);
+    public int rows = 10;
+    public Vector2 cellSize = new(80f, 50f);
     public Vector2 cellSpacing = new(4f, 4f);
 
 
@@ -33,26 +33,26 @@ public class WallButtonGame : MonoBehaviour
         var grid = new GameObject("Grid", typeof(RectTransform));
         grid.transform.SetParent(transform, false);
 
-        var gridRect     = (RectTransform)grid.transform;
+        var gridRect = (RectTransform)grid.transform;
         gridRect.anchorMin = Vector2.zero;
         gridRect.anchorMax = Vector2.one;
         gridRect.offsetMin = Vector2.zero;
         gridRect.offsetMax = Vector2.zero;
 
-        var layout               = grid.AddComponent<GridLayoutGroup>();
-        layout.cellSize          = cellSize;
-        layout.spacing           = cellSpacing;
-        layout.constraint        = GridLayoutGroup.Constraint.FixedColumnCount;
-        layout.constraintCount   = columns;
-        layout.childAlignment    = TextAnchor.MiddleCenter;
+        var layout = grid.AddComponent<GridLayoutGroup>();
+        layout.cellSize = cellSize;
+        layout.spacing = cellSpacing;
+        layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        layout.constraintCount = columns;
+        layout.childAlignment = TextAnchor.MiddleCenter;
 
-        int total     = columns * rows;
-        int agreeIdx  = Random.Range(0, total);
+        int total = columns * rows;
+        int agreeIdx = Random.Range(0, total);
 
         for (int i = 0; i < total; i++)
         {
             bool isAgree = i == agreeIdx;
-            var  prefab  = isAgree ? agreePrefab : disagreePrefab;
+            var prefab = isAgree ? agreePrefab : disagreePrefab;
 
             var go = Instantiate(prefab, grid.transform);
             if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
