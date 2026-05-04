@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433f82cbf79ad9c4fa0f8d07573ff389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGameSpawner
+  titleScreen: {fileID: 403757676}
   mainScreen: {fileID: 2071113346}
   miniGameParent: {fileID: 210731799}
   miniGamePrefabs:
