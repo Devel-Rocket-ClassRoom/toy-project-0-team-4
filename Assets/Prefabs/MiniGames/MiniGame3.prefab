@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 800}
+  m_SizeDelta: {x: 1200, y: 820}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7081258051348629239
 CanvasRenderer:
@@ -133,8 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonChange
   agreePrefab: {fileID: 246691419478705097}
   disagreePrefab: {fileID: 9058746108067378036}
-  agreeColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
-  disagreeColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
   agreeSprite: {fileID: 2160810953453608948, guid: 32b3b36dc6a63154f86b14126f32b92d, type: 3}
   disagreeSprite: {fileID: 21300000, guid: f6dc8fdfd10260643bc9e89bd74f25d4, type: 3}
   game1StartScale: 0.3

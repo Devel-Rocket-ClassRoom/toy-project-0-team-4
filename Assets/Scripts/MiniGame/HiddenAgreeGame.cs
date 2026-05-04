@@ -35,8 +35,8 @@ public class HiddenAgreeGame : MonoBehaviour
 
         SpawnDisagreeButton();
 
-        agreeTimer   = 0f;
-        agreeDelay   = Random.Range(minDelay, maxDelay);
+        agreeTimer = 0f;
+        agreeDelay = Random.Range(minDelay, maxDelay);
         agreeSpawned = false;
     }
 
