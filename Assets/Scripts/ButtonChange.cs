@@ -16,6 +16,10 @@ public class ButtonChange : MonoBehaviour
     public Color agreeColor = new(0.2f, 0.8f, 0.2f);
     public Color disagreeColor = new(0.9f, 0.2f, 0.2f);
 
+    [Header("미니게임3 - 이미지 스왑")]
+    public Sprite agreeSprite;    // 동의 버튼에 원래 표시할 이미지
+    public Sprite disagreeSprite; // 동의하지않음 버튼에 원래 표시할 이미지
+
     [Header("미니게임1 - 버튼 시작 크기")]
     public float game1StartScale = 0.3f;
 
@@ -130,15 +134,17 @@ public class ButtonChange : MonoBehaviour
         );
     }
 
-    // ─── 미니게임 3: 동의함=빨강, 동의하지않음=초록 ─────────────────
+    // ─── 미니게임 3: 동의/동의하지않음 버튼 이미지를 서로 교체 ────────
     void StartGame3()
     {
         ShowButtons();
         currentState = MiniGameState.Game3;
         agreeRect.localScale    = Vector3.one;
         disagreeRect.localScale = Vector3.one;
-        SetButtonColor(agreeButton,    disagreeColor);
-        SetButtonColor(disagreeButton, agreeColor);
+        ResetColors();
+        // 이미지를 서로 바꿔서 어떤 버튼이 어느 역할인지 헷갈리게 함
+        SetButtonImage(agreeButton,    disagreeSprite);
+        SetButtonImage(disagreeButton, agreeSprite);
         RegisterListeners(
             () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
             ()   => MiniGameManager.NotifyFail()
@@ -220,6 +226,12 @@ public class ButtonChange : MonoBehaviour
         btn.colors = cb;
         if (btn.targetGraphic != null)
             btn.targetGraphic.color = color;
+    }
+
+    void SetButtonImage(Button btn, Sprite sprite)
+    {
+        if (btn.targetGraphic is Image img)
+            img.sprite = sprite;
     }
 
 }

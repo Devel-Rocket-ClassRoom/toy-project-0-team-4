@@ -134,10 +134,14 @@ MonoBehaviour:
   disagreePrefab: {fileID: 6145883937722102676}
   agreeColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
   disagreeColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
+  agreeSprite: {fileID: 2160810953453608948, guid: 32b3b36dc6a63154f86b14126f32b92d, type: 3}
+  disagreeSprite: {fileID: 21300000, guid: f6dc8fdfd10260643bc9e89bd74f25d4, type: 3}
   game1StartScale: 0.3
   game2StartScale: 1
   game2MaxScale: 15
   game2GrowSpeed: 5
+  game4EscapeRadius: 150
+  game4EscapeSpeed: 400
   gameIndex: 3
 --- !u!1001 &4026791186445086509
 PrefabInstance:
