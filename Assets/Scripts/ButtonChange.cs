@@ -28,8 +28,16 @@ public class ButtonChange : MonoBehaviour
     private RectTransform agreeRect;
     private RectTransform disagreeRect;
 
-    private enum MiniGameState { None, Game1, Game2, Game3 }
+    [Header("미니게임4 - 동의 버튼 도망")]
+    public float game4EscapeRadius = 150f;
+    public float game4EscapeSpeed = 400f;
+
+    [Header("이 프리팹이 담당할 게임 번호 (1, 2, 3, 4)")]
+    [SerializeField] private int gameIndex = 1;
+
+    private enum MiniGameState { None, Game1, Game2, Game3, Game4 }
     private MiniGameState currentState = MiniGameState.None;
+    private RectTransform canvasRect;
 
     void Awake()
     {
@@ -47,30 +55,29 @@ public class ButtonChange : MonoBehaviour
 
     void OnEnable()
     {
-MiniGameManager.OnGame1Start += StartGame1;
-        MiniGameManager.OnGame2Start += StartGame2;
-        MiniGameManager.OnGame3Start += StartGame3;
+        if (gameIndex == 1) MiniGameManager.OnGame1Start += StartGame1;
+        if (gameIndex == 2) MiniGameManager.OnGame2Start += StartGame2;
+        if (gameIndex == 3) MiniGameManager.OnGame3Start += StartGame3;
+        if (gameIndex == 4) MiniGameManager.OnGame4Start += StartGame4;
     }
 
     void OnDisable()
     {
-        MiniGameManager.OnGame1Start -= StartGame1;
-        MiniGameManager.OnGame2Start -= StartGame2;
-        MiniGameManager.OnGame3Start -= StartGame3;
+        if (gameIndex == 1) MiniGameManager.OnGame1Start -= StartGame1;
+        if (gameIndex == 2) MiniGameManager.OnGame2Start -= StartGame2;
+        if (gameIndex == 3) MiniGameManager.OnGame3Start -= StartGame3;
+        if (gameIndex == 4) MiniGameManager.OnGame4Start -= StartGame4;
     }
 
     void ShowButtons()
     {
         if (agreeButton == null)
         {
-            Canvas canvas = FindFirstObjectByType<Canvas>();
-            if (canvas == null)      { Debug.LogError("[ButtonChange] Canvas를 찾을 수 없음"); return; }
-            if (agreePrefab == null) { Debug.LogError("[ButtonChange] agreePrefab이 비어있음"); return; }
+            if (agreePrefab == null)    { Debug.LogError("[ButtonChange] agreePrefab이 비어있음"); return; }
             if (disagreePrefab == null) { Debug.LogError("[ButtonChange] disagreePrefab이 비어있음"); return; }
-            Transform parent = canvas.transform;
 
-            GameObject agreeGO    = Instantiate(agreePrefab,    parent);
-            GameObject disagreeGO = Instantiate(disagreePrefab, parent);
+            GameObject agreeGO    = Instantiate(agreePrefab,    transform);
+            GameObject disagreeGO = Instantiate(disagreePrefab, transform);
 
             // 생성된 버튼의 ButtonChange가 또 버튼을 만들지 못하도록 비활성화
             var agreeBC    = agreeGO.GetComponent<ButtonChange>();
@@ -138,13 +145,54 @@ MiniGameManager.OnGame1Start += StartGame1;
         );
     }
 
-    // ─── Update: 스케일 애니메이션 ───────────────────────────────────
+    // ─── 미니게임 4: 동의 버튼이 커서 반대 방향으로 도망 ─────────────
+    void StartGame4()
+    {
+        ShowButtons();
+        currentState = MiniGameState.Game4;
+        agreeRect.localScale    = Vector3.one;
+        disagreeRect.localScale = Vector3.one;
+        canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+        ResetColors();
+        RegisterListeners(
+            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
+            ()   => MiniGameManager.NotifyFail()
+        );
+    }
+
+    // ─── Update: 스케일 애니메이션 / 버튼 도망 ──────────────────────
     void Update()
     {
         if (currentState == MiniGameState.Game2 && currentScale < game2MaxScale)
         {
             currentScale = Mathf.Min(currentScale + game2GrowSpeed * Time.deltaTime, game2MaxScale);
             disagreeRect.localScale = Vector3.one * currentScale;
+        }
+
+        if (currentState == MiniGameState.Game4 && agreeRect != null && canvasRect != null)
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                agreeRect.parent as RectTransform,
+                Input.mousePosition,
+                null,
+                out Vector2 localMouse
+            );
+
+            Vector2 agreePos = agreeRect.anchoredPosition;
+            Vector2 diff = agreePos - localMouse;
+
+            if (diff.magnitude < game4EscapeRadius)
+            {
+                Vector2 escapeDir = Vector2.zero == diff ? Vector2.right : diff.normalized;
+                agreePos += escapeDir * game4EscapeSpeed * Time.deltaTime;
+
+                // 캔버스 범위 안에서만 이동
+                Vector2 half = canvasRect.rect.size * 0.5f;
+                agreePos.x = Mathf.Clamp(agreePos.x, -half.x, half.x);
+                agreePos.y = Mathf.Clamp(agreePos.y, -half.y, half.y);
+
+                agreeRect.anchoredPosition = agreePos;
+            }
         }
     }
 
