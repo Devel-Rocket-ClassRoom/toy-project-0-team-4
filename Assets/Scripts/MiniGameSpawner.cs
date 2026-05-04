@@ -70,6 +70,8 @@ public class MiniGameSpawner : MonoBehaviour
             miniGames.StartMiniGame();
         else if (currentMiniGame.TryGetComponent<HiddenAgreeGame>(out var hiddenGame))
             hiddenGame.StartMiniGame();
+        else if (currentMiniGame.TryGetComponent<WallButtonGame>(out var wallGame))
+            wallGame.StartMiniGame();
 
         Debug.Log($"{currentStageNumber} 스테이지 시작 / 랜덤 미니게임: {prefab.name}");
     }
