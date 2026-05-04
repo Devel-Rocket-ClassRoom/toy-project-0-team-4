@@ -49,6 +49,6 @@ public class GoalManager : MonoBehaviour
 
     private void OnComplete()
     {
-        // 동의 팝업 띄우는 코드
+        Debug.Log("목표 달성 미니게임 클리어!");
     }
 }
