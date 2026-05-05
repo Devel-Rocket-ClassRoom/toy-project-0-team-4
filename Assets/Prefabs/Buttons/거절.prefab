@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 25d855a6bd43bd84eb373b2924db978a, type: 2}
+  m_sharedMaterial: {fileID: -2030847852017020162, guid: 25d855a6bd43bd84eb373b2924db978a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1d9f44db0a1dd4390b8721f1ab8d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnClickButton
-  MainScreen: {fileID: 5952402661683950795, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
-  Stage1: {fileID: 4313375543725046562, guid: 5a5a4fa156a196142a71856362c5d632, type: 3}
-  Stage2: {fileID: 4313375543725046562, guid: 6414c1f6c570ddb43818ca886e1ac243, type: 3}
-  Stage3: {fileID: 4313375543725046562, guid: 6414c1f6c570ddb43818ca886e1ac243, type: 3}
-  Stage4: {fileID: 4313375543725046562, guid: 6414c1f6c570ddb43818ca886e1ac243, type: 3}
+  titleScreen: {fileID: 0}
+  mainScreen: {fileID: 0}
+  miniGameSpawner: {fileID: 0}
+  settingPopup: {fileID: 0}
+  audioManager: {fileID: 0}
