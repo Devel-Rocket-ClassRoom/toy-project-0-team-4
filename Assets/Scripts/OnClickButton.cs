@@ -15,11 +15,34 @@ public class OnClickButton : MonoBehaviour
     [Header("오디오 매니저")]
     [SerializeField] private AudioManager audioManager;
 
+    [Header("전체 시계 타이머")]
+    [SerializeField] private GameClockTimer gameClockTimer;
+
     public void OnClickMain()
     {
-        audioManager.PlaySfx(3); // Open 효과음
-        titleScreen.SetActive(true);
-        mainScreen.SetActive(true);
+        if (audioManager != null)
+        {
+            audioManager.PlaySfx(3);
+        }
+
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
+
+        if (mainScreen != null)
+        {
+            mainScreen.SetActive(true);
+        }
+
+        if (gameClockTimer != null)
+        {
+            gameClockTimer.StartTimer();
+        }
+        else
+        {
+            Debug.LogWarning("GameClockTimer가 OnClickButton에 연결되지 않았습니다.");
+        }
 
         MainScreenUI mainScreenUI = mainScreen.GetComponent<MainScreenUI>();
 
@@ -41,31 +64,69 @@ public class OnClickButton : MonoBehaviour
 
         if (audioManager != null)
         {
-            audioManager.PlaySfx(3); // Open 효과음
-        }
-        else
-        {
-            Debug.LogWarning("AudioManager가 연결되지 않았습니다.");
+            audioManager.PlaySfx(3);
         }
     }
 
     public void OnClickTitle()
     {
-        audioManager.PlaySfx(1); // Close 효과음
+        if (audioManager != null)
+        {
+            audioManager.PlaySfx(1);
+        }
+
         if (miniGameSpawner != null)
         {
             miniGameSpawner.ShowTitleScreen();
             return;
         }
 
-        titleScreen.SetActive(true);
-        mainScreen.SetActive(false);
+        if (titleScreen != null)
+        {
+            titleScreen.SetActive(true);
+        }
+
+        if (mainScreen != null)
+        {
+            mainScreen.SetActive(false);
+        }
+    }
+
+    public void OnClickCancle()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySfx(2); // Fail 효과음
+        }
+
+        if (miniGameSpawner == null)
+        {
+#if UNITY_2023_1_OR_NEWER
+            miniGameSpawner = FindFirstObjectByType<MiniGameSpawner>();
+#else
+        miniGameSpawner = FindObjectOfType<MiniGameSpawner>();
+#endif
+        }
+
+        if (miniGameSpawner != null)
+        {
+            miniGameSpawner.ExternalGameOver();
+            return;
+        }
+
+        Debug.LogWarning("MiniGameSpawner가 연결되지 않았습니다.");
     }
 
     public void OnClickExitSetting()
     {
-        audioManager.PlaySfx(1); // Close 효과음
-        settingPopup.SetActive(false);
-    }
+        if (audioManager != null)
+        {
+            audioManager.PlaySfx(1);
+        }
 
+        if (settingPopup != null)
+        {
+            settingPopup.SetActive(false);
+        }
+    }
 }
