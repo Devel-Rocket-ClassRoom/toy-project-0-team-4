@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 350734432}
   - component: {fileID: 350734431}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 667561536}
   - component: {fileID: 667561535}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,7 +833,7 @@ EdgeCollider2D:
   - {x: -57.930317, y: 269.91495}
   - {x: -58.21764, y: 277.20187}
   - {x: -65.25231, y: 289.76736}
-  - {x: -196.64761, y: 348.18814}
+  - {x: -195.97746, y: 349.08167}
   - {x: -363.53232, y: 263.58154}
   - {x: -529.71, y: 264.10034}
   - {x: -530.1789, y: 123.054214}
@@ -983,7 +983,7 @@ MonoBehaviour:
   carPrefab: {fileID: 9140126421047236307, guid: e3a20ac1ac1331445b0cc6ac9821ff02, type: 3}
   spawnPoint: {fileID: 681727974}
   chargeSpeed: 0.8
-  launchForce: 20
+  launchForce: 10
   spawnDelay: 0.5
 --- !u!1 &1392793251
 GameObject:
