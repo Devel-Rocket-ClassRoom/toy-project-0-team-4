@@ -1533,7 +1533,7 @@ MonoBehaviour:
   mainScreen: {fileID: 2135741897}
   miniGameParent: {fileID: 370999987}
   miniGamePrefabs:
-  - {fileID: 1480643255902735681, guid: eda34359bc65b124c942e02175d70b62, type: 3}
+  - {fileID: 3037167309369619556, guid: 313523bca53d6d0429b0dececb7f8ffa, type: 3}
   stageClearManager: {fileID: 370999990}
   mainScreenUI: {fileID: 2135741898}
   successResultObject: {fileID: 0}
