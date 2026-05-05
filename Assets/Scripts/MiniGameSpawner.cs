@@ -150,6 +150,12 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
+        if (currentMiniGame.TryGetComponent<OTPMiniGame>(out var otpMiniGame))
+        {
+            otpMiniGame.StartMiniGame();
+            return;
+        }
+
         // 만약 미니게임 스크립트가 Prefab 루트가 아니라 자식에 붙어있을 경우 대비
         ButtonChange childButtonChange = currentMiniGame.GetComponentInChildren<ButtonChange>(true);
         if (childButtonChange != null)
@@ -189,12 +195,6 @@ public class MiniGameSpawner : MonoBehaviour
         if (childJumpButtonGame != null)
         {
             childJumpButtonGame.StartMiniGame();
-            return;
-        }
-
-        if (currentMiniGame.TryGetComponent<OTPMiniGame>(out var otpMiniGame))
-        {
-            otpMiniGame.StartMiniGame();
             return;
         }
 
