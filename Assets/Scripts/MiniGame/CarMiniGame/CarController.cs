@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.centerOfMass = new Vector2(0, -0.5f);
     }
 
     // Launcher에서 호출하는 발사 함수
