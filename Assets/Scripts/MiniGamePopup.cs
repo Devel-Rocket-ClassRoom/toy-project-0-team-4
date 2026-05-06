@@ -11,6 +11,7 @@ public class MiniGamePopup
     [SerializeField] private GameObject failPopup;
     [SerializeField] private GameObject maintenancePopup;
     [SerializeField] private GameObject timeoutPopup;
+    [SerializeField] private GameObject meaningErrorPopup;
 
     // 현재 결과 팝업이 떠 있는지 확인
     public bool IsResultOpen { get; private set; }
@@ -53,7 +54,8 @@ public class MiniGamePopup
             showSuccess: true,
             showFail: false,
             showMaintenance: false,
-            showTimeout: false
+            showTimeout: false,
+            showMeaningError: false
         );
 
         Debug.Log("성공 팝업 표시");
@@ -84,7 +86,8 @@ public class MiniGamePopup
             showSuccess: false,
             showFail: true,
             showMaintenance: false,
-            showTimeout: false
+            showTimeout: false,
+            showMeaningError: false
         );
 
         Debug.Log("실패 팝업 표시");
@@ -110,7 +113,8 @@ public class MiniGamePopup
             showSuccess: false,
             showFail: false,
             showMaintenance: true,
-            showTimeout: false
+            showTimeout: false,
+            showMeaningError: false
         );
 
         Debug.Log("점검시간 팝업 표시");
@@ -141,10 +145,48 @@ public class MiniGamePopup
             showSuccess: false,
             showFail: false,
             showMaintenance: false,
-            showTimeout: true
+            showTimeout: true,
+            showMeaningError: false
         );
 
         Debug.Log("장시간 응답 없음 팝업 표시");
+    }
+
+    /// <summary>
+    /// 의미 불명 팝업 표시
+    /// </summary>
+    public void ShowMeaningError(GameClockTimer gameClockTimer)
+    {
+        // 점검시간 팝업이 떠 있으면 의미 불명 팝업은 무시
+        if (IsMaintenanceOpen)
+        {
+            Debug.Log("점검시간 팝업이 우선이라 의미 불명 팝업 무시");
+            return;
+        }
+
+        if (IsResultOpen)
+        {
+            return;
+        }
+
+        IsResultOpen = true;
+
+        PauseGameAndTimer(gameClockTimer);
+
+        SetPopupState(
+            showSuccess: false,
+            showFail: false,
+            showMaintenance: false,
+            showTimeout: false,
+            showMeaningError: true
+        );
+
+        if (meaningErrorPopup != null)
+        {
+            meaningErrorPopup.SetActive(true);
+        }
+
+        Debug.Log("의미 불명 팝업 표시");
     }
 
     /// <summary>
@@ -152,30 +194,17 @@ public class MiniGamePopup
     /// </summary>
     public void HideAll()
     {
-        if (successPopup != null)
-        {
-            successPopup.SetActive(false);
-        }
+        successPopup.SetActive(false);
 
-        if (failPopup != null)
-        {
-            failPopup.SetActive(false);
-        }
+        failPopup.SetActive(false);
 
-        if (maintenancePopup != null)
-        {
-            maintenancePopup.SetActive(false);
-        }
+        maintenancePopup.SetActive(false);
 
-        if (timeoutPopup != null)
-        {
-            timeoutPopup.SetActive(false);
-        }
+        timeoutPopup.SetActive(false);
 
-        if (popupRoot != null)
-        {
-            popupRoot.SetActive(false);
-        }
+        popupRoot.SetActive(false);
+
+        meaningErrorPopup.SetActive(false);
     }
 
     /// <summary>
@@ -200,32 +229,22 @@ public class MiniGamePopup
         bool showSuccess,
         bool showFail,
         bool showMaintenance,
-        bool showTimeout
+        bool showTimeout,
+        bool showMeaningError
     )
     {
-        if (popupRoot != null)
-        {
-            popupRoot.SetActive(true);
-        }
 
-        if (successPopup != null)
-        {
-            successPopup.SetActive(showSuccess);
-        }
+        popupRoot.SetActive(true);
 
-        if (failPopup != null)
-        {
-            failPopup.SetActive(showFail);
-        }
+        successPopup.SetActive(showSuccess);
 
-        if (maintenancePopup != null)
-        {
-            maintenancePopup.SetActive(showMaintenance);
-        }
+        failPopup.SetActive(showFail);
 
-        if (timeoutPopup != null)
-        {
-            timeoutPopup.SetActive(showTimeout);
-        }
+        maintenancePopup.SetActive(showMaintenance);
+
+        timeoutPopup.SetActive(showTimeout);
+
+        meaningErrorPopup.SetActive(showMeaningError);
+
     }
 }

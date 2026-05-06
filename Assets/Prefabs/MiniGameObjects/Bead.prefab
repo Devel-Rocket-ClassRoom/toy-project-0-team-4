@@ -156,9 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bead
   rollSpeed: 2.5
   pushForce: 5
-  visualModel: {fileID: 0}
   textDisplay: {fileID: 4437020936542056133}
-  letter: 0
+  letter: 65
 --- !u!1 &6587114165574870099
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +226,7 @@ MonoBehaviour:
   m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_sharedMaterial: {fileID: -5451545958005627353, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -11,11 +11,12 @@ public class AudioManager : MonoBehaviour
     private float bgmVolume = 1f;
     private float sfxVolume = 1f;
 
-    private bool bgmMuted = false;
-    private bool sfxMuted = false;
+    private bool bgmMuted = true;
+    private bool sfxMuted = true;
 
     public float BgmVolume => bgmVolume;
     public float SfxVolume => sfxVolume;
+
     public bool BgmMuted => bgmMuted;
     public bool SfxMuted => sfxMuted;
 
@@ -30,43 +31,72 @@ public class AudioManager : MonoBehaviour
     public void SetBgmVolume(float volume)
     {
         bgmVolume = volume;
+
         ApplyBgmSetting();
         SaveAudioSetting();
 
-        Debug.Log($"BGM 볼륨: {bgmVolume}");
+        Debug.Log($"BGM 볼륨 설정: {bgmVolume}");
     }
 
     public void SetSfxVolume(float volume)
     {
         sfxVolume = volume;
+
         ApplySfxSetting();
         SaveAudioSetting();
 
-        Debug.Log($"효과음 볼륨: {sfxVolume}");
+        Debug.Log($"효과음 볼륨 설정: {sfxVolume}");
+    }
+
+    // Toggle이 아니라 Toggle 상태값을 그대로 받는 함수
+    public void SetBgmMute(bool isMuted)
+    {
+        bgmMuted = isMuted;
+
+        ApplyBgmSetting();
+        SaveAudioSetting();
+
+        Debug.Log($"BGM 음소거 설정: {bgmMuted}");
+    }
+
+    // Toggle이 아니라 Toggle 상태값을 그대로 받는 함수
+    public void SetSfxMute(bool isMuted)
+    {
+        sfxMuted = isMuted;
+
+        ApplySfxSetting();
+        SaveAudioSetting();
+
+        Debug.Log($"효과음 음소거 설정: {sfxMuted}");
     }
 
     public void ToggleBgmMute()
     {
         bgmMuted = !bgmMuted;
+
         ApplyBgmSetting();
         SaveAudioSetting();
 
-        Debug.Log($"BGM 음소거: {bgmMuted}");
+        Debug.Log($"BGM 음소거 토글: {bgmMuted}");
     }
 
     public void ToggleSfxMute()
     {
         sfxMuted = !sfxMuted;
+
         ApplySfxSetting();
         SaveAudioSetting();
 
-        Debug.Log($"효과음 음소거: {sfxMuted}");
+        Debug.Log($"효과음 음소거 토글: {sfxMuted}");
     }
 
     private void ApplyBgmSetting()
     {
         if (bgmSource == null)
+        {
+            Debug.LogWarning("BGM AudioSource가 연결되지 않았습니다.");
             return;
+        }
 
         bgmSource.volume = bgmVolume;
         bgmSource.mute = bgmMuted;
@@ -75,12 +105,16 @@ public class AudioManager : MonoBehaviour
     private void ApplySfxSetting()
     {
         if (sfxSources == null)
+        {
             return;
+        }
 
         foreach (AudioSource sfx in sfxSources)
         {
             if (sfx == null)
+            {
                 continue;
+            }
 
             sfx.volume = sfxVolume;
             sfx.mute = sfxMuted;
@@ -90,7 +124,9 @@ public class AudioManager : MonoBehaviour
     public void PlaySfx(int index)
     {
         if (sfxSources == null)
+        {
             return;
+        }
 
         if (index < 0 || index >= sfxSources.Length)
         {
@@ -106,12 +142,13 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        // 재생 직전에 현재 설정을 다시 반영
         sfx.volume = sfxVolume;
         sfx.mute = sfxMuted;
 
         if (sfxMuted)
         {
-            Debug.Log($"효과음 {index}번 음소거 상태라 재생 안 함");
+            Debug.Log($"효과음 {index}번은 음소거 상태라 재생하지 않음");
             return;
         }
 
@@ -124,8 +161,10 @@ public class AudioManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("BGM_VOLUME", bgmVolume);
         PlayerPrefs.SetFloat("SFX_VOLUME", sfxVolume);
+
         PlayerPrefs.SetInt("BGM_MUTED", bgmMuted ? 1 : 0);
         PlayerPrefs.SetInt("SFX_MUTED", sfxMuted ? 1 : 0);
+
         PlayerPrefs.Save();
     }
 
