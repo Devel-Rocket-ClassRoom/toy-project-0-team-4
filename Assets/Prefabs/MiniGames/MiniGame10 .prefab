@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.424072, y: 0}
-  m_SizeDelta: {x: -144.0441, y: 6000}
+  m_AnchoredPosition: {x: 16, y: -49}
+  m_SizeDelta: {x: -144.0441, y: 526.82}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1509449371549403019
 CanvasRenderer:
@@ -269,7 +269,7 @@ MonoBehaviour:
     \uACBD\uC6B0 \uD55C\uAD6D\uC5B4\uBCF8\uC774 \uC6B0\uC120\uD569\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
+  m_sharedMaterial: {fileID: -8795318670257592104, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -293,8 +293,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 5393.0625}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -375,7 +375,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: -75.829, y: -55.5607}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8451296804533723162
 CanvasRenderer:
@@ -548,6 +548,7 @@ GameObject:
   - component: {fileID: 9023805064734736120}
   - component: {fileID: 1160048130254166346}
   - component: {fileID: 8953394365509368947}
+  - component: {fileID: 4354254665007574299}
   m_Layer: 5
   m_Name: 'MiniGame10 '
   m_TagString: Untagged
@@ -642,6 +643,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScrollAgreeMiniGame
   agreeButton: {fileID: 3017604996865350396}
   disagreeButton: {fileID: 4888664793876309678}
+  scrollRect: {fileID: 5581802355336544204}
+  disabledAlpha: 0.3
+  scrollSensitivity: 2
+  activateOffset: 50
+--- !u!114 &4354254665007574299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323265893300321977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71564e1d077c0174ba09f21e45a66f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollDragBlocker
 --- !u!1 &6405730312321553944
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,8 +727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 6000}
+  m_AnchoredPosition: {x: 0.0008, y: 31.380857}
+  m_SizeDelta: {x: -34.7976, y: 575.82}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7408694522520445630
 GameObject:
@@ -917,11 +934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_LocalScale.z
@@ -957,11 +974,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 501.21545
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1316.2891
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

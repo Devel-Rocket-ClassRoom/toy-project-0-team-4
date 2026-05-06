@@ -13,12 +13,15 @@ public class WallButtonGame : MonoBehaviour
     public Vector2 cellSize = new(80f, 50f);
     public Vector2 cellSpacing = new(4f, 4f);
 
+    [Header("그리드 위치 (anchoredPosition 오프셋)")]
+    public Vector2 gridOffset = Vector2.zero;
+
 
     void Awake()
     {
         foreach (Transform child in transform)
         {
-            if (child.GetComponent<Button>() != null)
+            if (child.GetComponentInChildren<Button>(true) != null)
                 child.gameObject.SetActive(false);
         }
     }
@@ -37,10 +40,14 @@ public class WallButtonGame : MonoBehaviour
         grid.transform.SetParent(transform, false);
 
         var gridRect = (RectTransform)grid.transform;
-        gridRect.anchorMin = Vector2.zero;
-        gridRect.anchorMax = Vector2.one;
-        gridRect.offsetMin = Vector2.zero;
-        gridRect.offsetMax = Vector2.zero;
+        gridRect.anchorMin = new Vector2(0.5f, 0.5f);
+        gridRect.anchorMax = new Vector2(0.5f, 0.5f);
+        gridRect.pivot = new Vector2(0.5f, 0.5f);
+        gridRect.sizeDelta = new Vector2(
+            columns * (cellSize.x + cellSpacing.x) - cellSpacing.x,
+            rows    * (cellSize.y + cellSpacing.y) - cellSpacing.y
+        );
+        gridRect.anchoredPosition = gridOffset;
 
         var layout = grid.AddComponent<GridLayoutGroup>();
         layout.cellSize = cellSize;

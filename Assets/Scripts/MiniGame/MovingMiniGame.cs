@@ -31,7 +31,7 @@ public class MovingMiniGame : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.GetComponent<Button>() != null)
+            if (child.GetComponentInChildren<Button>(true) != null)
                 child.gameObject.SetActive(false);
         }
     }
