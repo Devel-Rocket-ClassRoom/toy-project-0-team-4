@@ -8,7 +8,7 @@ public class WallButtonGame : MonoBehaviour
     public GameObject disagreePrefab; // 거절 프리팹 (클릭 시 실패)
 
     [Header("그리드 설정")]
-    public int columns = 14;
+    public int columns = 12;
     public int rows = 10;
     public Vector2 cellSize = new(80f, 50f);
     public Vector2 cellSpacing = new(4f, 4f);
@@ -45,7 +45,7 @@ public class WallButtonGame : MonoBehaviour
         gridRect.pivot = new Vector2(0.5f, 0.5f);
         gridRect.sizeDelta = new Vector2(
             columns * (cellSize.x + cellSpacing.x) - cellSpacing.x,
-            rows    * (cellSize.y + cellSpacing.y) - cellSpacing.y
+            rows * (cellSize.y + cellSpacing.y) - cellSpacing.y
         );
         gridRect.anchoredPosition = gridOffset;
 

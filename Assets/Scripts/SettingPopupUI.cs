@@ -8,11 +8,11 @@ public class SettingPopupUI : MonoBehaviour
 
     [Header("BGM")]
     [SerializeField] private Slider bgmVolumeSlider;
-    [SerializeField] private Button bgmMuteButton;
+    [SerializeField] private Toggle bgmMuteToggle;
 
     [Header("효과음")]
     [SerializeField] private Slider sfxVolumeSlider;
-    [SerializeField] private Button sfxMuteButton;
+    [SerializeField] private Toggle sfxMuteToggle;
 
     private void OnEnable()
     {
@@ -25,11 +25,11 @@ public class SettingPopupUI : MonoBehaviour
         if (sfxVolumeSlider != null)
             sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
 
-        if (bgmMuteButton != null)
-            bgmMuteButton.onClick.AddListener(OnClickBgmMute);
+        if (bgmMuteToggle != null)
+            bgmMuteToggle.onValueChanged.AddListener(OnBgmMuteChanged);
 
-        if (sfxMuteButton != null)
-            sfxMuteButton.onClick.AddListener(OnClickSfxMute);
+        if (sfxMuteToggle != null)
+            sfxMuteToggle.onValueChanged.AddListener(OnSfxMuteChanged);
     }
 
     private void OnDisable()
@@ -40,11 +40,11 @@ public class SettingPopupUI : MonoBehaviour
         if (sfxVolumeSlider != null)
             sfxVolumeSlider.onValueChanged.RemoveListener(OnSfxVolumeChanged);
 
-        if (bgmMuteButton != null)
-            bgmMuteButton.onClick.RemoveListener(OnClickBgmMute);
+        if (bgmMuteToggle != null)
+            bgmMuteToggle.onValueChanged.RemoveListener(OnBgmMuteChanged);
 
-        if (sfxMuteButton != null)
-            sfxMuteButton.onClick.RemoveListener(OnClickSfxMute);
+        if (sfxMuteToggle != null)
+            sfxMuteToggle.onValueChanged.RemoveListener(OnSfxMuteChanged);
     }
 
     private void RefreshUI()
@@ -78,17 +78,17 @@ public class SettingPopupUI : MonoBehaviour
             audioManager.SetSfxVolume(value);
     }
 
-    private void OnClickBgmMute()
+    private void OnBgmMuteChanged(bool isMuted)
     {
-        Debug.Log("BGM 음소거 버튼 클릭");
+        Debug.Log($"BGM 음소거 상태 변경: {isMuted}");
 
         if (audioManager != null)
             audioManager.ToggleBgmMute();
     }
 
-    private void OnClickSfxMute()
+    private void OnSfxMuteChanged(bool isMuted)
     {
-        Debug.Log("효과음 음소거 버튼 클릭");
+        Debug.Log($"효과음 음소거 상태 변경: {isMuted}");
 
         if (audioManager != null)
             audioManager.ToggleSfxMute();

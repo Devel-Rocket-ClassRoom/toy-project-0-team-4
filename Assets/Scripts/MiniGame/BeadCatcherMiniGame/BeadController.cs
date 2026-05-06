@@ -3,12 +3,12 @@ using TMPro;
 
 public class BeadController : MonoBehaviour
 {
-    [Header("ÀÌµ¿ ¹× È¸Àü ¼³Á¤")]
+    [Header("ì´ë™ ë° íšŒì „ ì„¤ì •")]
     public float rollSpeed = 2.5f;
-    public float pushForce = 15f;   // ¹Ğ¾îÁÖ´Â ÈûÀÇ ¼¼±â
-    public Transform visualModel; // È¸ÀüÇÒ ÀÚ½Ä ¿ÀºêÁ§Æ® (ÀÌ¹ÌÁö+ÅØ½ºÆ®)
+    public float pushForce = 15f;
+    // public Transform visualModel; 
 
-    [Header("µ¥ÀÌÅÍ")]
+    [Header("ë°ì´í„°")]
     public TextMeshProUGUI textDisplay;
     public char letter;
 
@@ -44,10 +44,10 @@ public class BeadController : MonoBehaviour
 
     void Update()
     {
-        // ¹°¸® ¼Óµµ¿¡ ¸ÂÃç ½Ã°¢Àû ¸ğµ¨ È¸Àü (±¼·¯°¡´Â ¿¬Ãâ)
-        if (visualModel != null)
-        {
-            visualModel.Rotate(0, 0, -rollSpeed * 150f * Time.deltaTime);
-        }
+        // // ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ È¸ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        // if (visualModel != null)
+        // {
+        //     visualModel.Rotate(0, 0, -rollSpeed * 150f * Time.deltaTime);
+        // }
     }
 }

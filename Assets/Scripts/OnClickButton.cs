@@ -18,6 +18,8 @@ public class OnClickButton : MonoBehaviour
     [Header("전체 시계 타이머")]
     [SerializeField] private GameClockTimer gameClockTimer;
 
+    private BeadGameManager beadGameManager;
+
     public void OnClickMain()
     {
         if (audioManager != null)
@@ -117,7 +119,7 @@ public class OnClickButton : MonoBehaviour
         Debug.LogWarning("MiniGameSpawner가 연결되지 않았습니다.");
     }
 
-    public void OnClickExitSetting()
+    public void OnClickSettingExit()
     {
         if (audioManager != null)
         {
@@ -128,5 +130,25 @@ public class OnClickButton : MonoBehaviour
         {
             settingPopup.SetActive(false);
         }
+    }
+
+    public void OnClickErrorBack()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySfx(1);
+        }
+
+        BeadErrorPopupUI.Instance.Hide();
+    }
+
+    public void OnClickExit()
+    {
+        if (audioManager != null)
+        {
+            audioManager.PlaySfx(1);
+        }
+        Debug.Log("게임 종료");
+        Application.Quit();
     }
 }

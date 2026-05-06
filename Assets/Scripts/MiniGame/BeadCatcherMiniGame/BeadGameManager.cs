@@ -3,14 +3,47 @@ using TMPro;
 
 public class BeadGameManager : MonoBehaviour
 {
+    public static BeadGameManager Current { get; private set; }
+
     [Header("UI 연결")]
-    public TextMeshProUGUI agreeButtonText; // 하단 초록 버튼 텍스트
-    //public GameObject errorPanel;           // 오답 팝업
-    //public TextMeshProUGUI errorContentText; // 팝업 내 문자열 표시
+    [SerializeField] private TextMeshProUGUI agreeButtonText;
 
     [Header("데이터")]
-    public string targetWord = "AGREE";
+    [SerializeField] private string targetWord = "AGREE";
+
     private string currentWord = "";
+    private string wrongWord = "";
+
+    public string CurrentWord => currentWord;
+    public string WrongWord => wrongWord;
+    public string TargetWord => targetWord;
+
+    [Header("스테이지 화면")]
+    [SerializeField] private StageScreen stageScreen;
+
+    private void Awake()
+    {
+        Current = this;
+
+        if (stageScreen == null)
+        {
+            stageScreen = GetComponentInParent<StageScreen>(true);
+        }
+        ResetWord();
+    }
+
+    private void OnEnable()
+    {
+        Current = this;
+    }
+
+    private void OnDisable()
+    {
+        if (Current == this)
+        {
+            Current = null;
+        }
+    }
 
     public void AddLetter(char letter)
     {
@@ -20,23 +53,37 @@ public class BeadGameManager : MonoBehaviour
 
     public void CheckResult()
     {
+        Debug.Log($"CheckResult 실행 / 현재 단어: [{currentWord}] / 목표 단어: [{targetWord}]");
+
         if (currentWord == targetWord)
         {
             Debug.Log("성공: 이용약관에 동의했습니다.");
-            // 성공 시 로직 (예: 미니게임 파괴 및 다음 단계)
+
+            if (stageScreen == null)
+            {
+                stageScreen = GetComponentInParent<StageScreen>(true);
+            }
+
+            if (stageScreen != null)
+            {
+                stageScreen.ClearStage();
+            }
+            return;
         }
-        else
-        {
-            Debug.Log($"실패: {currentWord}는 {targetWord}와 다름");
-            ShowError();
-        }
+
+        Debug.Log($"실패: {currentWord}는 {targetWord}와 다름");
+
+        // ResetWord 전에 실패 단어 저장
+        wrongWord = currentWord;
+
+        ShowErrorPopup(wrongWord);
+
+        ResetWord();
     }
 
-    void ShowError()
+    private void ShowErrorPopup(string word)
     {
-        //errorContentText.text = $"[{currentWord}]\n버튼의 내용이 의미불명입니다.";
-        //errorPanel.SetActive(true);
-        ResetWord();
+        BeadErrorPopupUI.Instance.Show(word);
     }
 
     public void ResetWord()
