@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public enum ZoneType { RightEnd, Collector }
+
+public class BeadZone : MonoBehaviour
+{
+    public ZoneType zoneType;
+    private BeadGameManager cachedManager;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        BeadController bead = collision.GetComponent<BeadController>();
+        if (bead == null) return;
+
+        if (zoneType == ZoneType.Collector)
+        {
+            if (cachedManager == null)
+                cachedManager = GetComponentInParent<BeadGameManager>();
+
+            if (cachedManager != null)
+                cachedManager.AddLetter(bead.letter);
+        }
+
+        Destroy(collision.gameObject);
+    }
+}
