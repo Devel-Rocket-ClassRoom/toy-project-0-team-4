@@ -447,6 +447,7 @@ MonoBehaviour:
   disabledAlpha: 0.3
   scrollSensitivity: 2
   activateOffset: 50
+  scrollText: 
 --- !u!114 &4354254665007574299
 MonoBehaviour:
   m_ObjectHideFlags: 0
