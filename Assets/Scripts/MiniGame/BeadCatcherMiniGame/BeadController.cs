@@ -25,7 +25,6 @@ public class BeadController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 바닥(Floor) 오브젝트에 "Floor" 태그를 설정해두면 좋습니다.
         if (collision.gameObject.CompareTag("Floor"))
         {
             isRolling = true;

@@ -14,7 +14,6 @@ public class BeadZone : MonoBehaviour
 
         if (zoneType == ZoneType.Collector)
         {
-            // 싱글톤 대신 부모 계층에서 매니저 탐색 (독립 구조)
             if (cachedManager == null)
                 cachedManager = GetComponentInParent<BeadGameManager>();
 
