@@ -10,6 +10,8 @@ TagManager:
   - BasketBall
   - ClearZone
   - Floor
+  - CheckPoint
+  - Bullet
   layers:
   - Default
   - TransparentFX
