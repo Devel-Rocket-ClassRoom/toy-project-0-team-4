@@ -4,11 +4,14 @@ using UnityEngine.UI;
 public class GoalManager : MonoBehaviour
 {
     [Header("Goal UI Settings")]
-    public Image[] goalIndicators; 
-    public Color emptyColor = new Color(0, 0.5f, 0, 0.5f); 
-    public Color filledColor = Color.green;              
+    public Image[] goalIndicators;
+    public Color emptyColor = new Color(0, 0.5f, 0, 0.5f);
+    public Color filledColor = Color.green;
 
+    [Header("스테이지 화면")]
+    [SerializeField] private StageScreen stageScreen;
     private int currentGoalCount = 0;
+    private bool isCompleted = false;
 
     void Start()
     {
@@ -49,6 +52,25 @@ public class GoalManager : MonoBehaviour
 
     private void OnComplete()
     {
+        if (isCompleted)
+            return;
+
+        isCompleted = true;
+
         Debug.Log("목표 달성 미니게임 클리어!");
+
+        if (stageScreen == null)
+        {
+            stageScreen = GetComponentInParent<StageScreen>(true);
+        }
+
+        if (stageScreen != null)
+        {
+            stageScreen.ClearStage();
+        }
+        else
+        {
+            Debug.LogWarning("GoalManager가 StageScreen을 찾지 못했습니다.");
+        }
     }
 }

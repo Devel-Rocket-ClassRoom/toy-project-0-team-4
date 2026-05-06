@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 25d855a6bd43bd84eb373b2924db978a, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: 25d855a6bd43bd84eb373b2924db978a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_sharedMaterial: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -175,7 +175,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 50}
+  m_SizeDelta: {x: 160, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4140326206105427260
 CanvasRenderer:
@@ -288,3 +288,4 @@ MonoBehaviour:
   miniGameSpawner: {fileID: 0}
   settingPopup: {fileID: 0}
   audioManager: {fileID: 0}
+  gameClockTimer: {fileID: 0}
