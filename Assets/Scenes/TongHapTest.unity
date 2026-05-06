@@ -184,6 +184,7 @@ MonoBehaviour:
     miniGamePrefabs:
     - {fileID: 5938512625126469385, guid: 6538a4fc1c50e4044864bf8e7115cd50, type: 3}
     - {fileID: 5539791853717674336, guid: 0b9096da8361b68419772895499befe9, type: 3}
+    - {fileID: 5539791853717674336, guid: 974e639f268f0b34a9c618ca91e4f48b, type: 3}
   popupController:
     popupRoot: {fileID: 1488937706}
     successPopup: {fileID: 4052031312796070265}
