@@ -1472,6 +1472,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1038922597}
   canvasTransform: {fileID: 1040896452}
   spawnInterval: 0.3
+  priorityChance: 0.4
 --- !u!1 &1392793251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,7 +1956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.51549387, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
