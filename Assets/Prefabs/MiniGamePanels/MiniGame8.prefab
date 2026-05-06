@@ -106,10 +106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallButtonGame
   agreePrefab: {fileID: 5172884230575256739}
   disagreePrefab: {fileID: 7347443026237404462}
-  columns: 14
+  columns: 12
   rows: 10
   cellSize: {x: 80, y: 50}
   cellSpacing: {x: 4, y: 4}
+  gridOffset: {x: 0, y: -35}
 --- !u!1 &1165462549134271687
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +195,18 @@ PrefabInstance:
       propertyPath: Stage1
       value: 
       objectReference: {fileID: 1898692446855365981, guid: 7bbf2fff1cdb7a14d9cfe3c600ced1be, type: 3}
+    - target: {fileID: 2575605621172731289, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575605621172731289, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2030847852017020162, guid: 25d855a6bd43bd84eb373b2924db978a, type: 2}
+    - target: {fileID: 2575605621172731289, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5238992065139144958, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -26,7 +26,10 @@ public class HiddenAgreeGame : MonoBehaviour
     void Awake()
     {
         foreach (Transform child in transform)
-            child.gameObject.SetActive(false);
+        {
+            if (child.GetComponentInChildren<Button>(true) != null)
+                child.gameObject.SetActive(false);
+        }
     }
 
     public void StartMiniGame()
