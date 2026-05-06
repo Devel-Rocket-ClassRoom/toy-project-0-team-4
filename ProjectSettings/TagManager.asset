@@ -8,6 +8,7 @@ TagManager:
   - Paddle
   - Brick
   - BasketBall
+  - ClearZone
   layers:
   - Default
   - TransparentFX

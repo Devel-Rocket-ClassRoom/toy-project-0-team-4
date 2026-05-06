@@ -150,6 +150,12 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
+        if (currentMiniGame.TryGetComponent<OTPMiniGame>(out var otpMiniGame))
+        {
+            otpMiniGame.StartMiniGame();
+            return;
+        }
+
         // 만약 미니게임 스크립트가 Prefab 루트가 아니라 자식에 붙어있을 경우 대비
         ButtonChange childButtonChange = currentMiniGame.GetComponentInChildren<ButtonChange>(true);
         if (childButtonChange != null)
@@ -176,6 +182,39 @@ public class MiniGameSpawner : MonoBehaviour
         if (childWallButtonGame != null)
         {
             childWallButtonGame.StartMiniGame();
+            return;
+        }
+
+        if (currentMiniGame.TryGetComponent<JumpButtonGame>(out var jumpButtonGame))
+        {
+            jumpButtonGame.StartMiniGame();
+            return;
+        }
+
+        JumpButtonGame childJumpButtonGame = currentMiniGame.GetComponentInChildren<JumpButtonGame>(true);
+        if (childJumpButtonGame != null)
+        {
+            childJumpButtonGame.StartMiniGame();
+            return;
+        }
+
+        OTPMiniGame childOTPMiniGame = currentMiniGame.GetComponentInChildren<OTPMiniGame>(true);
+        if (childOTPMiniGame != null)
+        {
+            childOTPMiniGame.StartMiniGame();
+            return;
+        }
+
+        if (currentMiniGame.TryGetComponent<ScrollAgreeMiniGame>(out var scrollAgree))
+        {
+            scrollAgree.StartMiniGame();
+            return;
+        }
+
+        ScrollAgreeMiniGame childScrollAgree = currentMiniGame.GetComponentInChildren<ScrollAgreeMiniGame>(true);
+        if (childScrollAgree != null)
+        {
+            childScrollAgree.StartMiniGame();
             return;
         }
     }
