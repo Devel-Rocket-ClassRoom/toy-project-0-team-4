@@ -17,7 +17,7 @@ public class BeadSpawner : MonoBehaviour
         GameObject newBead = Instantiate(beadPrefab, spawnPoint.position, Quaternion.identity, canvasTransform);
 
         char randomLetter = (char)Random.Range('A', 'Z' + 1);
-        newBead.GetComponent<Bead>().SetLetter(randomLetter);
+        newBead.GetComponent<BeadController>().SetLetter(randomLetter);
 
         // Hierarchy 최상단으로 이동
         newBead.transform.SetAsFirstSibling();
