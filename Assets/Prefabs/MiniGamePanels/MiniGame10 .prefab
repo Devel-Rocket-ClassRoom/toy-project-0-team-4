@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_sharedMaterial: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -446,7 +446,6 @@ MonoBehaviour:
   disabledAlpha: 0.3
   scrollSensitivity: 2
   activateOffset: 50
-  scrollText: 
 --- !u!114 &4354254665007574299
 MonoBehaviour:
   m_ObjectHideFlags: 0
