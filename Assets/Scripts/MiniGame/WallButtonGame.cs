@@ -17,7 +17,10 @@ public class WallButtonGame : MonoBehaviour
     void Awake()
     {
         foreach (Transform child in transform)
-            child.gameObject.SetActive(false);
+        {
+            if (child.GetComponent<Button>() != null)
+                child.gameObject.SetActive(false);
+        }
     }
 
     public void StartMiniGame()
