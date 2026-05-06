@@ -27,6 +27,11 @@ public class MiniGameSpawner : MonoBehaviour
     [Header("버튼 핸들러")]
     [SerializeField] private OnClickButton onClickButton;
 
+    [Header("OTP (5개 스테이지 전부 클리어 시 표시)")]
+    [SerializeField] private GameObject otpPanel;
+    [SerializeField] private OTPMiniGame otpMiniGame;
+    [SerializeField] private int totalStages = 5;
+
     private StageScreen currentMiniGame;
     private int currentStageNumber;
 
@@ -112,6 +117,14 @@ public class MiniGameSpawner : MonoBehaviour
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
+
+            Debug.Log($"[OTP 체크] 클리어된 스테이지: {stageNumber} / totalStages: {totalStages} / AllCleared: {stageClearManager.AllCleared(totalStages)}");
+
+            if (stageClearManager.AllCleared(totalStages))
+            {
+                ShowOTP();
+                return;
+            }
         }
 
         popupController.ShowSuccess(gameClockTimer);
@@ -134,6 +147,56 @@ public class MiniGameSpawner : MonoBehaviour
         Debug.Log("미니게임 실패 이벤트 받음");
 
         popupController.ShowFail(gameClockTimer);
+    }
+
+    private void ShowOTP()
+    {
+        // StageScreen을 먼저 제거해야 MiniGameManager 이벤트가 OTP에만 전달됨
+        DestroyCurrentMiniGame();
+        popupController.ResetState();
+        popupController.HideAll();
+        Time.timeScale = 1f;
+
+        Debug.Log($"[ShowOTP] otpPanel={otpPanel}, otpMiniGame={otpMiniGame}");
+
+        if (otpMiniGame != null)
+        {
+            // 부모 계층이 비활성화되어 있어도 전부 활성화
+            Transform t = otpMiniGame.transform;
+            while (t != null)
+            {
+                t.gameObject.SetActive(true);
+                t = t.parent;
+            }
+            otpMiniGame.StartMiniGame();
+        }
+
+        MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    += OnOTPFail;
+
+        Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
+    }
+
+    private void OnOTPSuccess()
+    {
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+
+        if (otpPanel != null) otpPanel.SetActive(false);
+        popupController.ShowSuccess(gameClockTimer);
+
+        Debug.Log("OTP 성공");
+    }
+
+    private void OnOTPFail()
+    {
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+
+        if (otpPanel != null) otpPanel.SetActive(false);
+        popupController.ShowFail(gameClockTimer);
+
+        Debug.Log("OTP 실패");
     }
 
     public void ExternalGameOver()
