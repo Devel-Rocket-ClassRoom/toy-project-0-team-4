@@ -542,22 +542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1040896452}
     m_Modifications:
-    - target: {fileID: 602889684499285109, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
-      propertyPath: fireRate
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 847444876259683033, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
       propertyPath: canvasRect
       value: 
       objectReference: {fileID: 1040896452}
-    - target: {fileID: 1752118249348240684, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
-      propertyPath: fireRate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1763046129827283809, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
-      propertyPath: fireRate
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 1949464393726504397, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -637,10 +625,6 @@ PrefabInstance:
     - target: {fileID: 1949464393726504397, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2432647576401331910, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
-      propertyPath: fireRate
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7915894090772469279, guid: ab24b9e213668b64183039e71b7f7af9, type: 3}
       propertyPath: m_Interactable
