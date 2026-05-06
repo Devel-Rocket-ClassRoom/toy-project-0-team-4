@@ -194,17 +194,12 @@ public class MiniGamePopup
     /// </summary>
     public void HideAll()
     {
-        successPopup.SetActive(false);
-
-        failPopup.SetActive(false);
-
-        maintenancePopup.SetActive(false);
-
-        timeoutPopup.SetActive(false);
-
-        popupRoot.SetActive(false);
-
-        meaningErrorPopup.SetActive(false);
+        if (successPopup != null)     successPopup.SetActive(false);
+        if (failPopup != null)        failPopup.SetActive(false);
+        if (maintenancePopup != null) maintenancePopup.SetActive(false);
+        if (timeoutPopup != null)     timeoutPopup.SetActive(false);
+        if (meaningErrorPopup != null) meaningErrorPopup.SetActive(false);
+        if (popupRoot != null)        popupRoot.SetActive(false);
     }
 
     /// <summary>
@@ -233,18 +228,11 @@ public class MiniGamePopup
         bool showMeaningError
     )
     {
-
-        popupRoot.SetActive(true);
-
-        successPopup.SetActive(showSuccess);
-
-        failPopup.SetActive(showFail);
-
-        maintenancePopup.SetActive(showMaintenance);
-
-        timeoutPopup.SetActive(showTimeout);
-
-        meaningErrorPopup.SetActive(showMeaningError);
-
+        if (popupRoot != null)        popupRoot.SetActive(true);
+        if (successPopup != null)     successPopup.SetActive(showSuccess);
+        if (failPopup != null)        failPopup.SetActive(showFail);
+        if (maintenancePopup != null) maintenancePopup.SetActive(showMaintenance);
+        if (timeoutPopup != null)     timeoutPopup.SetActive(showTimeout);
+        if (meaningErrorPopup != null) meaningErrorPopup.SetActive(showMeaningError);
     }
 }
