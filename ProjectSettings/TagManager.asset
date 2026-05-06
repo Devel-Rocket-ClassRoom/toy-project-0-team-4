@@ -10,6 +10,9 @@ TagManager:
   - BasketBall
   - ClearZone
   - Floor
+  - CheckPoint
+  - Disagree
+  - Agree
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UI_Object
   - 
   - 
   - 
