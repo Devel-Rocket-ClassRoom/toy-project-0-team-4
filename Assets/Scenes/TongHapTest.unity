@@ -188,6 +188,9 @@ MonoBehaviour:
   mainScreenUI: {fileID: 2071113348}
   gameClockTimer: {fileID: 210731803}
   onClickButton: {fileID: 210731801}
+  otpPanel: {fileID: 0}
+  otpMiniGame: {fileID: 0}
+  totalStages: 5
 --- !u!114 &210731801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1937,7 +1940,7 @@ PrefabInstance:
     - target: {fileID: 333334628800927606, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 333334628800927606, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1981,7 +1984,7 @@ PrefabInstance:
     - target: {fileID: 1396811071140647367, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 1396811071140647367, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2069,7 +2072,7 @@ PrefabInstance:
     - target: {fileID: 2291765696042144538, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 2291765696042144538, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2093,7 +2096,7 @@ PrefabInstance:
     - target: {fileID: 2990745383417757460, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 2990745383417757460, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2105,7 +2108,7 @@ PrefabInstance:
     - target: {fileID: 3198621234397092662, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 3198621234397092662, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2117,7 +2120,7 @@ PrefabInstance:
     - target: {fileID: 3305355508430880745, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 3305355508430880745, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2129,7 +2132,7 @@ PrefabInstance:
     - target: {fileID: 3582879649745240099, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 3582879649745240099, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2141,7 +2144,7 @@ PrefabInstance:
     - target: {fileID: 3657966303573746877, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 3657966303573746877, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2153,7 +2156,7 @@ PrefabInstance:
     - target: {fileID: 4567184137717636800, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 4567184137717636800, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2413,7 +2416,7 @@ PrefabInstance:
     - target: {fileID: 7689863459142157533, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 7689863459142157533, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -2453,7 +2456,7 @@ PrefabInstance:
     - target: {fileID: 8046630926768237560, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+      objectReference: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
     - target: {fileID: 8046630926768237560, guid: 15995bf39a80d5840ac1766e846f9793, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
