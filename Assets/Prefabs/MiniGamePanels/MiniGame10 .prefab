@@ -268,8 +268,8 @@ MonoBehaviour:
     \uBC88\uC5ED\uBCF8\uACFC \uD55C\uAD6D\uC5B4\uBCF8\uC774 \uC0C1\uCDA9\uD558\uB294
     \uACBD\uC6B0 \uD55C\uAD6D\uC5B4\uBCF8\uC774 \uC6B0\uC120\uD569\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
-  m_sharedMaterial: {fileID: -8795318670257592104, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
+  m_sharedMaterial: {fileID: 4074703755839416731, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollAgreeMiniGame
   agreeButton: {fileID: 3017604996865350396}
-  disagreeButton: {fileID: 4888664793876309678}
+  disagreeButton: {fileID: 0}
   scrollRect: {fileID: 5581802355336544204}
   disabledAlpha: 0.3
   scrollSensitivity: 2
@@ -881,17 +881,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5238992065139144958, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
   m_PrefabInstance: {fileID: 702139786414103155}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4888664793876309678 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5361120638487837917, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
-  m_PrefabInstance: {fileID: 702139786414103155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &7171464610725193249
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -129,46 +129,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8516815359348859736, guid: 0240112a86872c54295130a9c121de51, type: 3}
   m_PrefabInstance: {fileID: 4809408377250615682}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &176444955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176444951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!223 &176444956
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176444951}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
-  m_TargetDisplay: 0
 --- !u!1 &210731798
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +182,7 @@ MonoBehaviour:
   miniGameParent: {fileID: 1397949973}
   miniGamePool:
     miniGamePrefabs:
-    - {fileID: 1160048130254166346, guid: 0d146b7d0a91933438c802cead174d47, type: 3}
+    - {fileID: 8008725697889400518, guid: 3efdb768b3dbf5f4abccf74f5e4501f9, type: 3}
   popupController:
     popupRoot: {fileID: 1488937706}
     successPopup: {fileID: 4052031312796070265}
@@ -1881,7 +1841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1488937707
 Transform:
   m_ObjectHideFlags: 0
@@ -2984,13 +2944,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8040019132812916518, guid: ee09ef01ba61365498a343bcb0ca717f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4052031313928173427}
-    - targetCorrespondingSourceObject: {fileID: 8040019132812916518, guid: ee09ef01ba61365498a343bcb0ca717f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4052031313928173426}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee09ef01ba61365498a343bcb0ca717f, type: 3}
 --- !u!224 &1748884833825936006 stripped
 RectTransform:
@@ -3105,59 +3059,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 116990496238716709, guid: dd22b70628d15294f8bb1cbead18e59b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3459624591886398562}
-    - targetCorrespondingSourceObject: {fileID: 116990496238716709, guid: dd22b70628d15294f8bb1cbead18e59b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3459624591886398561}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd22b70628d15294f8bb1cbead18e59b, type: 3}
 --- !u!224 &3459624591886398559 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6535348114547246193, guid: dd22b70628d15294f8bb1cbead18e59b, type: 3}
   m_PrefabInstance: {fileID: 2620703001811924876}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3459624591886398561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741892653771724472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!223 &3459624591886398562
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741892653771724472}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
-  m_TargetDisplay: 0
 --- !u!1001 &3742543193462911144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3261,104 +3169,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6136422046966303602, guid: e39eb4e6976a5fe44b5a4777fe37f8e9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4052031312796070268}
-    - targetCorrespondingSourceObject: {fileID: 6136422046966303602, guid: e39eb4e6976a5fe44b5a4777fe37f8e9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4052031312796070267}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e39eb4e6976a5fe44b5a4777fe37f8e9, type: 3}
 --- !u!1 &4052031312796070265 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6136422046966303602, guid: e39eb4e6976a5fe44b5a4777fe37f8e9, type: 3}
   m_PrefabInstance: {fileID: 3742543193462911144}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4052031312796070267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4052031312796070265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!223 &4052031312796070268
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4052031312796070265}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
-  m_TargetDisplay: 0
 --- !u!1 &4052031313928173424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8040019132812916518, guid: ee09ef01ba61365498a343bcb0ca717f, type: 3}
   m_PrefabInstance: {fileID: 930720577874268000}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4052031313928173426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4052031313928173424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!223 &4052031313928173427
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4052031313928173424}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
-  m_TargetDisplay: 0
 --- !u!224 &4668838950438693371 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1882260719551194641, guid: 64ac5c7aae3c69047a175600148fa8a0, type: 3}
@@ -3372,10 +3194,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1488937707}
     m_Modifications:
-    - target: {fileID: 1144323245866820720, guid: 0240112a86872c54295130a9c121de51, type: 3}
-      propertyPath: audioManager
-      value: 
-      objectReference: {fileID: 1664007079}
     - target: {fileID: 6866938595996264108, guid: 0240112a86872c54295130a9c121de51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3467,13 +3285,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8040019132812916518, guid: 0240112a86872c54295130a9c121de51, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 176444956}
-    - targetCorrespondingSourceObject: {fileID: 8040019132812916518, guid: 0240112a86872c54295130a9c121de51, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 176444955}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0240112a86872c54295130a9c121de51, type: 3}
 --- !u!224 &5238992065970086437 stripped
 RectTransform:
