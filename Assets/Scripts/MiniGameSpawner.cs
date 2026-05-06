@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniGameSpawner : MonoBehaviour
@@ -10,8 +9,11 @@ public class MiniGameSpawner : MonoBehaviour
     [Header("미니게임이 생성될 부모")]
     [SerializeField] private Transform miniGameParent;
 
-    [Header("미니게임 프리팹 목록")]
-    [SerializeField] private StageScreen[] miniGamePrefabs;
+    [Header("미니게임 랜덤 풀")]
+    [SerializeField] private MiniGamePool miniGamePool = new MiniGamePool();
+
+    [Header("팝업 컨트롤러")]
+    [SerializeField] private MiniGamePopup popupController = new MiniGamePopup();
 
     [Header("클리어 매니저")]
     [SerializeField] private StageClearManager stageClearManager;
@@ -19,37 +21,39 @@ public class MiniGameSpawner : MonoBehaviour
     [Header("메인화면 UI")]
     [SerializeField] private MainScreenUI mainScreenUI;
 
-    [Header("결과 팝업")]
-    [SerializeField] private GameObject successResultObject;
-    [SerializeField] private GameObject failResultObject;
+    [Header("전체 시계 타이머")]
+    [SerializeField] private GameClockTimer gameClockTimer;
 
-    [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [Header("버튼 핸들러")]
+    [SerializeField] private OnClickButton onClickButton;
 
     private StageScreen currentMiniGame;
     private int currentStageNumber;
 
-    private readonly List<int> availableMiniGameIndexes = new List<int>();
-
     private void Awake()
     {
-        ResetMiniGamePool();
+        miniGamePool.ResetPool();
+        popupController.HideAll();
     }
 
     public void StartStage(int stageNumber)
     {
-        if (miniGamePrefabs == null || miniGamePrefabs.Length == 0)
+        if (!miniGamePool.HasPrefab())
         {
             Debug.LogWarning("미니게임 Prefab이 등록되어 있지 않습니다.");
             return;
         }
 
+        // 새 미니게임 시작 시 시간 정상화
         Time.timeScale = 1f;
 
         currentStageNumber = stageNumber;
 
-        HideResultObjects();
+        // 결과 팝업 상태 초기화
+        popupController.ResetState();
+        popupController.HideAll();
 
+        // 게임 중에는 타이틀 배경은 보이고, 메인 팝업은 숨김
         if (titleScreen != null)
         {
             titleScreen.SetActive(true);
@@ -60,9 +64,11 @@ public class MiniGameSpawner : MonoBehaviour
             mainScreen.SetActive(false);
         }
 
+        // 기존 미니게임 제거
         DestroyCurrentMiniGame();
 
-        StageScreen prefab = GetRandomMiniGameWithoutDuplicate();
+        // 중복 없이 랜덤 미니게임 선택
+        StageScreen prefab = miniGamePool.GetRandomPrefabWithoutDuplicate();
 
         if (prefab == null)
         {
@@ -70,177 +76,108 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
-        currentMiniGame = Instantiate(prefab, miniGameParent);
-
-        Debug.Log($"[Spawner] 생성됨: {currentMiniGame.name}");
-
+        // 미니게임 생성
+        currentMiniGame = Instantiate(prefab, miniGameParent, false);
         currentMiniGame.Init(currentStageNumber);
 
+        // 기존 BallController 같은 외부 스크립트가 buttonHandler를 필요로 하면 자동 연결
+        MiniGameRuntimeBinder.BindButtonHandler(currentMiniGame, onClickButton);
+
+        // StageScreen 이벤트 연결
         currentMiniGame.OnStageClearButtonClicked += HandleStageClear;
         currentMiniGame.OnGameOver += HandleGameOver;
 
-        StartCreatedMiniGame();
+        // StartMiniGame() 메서드가 있는 미니게임이면 자동 실행
+        MiniGameRuntimeBinder.TryStartMiniGame(currentMiniGame);
 
-        Debug.Log($"{currentStageNumber} 스테이지 시작 / 미니게임: {prefab.name}");
-    }
-
-    private StageScreen GetRandomMiniGameWithoutDuplicate()
-    {
-        if (availableMiniGameIndexes.Count == 0)
-        {
-            Debug.Log("모든 미니게임이 한 번씩 나왔습니다. 목록을 다시 초기화합니다.");
-            ResetMiniGamePool();
-        }
-
-        if (availableMiniGameIndexes.Count == 0)
-            return null;
-
-        int randomListIndex = Random.Range(0, availableMiniGameIndexes.Count);
-        int prefabIndex = availableMiniGameIndexes[randomListIndex];
-
-        availableMiniGameIndexes.RemoveAt(randomListIndex);
-
-        return miniGamePrefabs[prefabIndex];
-    }
-
-    private void ResetMiniGamePool()
-    {
-        availableMiniGameIndexes.Clear();
-
-        if (miniGamePrefabs == null)
-            return;
-
-        for (int i = 0; i < miniGamePrefabs.Length; i++)
-        {
-            if (miniGamePrefabs[i] != null)
-            {
-                availableMiniGameIndexes.Add(i);
-            }
-        }
-
-        Debug.Log($"미니게임 풀 초기화 완료 / 개수: {availableMiniGameIndexes.Count}");
-    }
-
-    private void StartCreatedMiniGame()
-    {
-        if (currentMiniGame == null)
-            return;
-
-        if (currentMiniGame.TryGetComponent<ButtonChange>(out var buttonChange))
-        {
-            buttonChange.StartMiniGame();
-            return;
-        }
-
-        if (currentMiniGame.TryGetComponent<MovingMiniGame>(out var movingMiniGame))
-        {
-            movingMiniGame.StartMiniGame();
-            return;
-        }
-
-        if (currentMiniGame.TryGetComponent<HiddenAgreeGame>(out var hiddenAgreeGame))
-        {
-            hiddenAgreeGame.StartMiniGame();
-            return;
-        }
-
-        if (currentMiniGame.TryGetComponent<WallButtonGame>(out var wallButtonGame))
-        {
-            wallButtonGame.StartMiniGame();
-            return;
-        }
-
-        // 만약 미니게임 스크립트가 Prefab 루트가 아니라 자식에 붙어있을 경우 대비
-        ButtonChange childButtonChange = currentMiniGame.GetComponentInChildren<ButtonChange>(true);
-        if (childButtonChange != null)
-        {
-            childButtonChange.StartMiniGame();
-            return;
-        }
-
-        MovingMiniGame childMovingMiniGame = currentMiniGame.GetComponentInChildren<MovingMiniGame>(true);
-        if (childMovingMiniGame != null)
-        {
-            childMovingMiniGame.StartMiniGame();
-            return;
-        }
-
-        HiddenAgreeGame childHiddenAgreeGame = currentMiniGame.GetComponentInChildren<HiddenAgreeGame>(true);
-        if (childHiddenAgreeGame != null)
-        {
-            childHiddenAgreeGame.StartMiniGame();
-            return;
-        }
-
-        WallButtonGame childWallButtonGame = currentMiniGame.GetComponentInChildren<WallButtonGame>(true);
-        if (childWallButtonGame != null)
-        {
-            childWallButtonGame.StartMiniGame();
-            return;
-        }
+        Debug.Log($"{currentStageNumber} 스테이지 시작 / 생성된 미니게임: {prefab.name}");
     }
 
     private void HandleStageClear(int stageNumber)
     {
-        Debug.Log($"{stageNumber} 스테이지 클리어");
+        // 점검시간 팝업이 떠 있으면 성공 이벤트 무시
+        if (popupController.IsMaintenanceOpen)
+        {
+            Debug.Log("점검시간 상태라 클리어 이벤트 무시");
+            return;
+        }
+
+        if (popupController.IsResultOpen)
+        {
+            return;
+        }
+
+        Debug.Log($"{stageNumber} 스테이지 클리어 이벤트 받음");
 
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
         }
 
-        ShowSuccessPopup();
+        popupController.ShowSuccess(gameClockTimer);
     }
 
     private void HandleGameOver()
     {
-        Debug.Log("게임오버");
+        // 점검시간 팝업이 떠 있으면 실패 이벤트 무시
+        if (popupController.IsMaintenanceOpen)
+        {
+            Debug.Log("점검시간 상태라 실패 이벤트 무시");
+            return;
+        }
 
-        ShowFailPopup();
+        if (popupController.IsResultOpen)
+        {
+            return;
+        }
+
+        Debug.Log("미니게임 실패 이벤트 받음");
+
+        popupController.ShowFail(gameClockTimer);
     }
 
-    private void ShowSuccessPopup()
+    public void ExternalGameOver()
     {
-        Time.timeScale = 0f;
+        // BallController가 buttonHandler.OnClickCancle()을 호출하면 여기로 들어옴
 
-        if (successResultObject != null)
+        if (popupController.IsMaintenanceOpen)
         {
-            successResultObject.SetActive(true);
+            Debug.Log("점검시간 상태라 외부 게임오버 무시");
+            return;
         }
 
-        if (failResultObject != null)
+        if (popupController.IsResultOpen)
         {
-            failResultObject.SetActive(false);
+            return;
         }
+
+        Debug.Log("외부 스크립트에서 게임오버 호출됨");
+
+        popupController.ShowFail(gameClockTimer);
     }
 
-    private void ShowFailPopup()
+    public void ForceGameOver()
     {
-        Time.timeScale = 0f;
+        // 전체 타이머 종료 시 호출됨
+        // 여기서는 currentMiniGame.GameOver()를 호출하지 않음
+        // 점검시간 팝업이 실패 팝업보다 우선이기 때문
 
-        if (successResultObject != null)
-        {
-            successResultObject.SetActive(false);
-        }
+        Debug.Log("전체 타이머 종료 - 점검시간 팝업 우선 표시");
 
-        if (failResultObject != null)
-        {
-            failResultObject.SetActive(true);
-        }
+        popupController.ShowMaintenance(gameClockTimer);
     }
 
     public void ConfirmSuccess()
     {
-        if (audioManager != null)
-        {
-            audioManager.PlaySfx(0);
-        }
+        // 성공 팝업 확인 버튼용
 
         Time.timeScale = 1f;
 
+        popupController.ResetState();
+
         DestroyCurrentMiniGame();
 
-        HideResultObjects();
+        popupController.HideAll();
 
         if (titleScreen != null)
         {
@@ -257,52 +194,39 @@ public class MiniGameSpawner : MonoBehaviour
             mainScreenUI.RefreshStageButtons();
         }
 
-        Debug.Log("성공 확인 버튼 클릭 - 메인화면으로 이동");
+        // 성공 후 메인화면에서는 전체 타이머 재개
+        if (gameClockTimer != null)
+        {
+            gameClockTimer.ResumeTimer();
+        }
+
+        Debug.Log("성공 확인 - 메인화면으로 이동");
     }
 
     public void ConfirmFail()
     {
-        if (audioManager != null)
-        {
-            audioManager.PlaySfx(0);
-        }
+        // 실패 팝업 확인 버튼을 이 함수에 연결해도 됨
+        ShowTitleScreen();
+    }
 
-        Time.timeScale = 1f;
-
-        if (stageClearManager != null)
-        {
-            stageClearManager.ResetAll();
-        }
-
-        currentStageNumber = 0;
-
-        DestroyCurrentMiniGame();
-
-        HideResultObjects();
-
-        ResetMiniGamePool();
-
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
-        }
-
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(false);
-        }
-
-        if (mainScreenUI != null)
-        {
-            mainScreenUI.RefreshStageButtons();
-        }
-
-        Debug.Log("실패 확인 버튼 클릭 - 타이틀화면으로 이동");
+    public void EndByMaintenance()
+    {
+        // 점검시간 팝업 확인 버튼을 이 함수에 연결해도 됨
+        ShowTitleScreen();
     }
 
     public void ShowTitleScreen()
     {
+        // 실패 / 점검 / 타이틀 복귀 공통 처리
+
         Time.timeScale = 1f;
+
+        popupController.ResetState();
+
+        if (gameClockTimer != null)
+        {
+            gameClockTimer.ResetTimer();
+        }
 
         if (stageClearManager != null)
         {
@@ -313,9 +237,9 @@ public class MiniGameSpawner : MonoBehaviour
 
         DestroyCurrentMiniGame();
 
-        HideResultObjects();
+        popupController.HideAll();
 
-        ResetMiniGamePool();
+        miniGamePool.ResetPool();
 
         if (titleScreen != null)
         {
@@ -331,25 +255,21 @@ public class MiniGameSpawner : MonoBehaviour
         {
             mainScreenUI.RefreshStageButtons();
         }
+
+        Debug.Log("타이틀 화면 이동 - 전체 타이머 초기화");
     }
 
     public void HideResultObjects()
     {
-        if (successResultObject != null)
-        {
-            successResultObject.SetActive(false);
-        }
-
-        if (failResultObject != null)
-        {
-            failResultObject.SetActive(false);
-        }
+        popupController.HideAll();
     }
 
     public void DestroyCurrentMiniGame()
     {
         if (currentMiniGame == null)
+        {
             return;
+        }
 
         currentMiniGame.OnStageClearButtonClicked -= HandleStageClear;
         currentMiniGame.OnGameOver -= HandleGameOver;

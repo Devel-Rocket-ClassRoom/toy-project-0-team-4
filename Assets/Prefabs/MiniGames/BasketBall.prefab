@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -516054591108637454, guid: b19463643b1d9364da9903bb35eb7b65, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -154,5 +154,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallInitialDrop
   constantSpeed: 5
-  minHorizontalVelocity: 0.5
-  buttonHandler: {fileID: 0}
+  minVelocity: 0.5
+  paddleInfluence: 0.05
