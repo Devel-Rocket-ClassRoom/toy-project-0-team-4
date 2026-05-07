@@ -296,7 +296,7 @@ MonoBehaviour:
   miniGameParent: {fileID: 1397949973}
   miniGamePool:
     miniGamePrefabs:
-    - {fileID: 6665786662168352218, guid: 7d0e47438a704684ca544bb468c22fc0, type: 3}
+    - {fileID: 5539791853717674336, guid: 0b9096da8361b68419772895499befe9, type: 3}
   popupController:
     popupRoot: {fileID: 1488937706}
     successPopup: {fileID: 4052031312796070265}
@@ -308,6 +308,8 @@ MonoBehaviour:
   mainScreenUI: {fileID: 2071113348}
   gameClockTimer: {fileID: 2024211251}
   onClickButton: {fileID: 210731801}
+  otpPrefab: {fileID: -26857562467839350, guid: a8caf5eddb592094b84af55625f04198, type: 3}
+  totalStages: 5
 --- !u!114 &210731801
 MonoBehaviour:
   m_ObjectHideFlags: 0
