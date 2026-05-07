@@ -27,8 +27,13 @@ public class MiniGameSpawner : MonoBehaviour
     [Header("버튼 핸들러")]
     [SerializeField] private OnClickButton onClickButton;
 
+    [Header("OTP (5개 스테이지 전부 클리어 시 표시)")]
+    [SerializeField] private OTPMiniGame otpPrefab;
+    [SerializeField] private int totalStages = 5;
+
     private StageScreen currentMiniGame;
     private int currentStageNumber;
+    private OTPMiniGame otpInstance;
 
     private void Awake()
     {
@@ -126,6 +131,14 @@ public class MiniGameSpawner : MonoBehaviour
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
+
+            Debug.Log($"[OTP 체크] 클리어된 스테이지: {stageNumber} / totalStages: {totalStages} / AllCleared: {stageClearManager.AllCleared(totalStages)}");
+
+            if (stageClearManager.AllCleared(totalStages))
+            {
+                ShowOTP();
+                return;
+            }
         }
 
         // 성공 팝업 요청
@@ -151,6 +164,48 @@ public class MiniGameSpawner : MonoBehaviour
 
         // 실패 팝업 요청
         popupController.ShowFail(gameClockTimer);
+    }
+
+    private void ShowOTP()
+    {
+        // StageScreen을 먼저 제거해야 MiniGameManager 이벤트가 OTP에만 전달됨
+        DestroyCurrentMiniGame();
+        popupController.ResetState();
+        popupController.HideAll();
+        Time.timeScale = 1f;
+
+        if (otpPrefab != null)
+        {
+            otpInstance = Instantiate(otpPrefab, miniGameParent, false);
+            otpInstance.StartMiniGame();
+        }
+
+        MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    += OnOTPFail;
+
+        Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
+    }
+
+    private void OnOTPSuccess()
+    {
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+
+        if (otpInstance != null) Destroy(otpInstance.gameObject);
+        popupController.ShowSuccess(gameClockTimer);
+
+        Debug.Log("OTP 성공");
+    }
+
+    private void OnOTPFail()
+    {
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+
+        if (otpInstance != null) Destroy(otpInstance.gameObject);
+        popupController.ShowFail(gameClockTimer);
+
+        Debug.Log("OTP 실패");
     }
 
     public void ExternalGameOver()

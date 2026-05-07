@@ -36,6 +36,13 @@ public class StageClearManager : MonoBehaviour
         }
     }
 
+    public bool AllCleared(int totalStages)
+    {
+        for (int i = 1; i <= totalStages; i++)
+            if (!clearedStages.Contains(i)) return false;
+        return true;
+    }
+
     public void ResetAll()
     {
         clearedStages.Clear();
