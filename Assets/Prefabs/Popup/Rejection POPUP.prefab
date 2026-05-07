@@ -175,7 +175,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 2
@@ -300,8 +300,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774\uC6A9 \uC57D\uAD00 \uB3D9\uC758\uC5D0 \uC2E4\uD328\uD558\uC600\uC2B5\uB2C8\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a60d473947798ab46a5f2795a90e3cb6, type: 2}
-  m_sharedMaterial: {fileID: -5451545958005627353, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
+  m_sharedMaterial: {fileID: 4074703755839416731, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4214036521935167961
@@ -569,8 +569,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2E4\uD328"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a60d473947798ab46a5f2795a90e3cb6, type: 2}
-  m_sharedMaterial: {fileID: -5451545958005627353, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
+  m_sharedMaterial: {fileID: 4074703755839416731, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -636,6 +636,6 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}

@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2671122964655989508, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 516.5289
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 2671122964655989508, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_SizeDelta.y
@@ -296,11 +296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2671122964655989508, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2671122964655989508, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 332
+      value: 333
       objectReference: {fileID: 0}
     - target: {fileID: 2671122964655989508, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -317,7 +317,11 @@ PrefabInstance:
     - target: {fileID: 8674285207582836039, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8160505328579717921, guid: a60d473947798ab46a5f2795a90e3cb6, type: 2}
+      objectReference: {fileID: 4074703755839416731, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
+    - target: {fileID: 8674285207582836039, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 8674285207582836039, guid: cad47d501c8fd424492de1d6379918d4, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -673,7 +677,7 @@ PrefabInstance:
     - target: {fileID: 606858519401747426, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8160505328579717921, guid: a60d473947798ab46a5f2795a90e3cb6, type: 2}
+      objectReference: {fileID: 4074703755839416731, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
     - target: {fileID: 1392261756050023033, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
       propertyPath: limitTime
       value: 30

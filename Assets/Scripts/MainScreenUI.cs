@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class MainScreenUI : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class MainScreenUI : MonoBehaviour
     {
         [Header("스테이지 번호")]
         public int stageNumber;
+
+        [Header("메인화면에 표시되는 단계 Text")]
+        public TMP_Text stageStepText;
+
+        [Header("메인화면에 표시되는 제목 Text")]
+        public TMP_Text stageTitleText;
 
         [Header("해당 스테이지 시작 버튼")]
         public GameObject startButton;
@@ -28,8 +35,11 @@ public class MainScreenUI : MonoBehaviour
     [Header("클리어 프리팹 크기")]
     [SerializeField] private Vector2 clearPrefabSize = new Vector2(160f, 60f);
 
-    [Header("클리어 프리팹 Z 위치")]
-    [SerializeField] private float clearPrefabZ = -5f;
+    [Header("클리어 프리팹 Z축 회전")]
+    [SerializeField] private float clearPrefabRotationZ = -5f;
+
+    [Header("단계와 제목 사이 구분자")]
+    [SerializeField] private string titleSeparator = " ";
 
     private void OnEnable()
     {
@@ -49,17 +59,14 @@ public class MainScreenUI : MonoBehaviour
             bool isCleared = stageClearManager.IsStageCleared(stageButton.stageNumber);
             bool isUnlocked = IsStageUnlocked(stageButton.stageNumber);
 
-            // 이미 클리어한 스테이지
             if (isCleared)
             {
                 ChangeToClearPrefab(stageButton);
             }
-            // 아직 클리어하지 않았지만 열려있는 스테이지
             else if (isUnlocked)
             {
                 ChangeToStartButton(stageButton);
             }
-            // 아직 열리지 않은 스테이지
             else
             {
                 ChangeToLockedStage(stageButton);
@@ -67,15 +74,51 @@ public class MainScreenUI : MonoBehaviour
         }
     }
 
-    private bool IsStageUnlocked(int stageNumber)
+    public string GetStageTitle(int stageNumber)
     {
-        // 1단계는 항상 시작 가능
-        if (stageNumber <= 1)
+        foreach (StageButtonInfo stageButton in stageButtons)
         {
-            return true;
+            if (stageButton.stageNumber != stageNumber)
+                continue;
+
+            string stepText = "";
+            string titleText = "";
+
+            if (stageButton.stageStepText != null)
+            {
+                stepText = stageButton.stageStepText.text.Trim();
+            }
+
+            if (stageButton.stageTitleText != null)
+            {
+                titleText = stageButton.stageTitleText.text.Trim();
+            }
+
+            if (string.IsNullOrEmpty(stepText))
+            {
+                stepText = $"{stageNumber}단계";
+            }
+
+            if (string.IsNullOrEmpty(titleText))
+            {
+                Debug.LogWarning($"{stageNumber} 스테이지 제목 Text가 비어있습니다.");
+                return stepText;
+            }
+
+            string result = $"{stepText}{titleSeparator}{titleText}";
+
+            return result;
         }
 
-        // 2단계 이상은 이전 단계가 클리어되어야 열림
+        Debug.LogWarning($"{stageNumber} 스테이지 정보를 찾지 못했습니다.");
+        return $"{stageNumber}단계";
+    }
+
+    private bool IsStageUnlocked(int stageNumber)
+    {
+        if (stageNumber <= 1)
+            return true;
+
         return stageClearManager.IsStageCleared(stageNumber - 1);
     }
 
@@ -87,10 +130,8 @@ public class MainScreenUI : MonoBehaviour
             return;
         }
 
-        // 시작 버튼 숨김
         stageButton.startButton.SetActive(false);
 
-        // 이미 클리어 프리팹이 생성되어 있으면 위치/크기만 다시 보정
         if (stageButton.spawnedClearObject != null)
         {
             ApplyClearPrefabTransform(stageButton);
@@ -106,13 +147,12 @@ public class MainScreenUI : MonoBehaviour
 
         Transform parent = stageButton.startButton.transform.parent;
 
-        // 클리어 프리팹 생성
         stageButton.spawnedClearObject = Instantiate(stageButton.clearPrefab, parent, false);
 
-        // 시작 버튼과 같은 순서에 배치
-        stageButton.spawnedClearObject.transform.SetSiblingIndex(stageButton.startButton.transform.GetSiblingIndex());
+        stageButton.spawnedClearObject.transform.SetSiblingIndex(
+            stageButton.startButton.transform.GetSiblingIndex()
+        );
 
-        // 위치, 크기, Z값 적용
         ApplyClearPrefabTransform(stageButton);
 
         stageButton.spawnedClearObject.SetActive(true);
@@ -129,23 +169,18 @@ public class MainScreenUI : MonoBehaviour
         if (startRect == null || clearRect == null)
             return;
 
-
-        // 클리어 프리팹 크기 고정
         clearRect.sizeDelta = clearPrefabSize;
 
-        // Z 위치 -5 적용
-       clearRect.localRotation = Quaternion.Euler(0f, 0f, -5f);
+        clearRect.localRotation = Quaternion.Euler(0f, 0f, clearPrefabRotationZ);
     }
 
     private void ChangeToStartButton(StageButtonInfo stageButton)
     {
-        // 시작 버튼 표시
         if (stageButton.startButton != null)
         {
             stageButton.startButton.SetActive(true);
         }
 
-        // 클리어 프리팹이 있으면 제거
         if (stageButton.spawnedClearObject != null)
         {
             Destroy(stageButton.spawnedClearObject);
@@ -155,13 +190,11 @@ public class MainScreenUI : MonoBehaviour
 
     private void ChangeToLockedStage(StageButtonInfo stageButton)
     {
-        // 아직 열리지 않은 스테이지는 시작 버튼 숨김
         if (stageButton.startButton != null)
         {
             stageButton.startButton.SetActive(false);
         }
 
-        // 클리어 프리팹도 숨김/삭제
         if (stageButton.spawnedClearObject != null)
         {
             Destroy(stageButton.spawnedClearObject);
