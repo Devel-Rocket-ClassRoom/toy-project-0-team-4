@@ -31,6 +31,9 @@ public class MiniGameSpawner : MonoBehaviour
     [SerializeField] private OTPMiniGame otpPrefab;
     [SerializeField] private int totalStages = 5;
 
+    [Header("송금 팝업")]
+    [SerializeField] private TransferPopup transferPopupPrefab;
+
     private StageScreen currentMiniGame;
     private int currentStageNumber;
     private OTPMiniGame otpInstance;
@@ -192,9 +195,28 @@ public class MiniGameSpawner : MonoBehaviour
         MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
-        popupController.ShowSuccess(gameClockTimer);
+
+        if (transferPopupPrefab != null)
+        {
+            TransferPopup popup = Instantiate(transferPopupPrefab, miniGameParent, false);
+            popup.Show(ReturnToTitle);
+        }
+        else
+        {
+            ReturnToTitle();
+        }
 
         Debug.Log("OTP 성공");
+    }
+
+    private void ReturnToTitle()
+    {
+        DestroyCurrentMiniGame();
+        if (stageClearManager != null) stageClearManager.ResetAll();
+        if (gameClockTimer != null) gameClockTimer.ResetTimer();
+        if (titleScreen != null) titleScreen.SetActive(true);
+        if (mainScreen != null) mainScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void OnOTPFail()

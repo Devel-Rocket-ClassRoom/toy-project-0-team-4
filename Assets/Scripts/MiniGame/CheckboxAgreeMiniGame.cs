@@ -101,7 +101,10 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
 
         // 5개 체크 시 거절 버튼 마우스 추적 시작
         if (!chasing && checkedCount >= ChaseThreshold)
+        {
             chasing = true;
+            BringDisagreeToFront();
+        }
 
         // 10개 모두 체크 시 동의 버튼 활성화
         agreeButton.interactable = checkedCount >= TotalCount;
@@ -119,6 +122,18 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
         if (!gameActive) return;
         gameActive = false;
         MiniGameManager.NotifyFail();
+    }
+
+    private void BringDisagreeToFront()
+    {
+        var overrideCanvas = disagreeButton.gameObject.GetComponent<Canvas>();
+        if (overrideCanvas == null)
+        {
+            overrideCanvas = disagreeButton.gameObject.AddComponent<Canvas>();
+            disagreeButton.gameObject.AddComponent<GraphicRaycaster>();
+        }
+        overrideCanvas.overrideSorting = true;
+        overrideCanvas.sortingOrder = 100;
     }
 
     private void Update()
