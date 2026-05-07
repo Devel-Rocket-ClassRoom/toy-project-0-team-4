@@ -199,11 +199,11 @@ PrefabInstance:
     - target: {fileID: 2575605621172731289, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 2575605621172731289, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2030847852017020162, guid: 25d855a6bd43bd84eb373b2924db978a, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 2575605621172731289, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
