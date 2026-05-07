@@ -134,7 +134,7 @@ public class MainScreenUI : MonoBehaviour
         clearRect.sizeDelta = clearPrefabSize;
 
         // Z 위치 -5 적용
-        clearRect.localRotation = Quaternion.Euler(0f, 0f, -5f);
+       clearRect.localRotation = Quaternion.Euler(0f, 0f, -5f);
     }
 
     private void ChangeToStartButton(StageButtonInfo stageButton)

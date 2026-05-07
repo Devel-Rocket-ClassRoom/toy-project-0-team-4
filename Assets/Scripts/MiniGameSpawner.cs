@@ -190,8 +190,8 @@ public class MiniGameSpawner : MonoBehaviour
 
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
-        MiniGameManager.OnMiniGameFail += OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    += OnOTPFail;
 
         Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
     }
@@ -199,7 +199,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void OnOTPSuccess()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
 
@@ -233,7 +233,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void ReturnToTitle()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         DestroyCurrentMiniGame();
         if (stageClearManager != null) stageClearManager.ResetAll();
@@ -246,7 +246,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void OnOTPFail()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
         popupController.ShowFail(gameClockTimer);
