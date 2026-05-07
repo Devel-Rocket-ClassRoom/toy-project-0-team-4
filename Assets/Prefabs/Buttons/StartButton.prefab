@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 15.8, y: -281.28}
-  m_SizeDelta: {x: 522.99, y: 190.1}
+  m_SizeDelta: {x: 522.99, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3637548188775705416
 CanvasRenderer:
@@ -148,3 +148,6 @@ MonoBehaviour:
   titleScreen: {fileID: 0}
   mainScreen: {fileID: 0}
   miniGameSpawner: {fileID: 0}
+  settingPopup: {fileID: 0}
+  audioManager: {fileID: 0}
+  gameClockTimer: {fileID: 0}

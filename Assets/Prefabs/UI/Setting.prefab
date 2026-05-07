@@ -1188,10 +1188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingPopupUI
   audioManager: {fileID: 0}
   bgmVolumeSlider: {fileID: 6679952488407411482}
-  bgmMuteButton: {fileID: 314276358711372926}
+  bgmMuteToggle: {fileID: 0}
   sfxVolumeSlider: {fileID: 3228849719649867627}
-  sfxMuteButton: {fileID: 5830362925404721381}
-  closeButton: {fileID: 5021759532724207403}
+  sfxMuteToggle: {fileID: 0}
 --- !u!1 &6428457420585493541
 GameObject:
   m_ObjectHideFlags: 0

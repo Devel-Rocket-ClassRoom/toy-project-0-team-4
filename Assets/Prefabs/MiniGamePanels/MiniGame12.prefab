@@ -282,7 +282,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6849701541682519948}
   - {fileID: 1610739426269057979}
   - {fileID: 9047248548161563295}
   - {fileID: 9205547228584677596}
@@ -491,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+<<<<<<< HEAD
 --- !u!1001 &4711246372921496443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -731,6 +731,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 464698073929966315, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
   m_PrefabInstance: {fileID: 6448582015738051943}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 21f6d29 (ui수정)
 --- !u!1001 &6503615939730994693
 PrefabInstance:
   m_ObjectHideFlags: 0
