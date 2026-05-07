@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,15 @@ public class StageScreen : MonoBehaviour
 {
     [Header("버튼")]
     [SerializeField] private Button clearButton;
+
+    [Header("미니게임 내부 제목 텍스트")]
+    [SerializeField] private TextMeshProUGUI titleText;
+
+    public void SetTitle(string title)
+    {
+        if (titleText != null)
+            titleText.text = title;
+    }
 
     public event Action<int> OnStageClearButtonClicked;
     public event Action OnGameOver;
