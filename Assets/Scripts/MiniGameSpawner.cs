@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MiniGameSpawner : MonoBehaviour
@@ -37,6 +38,8 @@ public class MiniGameSpawner : MonoBehaviour
     private StageScreen currentMiniGame;
     private int currentStageNumber;
     private OTPMiniGame otpInstance;
+
+    private static readonly WaitForSecondsRealtime WaitOTPSuccess = new(5f);
 
     private void Awake()
     {
@@ -195,6 +198,19 @@ public class MiniGameSpawner : MonoBehaviour
         MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
+
+        StartCoroutine(OTPSuccessSequence());
+    }
+
+    private IEnumerator OTPSuccessSequence()
+    {
+        popupController.ShowSuccess(gameClockTimer);
+
+        yield return WaitOTPSuccess;
+
+        popupController.HideAll();
+        popupController.ResetState();
+        Time.timeScale = 1f;
 
         if (transferPopupPrefab != null)
         {

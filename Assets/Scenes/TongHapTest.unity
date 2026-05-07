@@ -308,6 +308,9 @@ MonoBehaviour:
   mainScreenUI: {fileID: 2071113348}
   gameClockTimer: {fileID: 2024211251}
   onClickButton: {fileID: 210731801}
+  otpPrefab: {fileID: 0}
+  totalStages: 5
+  transferPopupPrefab: {fileID: 0}
 --- !u!114 &210731801
 MonoBehaviour:
   m_ObjectHideFlags: 0
