@@ -39,11 +39,11 @@ public class TransferPopup : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.SmoothStep(0f, 1f, elapsed / CountUpDuration);
             int current = Mathf.RoundToInt(Mathf.Lerp(0, targetMan, t));
-            amountText.text = $"{current:#,0}만원";
+            amountText.text = $"{current:#,0}만원을";
             yield return null;
         }
 
-        amountText.text = $"{targetMan:#,0}만원";
+        amountText.text = $"{targetMan:#,0}만원을";
         countingUp = false;
     }
 
