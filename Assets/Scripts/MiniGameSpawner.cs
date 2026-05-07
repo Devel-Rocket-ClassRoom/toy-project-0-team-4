@@ -53,7 +53,7 @@ public class MiniGameSpawner : MonoBehaviour
         // 미니게임 중복 방지 랜덤 풀 초기화
         if (miniGamePool != null)
         {
-            miniGamePool.ResetPool();
+            miniGamePool.ResetAllPools();
         }
 
         // 시작 시 모든 결과 팝업 숨김
@@ -66,7 +66,7 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void StartStage(int stageNumber)
     {
-        if (miniGamePool == null || !miniGamePool.HasPrefab())
+        if (miniGamePool == null || !miniGamePool.HasStage(stageNumber))
         {
             Debug.LogWarning("미니게임 Prefab이 등록되어 있지 않습니다.");
             return;
@@ -74,7 +74,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         // 이전 팝업 때문에 멈춰있을 수 있으므로 정상 시간으로 복구
         Time.timeScale = 1f;
-
         currentStageNumber = stageNumber;
 
         // 새 미니게임 시작 전에 팝업 상태 초기화
@@ -96,7 +95,7 @@ public class MiniGameSpawner : MonoBehaviour
         DestroyCurrentMiniGame();
 
         // 중복 없이 랜덤 미니게임 선택
-        StageScreen prefab = miniGamePool.GetRandomPrefabWithoutDuplicate();
+        StageScreen prefab = miniGamePool.GetRandomPrefabByStage(currentStageNumber);
 
         if (prefab == null)
         {
@@ -200,8 +199,8 @@ public class MiniGameSpawner : MonoBehaviour
 
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
-        MiniGameManager.OnMiniGameFail    += OnOTPFail;
+        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail += OnOTPFail;
 
         Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
     }
@@ -209,7 +208,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void OnOTPSuccess()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
 
@@ -243,7 +242,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void ReturnToTitle()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail -= OnOTPFail;
 
         DestroyCurrentMiniGame();
         if (stageClearManager != null) stageClearManager.ResetAll();
@@ -256,7 +255,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void OnOTPFail()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
         popupController.ShowFail(gameClockTimer);
@@ -393,7 +392,7 @@ public class MiniGameSpawner : MonoBehaviour
         // 미니게임 랜덤 풀 초기화
         if (miniGamePool != null)
         {
-            miniGamePool.ResetPool();
+            miniGamePool.ResetAllPools();
         }
 
         // 타이틀 화면으로 복귀
