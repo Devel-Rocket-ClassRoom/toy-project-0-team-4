@@ -32,6 +32,9 @@ public class MiniGameSpawner : MonoBehaviour
     [SerializeField] private OTPMiniGame otpPrefab;
     [SerializeField] private int totalStages = 5;
 
+    [Header("OTP 성공 팝업")]
+    [SerializeField] private GameObject otpSuccessPopupPrefab;
+
     [Header("송금 팝업")]
     [SerializeField] private TransferPopup transferPopupPrefab;
 
@@ -186,7 +189,9 @@ public class MiniGameSpawner : MonoBehaviour
             otpInstance.StartMiniGame();
         }
 
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
         MiniGameManager.OnMiniGameFail    += OnOTPFail;
 
         Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
@@ -204,12 +209,13 @@ public class MiniGameSpawner : MonoBehaviour
 
     private IEnumerator OTPSuccessSequence()
     {
-        popupController.ShowSuccess(gameClockTimer);
+        GameObject successPopup = null;
+        if (otpSuccessPopupPrefab != null)
+            successPopup = Instantiate(otpSuccessPopupPrefab, miniGameParent, false);
 
         yield return WaitOTPSuccess;
 
-        popupController.HideAll();
-        popupController.ResetState();
+        if (successPopup != null) Destroy(successPopup);
         Time.timeScale = 1f;
 
         if (transferPopupPrefab != null)
@@ -227,6 +233,9 @@ public class MiniGameSpawner : MonoBehaviour
 
     private void ReturnToTitle()
     {
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+
         DestroyCurrentMiniGame();
         if (stageClearManager != null) stageClearManager.ResetAll();
         if (gameClockTimer != null) gameClockTimer.ResetTimer();

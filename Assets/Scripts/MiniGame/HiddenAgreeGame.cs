@@ -15,6 +15,9 @@ public class HiddenAgreeGame : MonoBehaviour
     [Range(0f, 1f)]
     public float agreeAlpha = 0.3f;
 
+    [Header("거절 버튼 생성 위치")]
+    public Vector2 disagreeSpawnPosition = Vector2.zero;
+
     [Header("동의 버튼 등장 범위 (anchoredPosition 최대값)")]
     public float spawnRangeX = 480f;
     public float spawnRangeY = 220f;
@@ -50,7 +53,7 @@ public class HiddenAgreeGame : MonoBehaviour
 
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-        rt.anchoredPosition = Vector2.zero;
+        rt.anchoredPosition = disagreeSpawnPosition;
         go.SetActive(true);
 
         var btn = go.GetComponent<Button>();
