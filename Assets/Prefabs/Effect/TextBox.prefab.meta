@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Effect/TextBox.prefab.meta
 guid: efeb1829453ad85438109a4c202dc239
+========
+guid: d5acaf51ae6a53b4aac4f17183794497
+>>>>>>>> 018525bc6cf68515f661d5e11647291672ecea0a:Assets/Prefabs/MiniGamePanels/RaycastMiniGame.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
