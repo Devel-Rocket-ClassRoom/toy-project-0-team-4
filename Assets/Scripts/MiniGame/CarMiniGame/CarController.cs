@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour
     private string currentZoneTag = "";
 
     [SerializeField] private float stopThreshold = 0.1f;
+    [SerializeField] private StageScreen stageScreen;
 
     void Awake()
     {
@@ -44,11 +45,27 @@ public class CarController : MonoBehaviour
         {
             if (currentZoneTag == "ClearZone")
             {
-                Debug.Log("게임 클리어");
+                if (stageScreen == null)
+                {
+                    stageScreen = GetComponentInParent<StageScreen>(true);
+                }
+
+                if (stageScreen != null)
+                {
+                    stageScreen.ClearStage();
+                }
             }
             else if (currentZoneTag == "DeadZone")
             {
-                Debug.Log("게임 오버");
+                if (stageScreen == null)
+                {
+                    stageScreen = GetComponentInParent<StageScreen>(true);
+                }
+
+                if (stageScreen != null)
+                {
+                    stageScreen.GameOver();
+                }
             }
             else
             {

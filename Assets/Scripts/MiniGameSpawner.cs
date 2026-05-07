@@ -37,24 +37,34 @@ public class MiniGameSpawner : MonoBehaviour
 
     private void Awake()
     {
-        miniGamePool.ResetPool();
-        popupController.HideAll();
+        // 미니게임 중복 방지 랜덤 풀 초기화
+        if (miniGamePool != null)
+        {
+            miniGamePool.ResetPool();
+        }
+
+        // 시작 시 모든 결과 팝업 숨김
+        if (popupController != null)
+        {
+            popupController.ResetState();
+            popupController.HideAll();
+        }
     }
 
     public void StartStage(int stageNumber)
     {
-        if (!miniGamePool.HasPrefab())
+        if (miniGamePool == null || !miniGamePool.HasPrefab())
         {
             Debug.LogWarning("미니게임 Prefab이 등록되어 있지 않습니다.");
             return;
         }
 
-        // 새 미니게임 시작 시 시간 정상화
+        // 이전 팝업 때문에 멈춰있을 수 있으므로 정상 시간으로 복구
         Time.timeScale = 1f;
 
         currentStageNumber = stageNumber;
 
-        // 결과 팝업 상태 초기화
+        // 새 미니게임 시작 전에 팝업 상태 초기화
         popupController.ResetState();
         popupController.HideAll();
 
@@ -69,7 +79,7 @@ public class MiniGameSpawner : MonoBehaviour
             mainScreen.SetActive(false);
         }
 
-        // 기존 미니게임 제거
+        // 기존 미니게임이 남아있으면 제거
         DestroyCurrentMiniGame();
 
         // 중복 없이 랜덤 미니게임 선택
@@ -83,9 +93,11 @@ public class MiniGameSpawner : MonoBehaviour
 
         // 미니게임 생성
         currentMiniGame = Instantiate(prefab, miniGameParent, false);
+
+        // 현재 스테이지 번호 전달
         currentMiniGame.Init(currentStageNumber);
 
-        // 기존 BallController 같은 외부 스크립트가 buttonHandler를 필요로 하면 자동 연결
+        // BallController처럼 buttonHandler 필드를 가진 스크립트에 OnClickButton 자동 연결
         MiniGameRuntimeBinder.BindButtonHandler(currentMiniGame, onClickButton);
 
         // StageScreen 이벤트 연결
@@ -100,13 +112,14 @@ public class MiniGameSpawner : MonoBehaviour
 
     private void HandleStageClear(int stageNumber)
     {
-        // 점검시간 팝업이 떠 있으면 성공 이벤트 무시
+        // 점검시간 팝업이 이미 떠 있으면 클리어 처리 무시
         if (popupController.IsMaintenanceOpen)
         {
             Debug.Log("점검시간 상태라 클리어 이벤트 무시");
             return;
         }
 
+        // 이미 성공/실패/타임아웃 팝업이 떠 있으면 중복 처리 방지
         if (popupController.IsResultOpen)
         {
             return;
@@ -114,6 +127,7 @@ public class MiniGameSpawner : MonoBehaviour
 
         Debug.Log($"{stageNumber} 스테이지 클리어 이벤트 받음");
 
+        // 클리어 상태 저장
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
@@ -127,18 +141,20 @@ public class MiniGameSpawner : MonoBehaviour
             }
         }
 
+        // 성공 팝업 요청
         popupController.ShowSuccess(gameClockTimer);
     }
 
     private void HandleGameOver()
     {
-        // 점검시간 팝업이 떠 있으면 실패 이벤트 무시
+        // 점검시간 팝업이 이미 떠 있으면 실패 처리 무시
         if (popupController.IsMaintenanceOpen)
         {
             Debug.Log("점검시간 상태라 실패 이벤트 무시");
             return;
         }
 
+        // 이미 다른 결과 팝업이 떠 있으면 중복 처리 방지
         if (popupController.IsResultOpen)
         {
             return;
@@ -146,6 +162,7 @@ public class MiniGameSpawner : MonoBehaviour
 
         Debug.Log("미니게임 실패 이벤트 받음");
 
+        // 실패 팝업 요청
         popupController.ShowFail(gameClockTimer);
     }
 
@@ -201,7 +218,7 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void ExternalGameOver()
     {
-        // BallController가 buttonHandler.OnClickCancle()을 호출하면 여기로 들어옴
+        // BallController처럼 외부 스크립트가 OnClickCancle()을 통해 실패 요청할 때 사용
 
         if (popupController.IsMaintenanceOpen)
         {
@@ -221,18 +238,39 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void ForceGameOver()
     {
-        // 전체 타이머 종료 시 호출됨
-        // 여기서는 currentMiniGame.GameOver()를 호출하지 않음
-        // 점검시간 팝업이 실패 팝업보다 우선이기 때문
+        // 전체 시계 타이머가 끝났을 때 호출됨
+        // 일반 실패 팝업이 아니라 점검시간 팝업을 최우선으로 표시
 
-        Debug.Log("전체 타이머 종료 - 점검시간 팝업 우선 표시");
+        Debug.Log("전체 타이머 종료 - 점검시간 팝업 요청");
 
         popupController.ShowMaintenance(gameClockTimer);
     }
 
+    public void ShowTimeoutPopup()
+    {
+        // 각 미니게임 개별 제한시간이 끝났을 때 호출됨
+
+        if (popupController.IsMaintenanceOpen)
+        {
+            Debug.Log("점검시간 상태라 장시간 응답 없음 팝업 무시");
+            return;
+        }
+
+        if (popupController.IsResultOpen)
+        {
+            return;
+        }
+
+        Debug.Log("장시간 응답 없음 팝업 요청");
+
+        popupController.ShowTimeout(gameClockTimer);
+    }
+
     public void ConfirmSuccess()
     {
-        // 성공 팝업 확인 버튼용
+        // 성공 팝업 확인 버튼에서 호출
+        // 미니게임 삭제 후 메인화면으로 돌아감
+        // 전체 시계 타이머는 이어서 진행
 
         Time.timeScale = 1f;
 
@@ -257,7 +295,6 @@ public class MiniGameSpawner : MonoBehaviour
             mainScreenUI.RefreshStageButtons();
         }
 
-        // 성공 후 메인화면에서는 전체 타이머 재개
         if (gameClockTimer != null)
         {
             gameClockTimer.ResumeTimer();
@@ -268,29 +305,33 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void ConfirmFail()
     {
-        // 실패 팝업 확인 버튼을 이 함수에 연결해도 됨
+        // 실패 팝업 확인 버튼을 이 함수에 직접 연결해도 됨
         ShowTitleScreen();
     }
 
     public void EndByMaintenance()
     {
-        // 점검시간 팝업 확인 버튼을 이 함수에 연결해도 됨
+        // 점검시간 팝업 확인 버튼을 이 함수에 직접 연결해도 됨
         ShowTitleScreen();
     }
 
     public void ShowTitleScreen()
     {
-        // 실패 / 점검 / 타이틀 복귀 공통 처리
+        // 실패 / 점검 / 장시간 응답 없음 / 타이틀 복귀 공통 처리
 
         Time.timeScale = 1f;
 
+        // 팝업 상태 초기화
         popupController.ResetState();
+        popupController.HideAll();
 
+        // 전체 시계 타이머 초기화
         if (gameClockTimer != null)
         {
             gameClockTimer.ResetTimer();
         }
 
+        // 게임 실패 또는 종료 시 클리어 상태 초기화
         if (stageClearManager != null)
         {
             stageClearManager.ResetAll();
@@ -298,12 +339,16 @@ public class MiniGameSpawner : MonoBehaviour
 
         currentStageNumber = 0;
 
+        // 현재 미니게임 삭제
         DestroyCurrentMiniGame();
 
-        popupController.HideAll();
+        // 미니게임 랜덤 풀 초기화
+        if (miniGamePool != null)
+        {
+            miniGamePool.ResetPool();
+        }
 
-        miniGamePool.ResetPool();
-
+        // 타이틀 화면으로 복귀
         if (titleScreen != null)
         {
             titleScreen.SetActive(true);
@@ -319,11 +364,13 @@ public class MiniGameSpawner : MonoBehaviour
             mainScreenUI.RefreshStageButtons();
         }
 
-        Debug.Log("타이틀 화면 이동 - 전체 타이머 초기화");
+        Debug.Log("타이틀 화면 이동 - 전체 상태 초기화");
     }
 
     public void HideResultObjects()
     {
+        // 외부에서 팝업만 숨기고 싶을 때 사용
+        popupController.ResetState();
         popupController.HideAll();
     }
 
@@ -334,6 +381,7 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
+        // 이벤트 연결 해제 후 삭제
         currentMiniGame.OnStageClearButtonClicked -= HandleStageClear;
         currentMiniGame.OnGameOver -= HandleGameOver;
 
