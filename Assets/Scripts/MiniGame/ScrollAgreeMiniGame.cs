@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +12,10 @@ public class ScrollAgreeMiniGame : MonoBehaviour
     [SerializeField] private Button agreeButton;
     [SerializeField] private Button disagreeButton;
     [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private TextMeshProUGUI contentTMP;
+
+    [Header("JSON 설정")]
+    [SerializeField] private string jsonFileName = "GameTexts"; // Resources 폴더 내 파일명
 
     [Header("비활성 상태 투명도 (0=완전투명, 1=불투명)")]
     [SerializeField] [Range(0f, 1f)] private float disabledAlpha = 0.3f;
@@ -34,7 +41,37 @@ public class ScrollAgreeMiniGame : MonoBehaviour
         agreeButton.onClick.AddListener(() => MiniGameManager.NotifySuccess());
 
         DisableDrag();
+
+        LoadAndCombineText();
+
         StartCoroutine(FitContent());
+    }
+
+    private void LoadAndCombineText()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);
+        if (jsonFile == null) return;
+
+        TermsData data = JsonUtility.FromJson<TermsData>(jsonFile.text);
+        StringBuilder sb = new StringBuilder();
+
+        // 1. 큰 제목
+        sb.AppendLine($"<size=140%><b>{data.documentTitle}</b></size>");
+        // 2. 시행일
+        sb.AppendLine($"<size=90%><color=#aaaaaa>최종 수정일: {data.effectiveDate}</color></size>");
+        sb.AppendLine();
+        sb.AppendLine();
+
+        // 3. 모든 조항 순회하며 합치기
+        foreach (var item in data.termsList)
+        {
+            sb.AppendLine($"<b>{item.article} ({item.title})</b>");
+            sb.AppendLine(item.content);
+            sb.AppendLine(); // 조항 간 간격
+        }
+
+        if (contentTMP != null)
+            contentTMP.text = sb.ToString();
     }
 
     private void SetAgreeButtonState(bool active)
@@ -50,33 +87,55 @@ public class ScrollAgreeMiniGame : MonoBehaviour
     private IEnumerator FitContent()
     {
         yield return new WaitForEndOfFrame();
+        if (contentTMP == null) yield break;
 
-        if (scrollRect == null || scrollRect.content == null) yield break;
+        contentTMP.ForceMeshUpdate();
 
-        TextMeshProUGUI tmp = scrollRect.content.GetComponentInChildren<TextMeshProUGUI>();
-        if (tmp != null)
+        var info = contentTMP.textInfo;
+        if (info != null && info.lineCount > 0)
         {
-            tmp.ForceMeshUpdate();
-
-            // 마지막 줄 하단 Y 위치로 실제 텍스트 높이 계산
-            var info = tmp.textInfo;
-            if (info != null && info.lineCount > 0)
-            {
-                var lastLine = info.lineInfo[info.lineCount - 1];
-                // descender는 음수(위에서 아래 방향), 절댓값이 실제 높이
-                textHeight = Mathf.Abs(lastLine.descender);
-            }
-            else
-            {
-                textHeight = tmp.preferredHeight;
-            }
-
-            tmp.rectTransform.sizeDelta = new Vector2(tmp.rectTransform.sizeDelta.x, textHeight);
-            scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, textHeight);
+            // 마지막 줄 하단 위치 계산
+            var lastLine = info.lineInfo[info.lineCount - 1];
+            textHeight = Mathf.Abs(lastLine.descender);
+        }
+        else
+        {
+            textHeight = contentTMP.preferredHeight;
         }
 
+        // 텍스트와 컨텐츠 영역 크기 동기화
+        contentTMP.rectTransform.sizeDelta = new Vector2(contentTMP.rectTransform.sizeDelta.x, textHeight);
+        scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, textHeight);
+
         yield return null;
-        scrollRect.verticalNormalizedPosition = 1f;
+        scrollRect.verticalNormalizedPosition = 1f; // 스크롤 맨 위로 초기화
+
+        //if (scrollRect == null || scrollRect.content == null) yield break;
+
+        //TextMeshProUGUI tmp = scrollRect.content.GetComponentInChildren<TextMeshProUGUI>();
+        //if (tmp != null)
+        //{
+        //    tmp.ForceMeshUpdate();
+
+        //    // 마지막 줄 하단 Y 위치로 실제 텍스트 높이 계산
+        //    var info = tmp.textInfo;
+        //    if (info != null && info.lineCount > 0)
+        //    {
+        //        var lastLine = info.lineInfo[info.lineCount - 1];
+        //        // descender는 음수(위에서 아래 방향), 절댓값이 실제 높이
+        //        textHeight = Mathf.Abs(lastLine.descender);
+        //    }
+        //    else
+        //    {
+        //        textHeight = tmp.preferredHeight;
+        //    }
+
+        //    tmp.rectTransform.sizeDelta = new Vector2(tmp.rectTransform.sizeDelta.x, textHeight);
+        //    scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, textHeight);
+        //}
+
+        //yield return null;
+        //scrollRect.verticalNormalizedPosition = 1f;
     }
 
     private void DisableDrag()
