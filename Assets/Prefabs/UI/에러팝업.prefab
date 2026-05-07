@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "ErrorCode : \uC5F4\uC815\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
-  m_sharedMaterial: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
+  m_sharedMaterial: {fileID: 8160505328579717921, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -513,8 +513,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC5D0\uB7EC!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
-  m_sharedMaterial: {fileID: -7641030149822558762, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
+  m_sharedMaterial: {fileID: 8160505328579717921, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

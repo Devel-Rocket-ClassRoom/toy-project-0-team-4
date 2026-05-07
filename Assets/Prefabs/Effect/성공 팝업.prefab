@@ -172,7 +172,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774\uC6A9 \uC57D\uAD00 \uB3D9\uC758\uC5D0 \uC131\uACF5\uD558\uC600\uC2B5\uB2C8\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
   m_sharedMaterial: {fileID: -2030847852017020162, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -441,7 +441,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC131\uACF5"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
   m_sharedMaterial: {fileID: -2030847852017020162, guid: 4f0c2f624a21c0847a6826a4069a7c2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -557,6 +557,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6914802651934087110}
   - component: {fileID: 8477494158679843504}
+  - component: {fileID: 6833967509514697089}
+  - component: {fileID: 2193219477674365217}
   m_Layer: 5
   m_Name: "\uC131\uACF5 \uD31D\uC5C5"
   m_TagString: Untagged
@@ -597,3 +599,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Succes
   audioManager: {fileID: 0}
+--- !u!223 &6833967509514697089
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136422046966303602}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
+--- !u!114 &2193219477674365217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136422046966303602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

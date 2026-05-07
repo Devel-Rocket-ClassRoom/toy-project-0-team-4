@@ -43,7 +43,7 @@ public class MiniGameSpawner : MonoBehaviour
         // 미니게임 중복 방지 랜덤 풀 초기화
         if (miniGamePool != null)
         {
-            miniGamePool.ResetPool();
+            miniGamePool.ResetAllPools();
         }
 
         // 시작 시 모든 결과 팝업 숨김
@@ -56,7 +56,7 @@ public class MiniGameSpawner : MonoBehaviour
 
     public void StartStage(int stageNumber)
     {
-        if (miniGamePool == null || !miniGamePool.HasPrefab())
+        if (miniGamePool == null || !miniGamePool.HasStage(stageNumber))
         {
             Debug.LogWarning("미니게임 Prefab이 등록되어 있지 않습니다.");
             return;
@@ -64,7 +64,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         // 이전 팝업 때문에 멈춰있을 수 있으므로 정상 시간으로 복구
         Time.timeScale = 1f;
-
         currentStageNumber = stageNumber;
 
         // 새 미니게임 시작 전에 팝업 상태 초기화
@@ -86,7 +85,7 @@ public class MiniGameSpawner : MonoBehaviour
         DestroyCurrentMiniGame();
 
         // 중복 없이 랜덤 미니게임 선택
-        StageScreen prefab = miniGamePool.GetRandomPrefabWithoutDuplicate();
+        StageScreen prefab = miniGamePool.GetRandomPrefabByStage(currentStageNumber);
 
         if (prefab == null)
         {
@@ -359,7 +358,7 @@ public class MiniGameSpawner : MonoBehaviour
         // 미니게임 랜덤 풀 초기화
         if (miniGamePool != null)
         {
-            miniGamePool.ResetPool();
+            miniGamePool.ResetAllPools();
         }
 
         // 타이틀 화면으로 복귀
