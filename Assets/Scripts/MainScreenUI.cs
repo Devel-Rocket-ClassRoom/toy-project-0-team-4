@@ -25,6 +25,12 @@ public class MainScreenUI : MonoBehaviour
     [Header("메인화면 스테이지 버튼 목록")]
     [SerializeField] private StageButtonInfo[] stageButtons;
 
+    [Header("클리어 프리팹 크기")]
+    [SerializeField] private Vector2 clearPrefabSize = new Vector2(160f, 60f);
+
+    [Header("클리어 프리팹 Z 위치")]
+    [SerializeField] private float clearPrefabZ = -5f;
+
     private void OnEnable()
     {
         RefreshStageButtons();
@@ -41,27 +47,56 @@ public class MainScreenUI : MonoBehaviour
         foreach (StageButtonInfo stageButton in stageButtons)
         {
             bool isCleared = stageClearManager.IsStageCleared(stageButton.stageNumber);
+            bool isUnlocked = IsStageUnlocked(stageButton.stageNumber);
 
+            // 이미 클리어한 스테이지
             if (isCleared)
             {
                 ChangeToClearPrefab(stageButton);
             }
-            else
+            // 아직 클리어하지 않았지만 열려있는 스테이지
+            else if (isUnlocked)
             {
                 ChangeToStartButton(stageButton);
+            }
+            // 아직 열리지 않은 스테이지
+            else
+            {
+                ChangeToLockedStage(stageButton);
             }
         }
     }
 
-    private void ChangeToClearPrefab(StageButtonInfo stageButton)
+    private bool IsStageUnlocked(int stageNumber)
     {
-        if (stageButton.startButton != null)
+        // 1단계는 항상 시작 가능
+        if (stageNumber <= 1)
         {
-            stageButton.startButton.SetActive(false);
+            return true;
         }
 
-        if (stageButton.spawnedClearObject != null)
+        // 2단계 이상은 이전 단계가 클리어되어야 열림
+        return stageClearManager.IsStageCleared(stageNumber - 1);
+    }
+
+    private void ChangeToClearPrefab(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton == null)
+        {
+            Debug.LogWarning($"{stageButton.stageNumber} 스테이지 StartButton이 연결되지 않았습니다.");
             return;
+        }
+
+        // 시작 버튼 숨김
+        stageButton.startButton.SetActive(false);
+
+        // 이미 클리어 프리팹이 생성되어 있으면 위치/크기만 다시 보정
+        if (stageButton.spawnedClearObject != null)
+        {
+            ApplyClearPrefabTransform(stageButton);
+            stageButton.spawnedClearObject.SetActive(true);
+            return;
+        }
 
         if (stageButton.clearPrefab == null)
         {
@@ -71,35 +106,62 @@ public class MainScreenUI : MonoBehaviour
 
         Transform parent = stageButton.startButton.transform.parent;
 
-        stageButton.spawnedClearObject = Instantiate(
-            stageButton.clearPrefab,
-            parent
-        );
+        // 클리어 프리팹 생성
+        stageButton.spawnedClearObject = Instantiate(stageButton.clearPrefab, parent, false);
 
-        RectTransform startRect = stageButton.startButton.GetComponent<RectTransform>();
-        RectTransform clearRect = stageButton.spawnedClearObject.GetComponent<RectTransform>();
+        // 시작 버튼과 같은 순서에 배치
+        stageButton.spawnedClearObject.transform.SetSiblingIndex(stageButton.startButton.transform.GetSiblingIndex());
 
-        if (startRect != null && clearRect != null)
-        {
-            clearRect.anchorMin = startRect.anchorMin;
-            clearRect.anchorMax = startRect.anchorMax;
-            clearRect.pivot = startRect.pivot;
-            clearRect.anchoredPosition = startRect.anchoredPosition;
-            clearRect.sizeDelta = startRect.sizeDelta;
-            clearRect.localScale = startRect.localScale;
-            clearRect.localRotation = startRect.localRotation;
-        }
+        // 위치, 크기, Z값 적용
+        ApplyClearPrefabTransform(stageButton);
 
         stageButton.spawnedClearObject.SetActive(true);
     }
 
+    private void ApplyClearPrefabTransform(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton == null || stageButton.spawnedClearObject == null)
+            return;
+
+        RectTransform startRect = stageButton.startButton.GetComponent<RectTransform>();
+        RectTransform clearRect = stageButton.spawnedClearObject.GetComponent<RectTransform>();
+
+        if (startRect == null || clearRect == null)
+            return;
+
+
+        // 클리어 프리팹 크기 고정
+        clearRect.sizeDelta = clearPrefabSize;
+
+        // Z 위치 -5 적용
+        clearRect.localRotation = Quaternion.Euler(0f, 0f, -5f);
+    }
+
     private void ChangeToStartButton(StageButtonInfo stageButton)
     {
+        // 시작 버튼 표시
         if (stageButton.startButton != null)
         {
             stageButton.startButton.SetActive(true);
         }
 
+        // 클리어 프리팹이 있으면 제거
+        if (stageButton.spawnedClearObject != null)
+        {
+            Destroy(stageButton.spawnedClearObject);
+            stageButton.spawnedClearObject = null;
+        }
+    }
+
+    private void ChangeToLockedStage(StageButtonInfo stageButton)
+    {
+        // 아직 열리지 않은 스테이지는 시작 버튼 숨김
+        if (stageButton.startButton != null)
+        {
+            stageButton.startButton.SetActive(false);
+        }
+
+        // 클리어 프리팹도 숨김/삭제
         if (stageButton.spawnedClearObject != null)
         {
             Destroy(stageButton.spawnedClearObject);
