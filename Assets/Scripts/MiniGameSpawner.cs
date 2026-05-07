@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MiniGameSpawner : MonoBehaviour
@@ -31,12 +32,17 @@ public class MiniGameSpawner : MonoBehaviour
     [SerializeField] private OTPMiniGame otpPrefab;
     [SerializeField] private int totalStages = 5;
 
+    [Header("OTP 성공 팝업")]
+    [SerializeField] private GameObject otpSuccessPopupPrefab;
+
     [Header("송금 팝업")]
     [SerializeField] private TransferPopup transferPopupPrefab;
 
     private StageScreen currentMiniGame;
     private int currentStageNumber;
     private OTPMiniGame otpInstance;
+
+    private static readonly WaitForSecondsRealtime WaitOTPSuccess = new(5f);
 
     private void Awake()
     {
@@ -183,7 +189,9 @@ public class MiniGameSpawner : MonoBehaviour
             otpInstance.StartMiniGame();
         }
 
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
         MiniGameManager.OnMiniGameFail    += OnOTPFail;
 
         Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
@@ -195,6 +203,20 @@ public class MiniGameSpawner : MonoBehaviour
         MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
+
+        StartCoroutine(OTPSuccessSequence());
+    }
+
+    private IEnumerator OTPSuccessSequence()
+    {
+        GameObject successPopup = null;
+        if (otpSuccessPopupPrefab != null)
+            successPopup = Instantiate(otpSuccessPopupPrefab, miniGameParent, false);
+
+        yield return WaitOTPSuccess;
+
+        if (successPopup != null) Destroy(successPopup);
+        Time.timeScale = 1f;
 
         if (transferPopupPrefab != null)
         {
@@ -211,6 +233,9 @@ public class MiniGameSpawner : MonoBehaviour
 
     private void ReturnToTitle()
     {
+        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+
         DestroyCurrentMiniGame();
         if (stageClearManager != null) stageClearManager.ResetAll();
         if (gameClockTimer != null) gameClockTimer.ResetTimer();

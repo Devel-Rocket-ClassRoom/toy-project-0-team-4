@@ -110,6 +110,7 @@ MonoBehaviour:
   minDelay: 1
   maxDelay: 4
   agreeAlpha: 0.15
+  disagreeSpawnPosition: {x: -150, y: -350}
   spawnRangeX: 600
   spawnRangeY: 350
 --- !u!1 &3541987597744597652

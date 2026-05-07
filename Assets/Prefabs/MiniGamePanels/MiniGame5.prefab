@@ -100,6 +100,8 @@ MonoBehaviour:
   game2StartScale: 1
   game2MaxScale: 15
   game2GrowSpeed: 5
+  agreeSpawnPosition: {x: -150, y: -350}
+  disagreeSpawnPosition: {x: 150, y: -350}
   game4EscapeRadius: 150
   game4EscapeSpeed: 400
   game5Columns: 8

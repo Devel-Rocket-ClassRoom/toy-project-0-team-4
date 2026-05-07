@@ -27,6 +27,10 @@ public class ButtonChange : MonoBehaviour
     private RectTransform agreeRect;
     private RectTransform disagreeRect;
 
+    [Header("버튼 생성 위치")]
+    public Vector2 agreeSpawnPosition    = new(-150f, 0f);
+    public Vector2 disagreeSpawnPosition = new( 150f, 0f);
+
     [Header("미니게임4 - 동의 버튼 도망")]
     public float game4EscapeRadius = 150f;
     public float game4EscapeSpeed = 400f;
@@ -112,8 +116,8 @@ public class ButtonChange : MonoBehaviour
             // 화면 중앙 기준으로 좌우 배치
             agreeRect.anchorMin = agreeRect.anchorMax = new Vector2(0.5f, 0.5f);
             disagreeRect.anchorMin = disagreeRect.anchorMax = new Vector2(0.5f, 0.5f);
-            agreeRect.anchoredPosition = new Vector2(-150f, 0f);
-            disagreeRect.anchoredPosition = new Vector2(150f, 0f);
+            agreeRect.anchoredPosition    = agreeSpawnPosition;
+            disagreeRect.anchoredPosition = disagreeSpawnPosition;
         }
 
         agreeButton.gameObject.SetActive(true);
