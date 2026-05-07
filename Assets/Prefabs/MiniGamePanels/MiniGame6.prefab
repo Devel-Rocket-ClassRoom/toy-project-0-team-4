@@ -134,11 +134,15 @@ RectTransform:
   - {fileID: 1485683393841082353}
   - {fileID: 2706522651007712830}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 8017336483862836181}
   - {fileID: 4645523656659799804}
 =======
   - {fileID: 1995107005634417261}
 >>>>>>> 21f6d29 (ui수정)
+=======
+  - {fileID: 1995107005634417261}
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -210,11 +214,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGames
 <<<<<<< HEAD
+<<<<<<< HEAD
   agreePrefab: {fileID: 8168543387961527364}
   disagreePrefab: {fileID: 2824863150582637159}
   disagree1Position: {x: -250, y: -350}
   disagree2Position: {x: 250, y: -350}
 =======
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   agreePrefab: {fileID: 284677893184358587}
   disagreePrefab: {fileID: 6860040817837505485}
   disagree1Position: {x: -250, y: 0}
@@ -572,6 +579,7 @@ GameObject:
   m_PrefabInstance: {fileID: 7015474450563257346}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &3021734279564733692 stripped
+<<<<<<< HEAD
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
   m_PrefabInstance: {fileID: 7015474450563257346}
@@ -705,4 +713,9 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 492376780826060910, guid: efeb1829453ad85438109a4c202dc239, type: 3}
   m_PrefabInstance: {fileID: 5092851229733168786}
+=======
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
+  m_PrefabInstance: {fileID: 7015474450563257346}
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_PrefabAsset: {fileID: 0}

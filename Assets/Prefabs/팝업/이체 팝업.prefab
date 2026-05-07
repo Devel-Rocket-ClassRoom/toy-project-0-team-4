@@ -13,7 +13,11 @@ GameObject:
   - component: {fileID: 3787394442180984936}
   - component: {fileID: 7432797535056979209}
   m_Layer: 5
+<<<<<<< HEAD
   m_Name: Transfer popup
+=======
+  m_Name: "\uC774\uCCB4 \uD31D\uC5C5"
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +247,15 @@ GameObject:
   - component: {fileID: 1179821080139760077}
   - component: {fileID: 6845226458031559333}
   m_Layer: 5
+<<<<<<< HEAD
   m_Name: checkButton
+=======
+<<<<<<<< HEAD:Assets/Prefabs/팝업/Clear.prefab
+  m_Name: Clear
+========
+  m_Name: checkButton
+>>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3:Assets/Prefabs/팝업/이체 팝업.prefab
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,6 +362,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &4803363724840217002
 GameObject:
@@ -566,3 +579,5 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 =======
 >>>>>>> 5903682 (ui 개선)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3

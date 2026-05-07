@@ -254,6 +254,7 @@ PrefabInstance:
   m_Modification:
     serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_TransformParent: {fileID: 3188681143059537334}
     m_Modifications:
     - target: {fileID: 464698073929966315, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
@@ -493,6 +494,9 @@ PrefabInstance:
 =======
     m_TransformParent: {fileID: 2147122401278688673}
 >>>>>>> 21f6d29 (ui수정)
+=======
+    m_TransformParent: {fileID: 2147122401278688673}
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
     m_Modifications:
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_Pivot.x
@@ -849,4 +853,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5238992065139144958, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
   m_PrefabInstance: {fileID: 9022313912559431137}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> 21f6d29 (ui수정)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3

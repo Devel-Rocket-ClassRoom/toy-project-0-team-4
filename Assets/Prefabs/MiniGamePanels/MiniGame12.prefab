@@ -491,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &4711246372921496443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -733,6 +734,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> 21f6d29 (ui수정)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
 --- !u!1001 &6503615939730994693
 PrefabInstance:
   m_ObjectHideFlags: 0

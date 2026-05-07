@@ -2500,6 +2500,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &6518422656821328553
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,6 +2640,8 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 =======
 >>>>>>> 21f6d29 (ui수정)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
 --- !u!1 &6791994600845274929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &5996277272508926324 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
@@ -3867,6 +3871,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> 21f6d29 (ui수정)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
 --- !u!1001 &6025404182874903487
 PrefabInstance:
   m_ObjectHideFlags: 0

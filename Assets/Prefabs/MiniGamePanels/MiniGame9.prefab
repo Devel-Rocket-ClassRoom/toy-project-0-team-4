@@ -339,6 +339,7 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7109101193889045689, guid: 355efc33409d1824ebb1dea2d85ccbe4, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_PrefabInstance: {fileID: 531360296158292375}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2798773877816304514
@@ -556,6 +557,9 @@ RectTransform:
 =======
   m_PrefabInstance: {fileID: 1961085788890580680}
 >>>>>>> 21f6d29 (ui수정)
+=======
+  m_PrefabInstance: {fileID: 1961085788890580680}
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5356685277416075019
 PrefabInstance:
@@ -664,15 +668,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 5356685277416075019}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &6696579296248406074
 =======
 --- !u!1001 &5945020394391859338
 >>>>>>> 21f6d29 (ui수정)
+=======
+--- !u!1001 &5945020394391859338
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_TransformParent: {fileID: 5883243681961186482}
     m_Modifications:
@@ -788,6 +797,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextBox
 =======
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
     m_TransformParent: {fileID: 7949108399333498206}
     m_Modifications:
     - target: {fileID: 5238992065139144958, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
@@ -885,12 +896,16 @@ PrefabInstance:
     - target: {fileID: 7109101193889045689, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
       propertyPath: m_Name
       value: "\uB3D9\uC758"
+<<<<<<< HEAD
 >>>>>>> 21f6d29 (ui수정)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_SourcePrefab: {fileID: 100100000, guid: efeb1829453ad85438109a4c202dc239, type: 3}
 --- !u!224 &6501580966183995476 stripped
@@ -898,6 +913,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 492376780826060910, guid: efeb1829453ad85438109a4c202dc239, type: 3}
   m_PrefabInstance: {fileID: 6696579296248406074}
 =======
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_SourcePrefab: {fileID: 100100000, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
 --- !u!224 &1888229846007974004 stripped
 RectTransform:
@@ -908,5 +925,8 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7109101193889045689, guid: c3e20654cbb430840a9528b7faa79666, type: 3}
   m_PrefabInstance: {fileID: 5945020394391859338}
+<<<<<<< HEAD
 >>>>>>> 21f6d29 (ui수정)
+=======
+>>>>>>> e6dc11d3f084db2e6d149fbb97cb44e670ddaef3
   m_PrefabAsset: {fileID: 0}
