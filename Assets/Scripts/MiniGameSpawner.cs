@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class MiniGameSpawner : MonoBehaviour
@@ -22,9 +21,6 @@ public class MiniGameSpawner : MonoBehaviour
 
     [Header("메인화면 UI")]
     [SerializeField] private MainScreenUI mainScreenUI;
-
-    [Header("스테이지별 제목 텍스트 소스 (메인 프리팹 TMP 1~5 순서)")]
-    [SerializeField] private TextMeshProUGUI[] stageTitleSources = new TextMeshProUGUI[5];
 
     [Header("전체 시계 타이머")]
     [SerializeField] private GameClockTimer gameClockTimer;
@@ -108,11 +104,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         // 현재 스테이지 번호 전달
         currentMiniGame.Init(currentStageNumber);
-
-        // 스테이지 번호에 해당하는 제목을 미니게임 내부 타이틀에 전달
-        int titleIndex = currentStageNumber - 1;
-        if (titleIndex >= 0 && titleIndex < stageTitleSources.Length && stageTitleSources[titleIndex] != null)
-            currentMiniGame.SetTitle(stageTitleSources[titleIndex].text);
 
         // BallController처럼 buttonHandler 필드를 가진 스크립트에 OnClickButton 자동 연결
         MiniGameRuntimeBinder.BindButtonHandler(currentMiniGame, onClickButton);
@@ -199,8 +190,8 @@ public class MiniGameSpawner : MonoBehaviour
 
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
-        MiniGameManager.OnMiniGameFail += OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    += OnOTPFail;
 
         Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
     }
@@ -208,7 +199,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void OnOTPSuccess()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
 
@@ -242,7 +233,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void ReturnToTitle()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         DestroyCurrentMiniGame();
         if (stageClearManager != null) stageClearManager.ResetAll();
@@ -255,7 +246,7 @@ public class MiniGameSpawner : MonoBehaviour
     private void OnOTPFail()
     {
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
         popupController.ShowFail(gameClockTimer);
