@@ -81,11 +81,10 @@ public class SliderTimer : MonoBehaviour
         isRunning = true;
         isTimedOut = false;
 
-        // 슬라이더 초기화 [초기값 설정]
+        // 슬라이더 초기화
         if (timerSlider != null)
         {
             timerSlider.maxValue = limitTime;
-            // 시간이 지날수록 바가 채워지게 하려면 0, 줄어들게 하려면 limitTime 설정
             timerSlider.value = 0f;
         }
 
@@ -94,18 +93,15 @@ public class SliderTimer : MonoBehaviour
 
     private void UpdateTimerUI()
     {
-        // 1. 텍스트 업데이트
+        // 텍스트 업데이트
         int seconds = Mathf.CeilToInt(currentTime);
         SetText(seconds.ToString());
 
-        // 2. 슬라이더 업데이트 [추가된 로직]
+        // 슬라이더 업데이트
         if (timerSlider != null)
         {
             // 시간이 지날수록 슬라이더가 점점 차오르는 방식 (진행률)
             timerSlider.value = limitTime - currentTime;
-
-            // 만약 시간이 지날수록 줄어드는 방식을 원하시면 아래 코드를 사용하세요.
-            // timerSlider.value = currentTime;
         }
     }
 
@@ -136,7 +132,6 @@ public class SliderTimer : MonoBehaviour
     {
         isRunning = false; // 시간을 멈춤
         if (loadingText != null) loadingText.StopPulsing();
-        Debug.Log("타이머가 정지되었습니다.");
     }
 
     private void OnStageClear(int stageNumber) => isRunning = false;

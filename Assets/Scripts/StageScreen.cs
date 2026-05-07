@@ -55,8 +55,6 @@ public class StageScreen : MonoBehaviour
 
         isFinished = true;
 
-        Debug.Log($"{stageNumber} 스테이지 클리어");
-
         OnStageClearButtonClicked?.Invoke(stageNumber);
     }
 
@@ -66,8 +64,6 @@ public class StageScreen : MonoBehaviour
             return;
 
         isFinished = true;
-
-        Debug.Log($"{stageNumber} 스테이지 게임오버");
 
         OnGameOver?.Invoke();
     }

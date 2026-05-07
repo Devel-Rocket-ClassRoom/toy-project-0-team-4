@@ -57,8 +57,6 @@ public class GoalManager : MonoBehaviour
 
         isCompleted = true;
 
-        Debug.Log("목표 달성 미니게임 클리어!");
-
         if (stageScreen == null)
         {
             stageScreen = GetComponentInParent<StageScreen>(true);

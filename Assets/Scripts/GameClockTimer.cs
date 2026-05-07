@@ -41,8 +41,6 @@ public class GameClockTimer : MonoBehaviour
 
             UpdateClock(progress);
 
-            Debug.Log("12시 도달 - 점검시간 팝업 요청");
-
             if (miniGameSpawner != null)
             {
                 // 여기서 일반 GameOver를 호출하지 않음
@@ -92,15 +90,11 @@ public class GameClockTimer : MonoBehaviour
         isFinished = false;
 
         UpdateClock(0f);
-
-        Debug.Log("전체 시계 타이머 시작");
     }
 
     public void PauseTimer()
     {
         isRunning = false;
-
-        Debug.Log("전체 시계 타이머 정지");
     }
 
     public void ResumeTimer()
@@ -111,8 +105,6 @@ public class GameClockTimer : MonoBehaviour
         }
 
         isRunning = true;
-
-        Debug.Log("전체 시계 타이머 재개");
     }
 
     public void ResetTimer()
@@ -122,8 +114,6 @@ public class GameClockTimer : MonoBehaviour
         isFinished = false;
 
         UpdateClock(0f);
-
-        Debug.Log("전체 시계 타이머 초기화");
     }
 
     public void StopTimer()

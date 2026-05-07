@@ -114,8 +114,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         // StartMiniGame() 메서드가 있는 미니게임이면 자동 실행
         MiniGameRuntimeBinder.TryStartMiniGame(currentMiniGame);
-
-        Debug.Log($"{currentStageNumber} 스테이지 시작 / 생성된 미니게임: {prefab.name}");
     }
 
     private void HandleStageClear(int stageNumber)
@@ -123,7 +121,6 @@ public class MiniGameSpawner : MonoBehaviour
         // 점검시간 팝업이 이미 떠 있으면 클리어 처리 무시
         if (popupController.IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 상태라 클리어 이벤트 무시");
             return;
         }
 
@@ -133,14 +130,10 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
-        Debug.Log($"{stageNumber} 스테이지 클리어 이벤트 받음");
-
         // 클리어 상태 저장
         if (stageClearManager != null)
         {
             stageClearManager.ClearStage(stageNumber);
-
-            Debug.Log($"[OTP 체크] 클리어된 스테이지: {stageNumber} / totalStages: {totalStages} / AllCleared: {stageClearManager.AllCleared(totalStages)}");
 
             if (stageClearManager.AllCleared(totalStages))
             {
@@ -158,7 +151,6 @@ public class MiniGameSpawner : MonoBehaviour
         // 점검시간 팝업이 이미 떠 있으면 실패 처리 무시
         if (popupController.IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 상태라 실패 이벤트 무시");
             return;
         }
 
@@ -167,8 +159,6 @@ public class MiniGameSpawner : MonoBehaviour
         {
             return;
         }
-
-        Debug.Log("미니게임 실패 이벤트 받음");
 
         // 실패 팝업 요청
         popupController.ShowFail(gameClockTimer);
@@ -192,8 +182,6 @@ public class MiniGameSpawner : MonoBehaviour
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
         MiniGameManager.OnMiniGameFail    -= OnOTPFail;
         MiniGameManager.OnMiniGameFail    += OnOTPFail;
-
-        Debug.Log("OTP 미니게임 표시 - 5개 스테이지 전부 클리어");
     }
 
     private void OnOTPSuccess()
@@ -226,8 +214,6 @@ public class MiniGameSpawner : MonoBehaviour
         {
             ReturnToTitle();
         }
-
-        Debug.Log("OTP 성공");
     }
 
     private void ReturnToTitle()
@@ -250,8 +236,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         if (otpInstance != null) Destroy(otpInstance.gameObject);
         popupController.ShowFail(gameClockTimer);
-
-        Debug.Log("OTP 실패");
     }
 
     public void ExternalGameOver()
@@ -260,7 +244,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         if (popupController.IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 상태라 외부 게임오버 무시");
             return;
         }
 
@@ -269,8 +252,6 @@ public class MiniGameSpawner : MonoBehaviour
             return;
         }
 
-        Debug.Log("외부 스크립트에서 게임오버 호출됨");
-
         popupController.ShowFail(gameClockTimer);
     }
 
@@ -278,9 +259,6 @@ public class MiniGameSpawner : MonoBehaviour
     {
         // 전체 시계 타이머가 끝났을 때 호출됨
         // 일반 실패 팝업이 아니라 점검시간 팝업을 최우선으로 표시
-
-        Debug.Log("전체 타이머 종료 - 점검시간 팝업 요청");
-
         popupController.ShowMaintenance(gameClockTimer);
     }
 
@@ -290,7 +268,6 @@ public class MiniGameSpawner : MonoBehaviour
 
         if (popupController.IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 상태라 장시간 응답 없음 팝업 무시");
             return;
         }
 
@@ -298,8 +275,6 @@ public class MiniGameSpawner : MonoBehaviour
         {
             return;
         }
-
-        Debug.Log("장시간 응답 없음 팝업 요청");
 
         popupController.ShowTimeout(gameClockTimer);
     }
@@ -337,8 +312,6 @@ public class MiniGameSpawner : MonoBehaviour
         {
             gameClockTimer.ResumeTimer();
         }
-
-        Debug.Log("성공 확인 - 메인화면으로 이동");
     }
 
     public void ConfirmFail()
@@ -401,8 +374,6 @@ public class MiniGameSpawner : MonoBehaviour
         {
             mainScreenUI.RefreshStageButtons();
         }
-
-        Debug.Log("타이틀 화면 이동 - 전체 상태 초기화");
     }
 
     public void HideResultObjects()

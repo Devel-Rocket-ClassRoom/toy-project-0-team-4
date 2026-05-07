@@ -36,7 +36,6 @@ public class MiniGamePopup
         // 점검시간 팝업이 떠 있으면 성공 팝업은 무시
         if (IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 상태라 성공 팝업 무시");
             return;
         }
 
@@ -57,8 +56,6 @@ public class MiniGamePopup
             showTimeout: false,
             showMeaningError: false
         );
-
-        Debug.Log("성공 팝업 표시");
     }
 
     /// <summary>
@@ -69,7 +66,6 @@ public class MiniGamePopup
         // 점검시간 팝업이 떠 있으면 실패 팝업은 무시
         if (IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 상태라 실패 팝업 무시");
             return;
         }
 
@@ -89,8 +85,6 @@ public class MiniGamePopup
             showTimeout: false,
             showMeaningError: false
         );
-
-        Debug.Log("실패 팝업 표시");
     }
 
     /// <summary>
@@ -116,8 +110,6 @@ public class MiniGamePopup
             showTimeout: false,
             showMeaningError: false
         );
-
-        Debug.Log("점검시간 팝업 표시");
     }
 
     /// <summary>
@@ -128,7 +120,6 @@ public class MiniGamePopup
         // 점검시간 팝업이 떠 있으면 장시간 응답 없음은 무시
         if (IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 팝업이 우선이라 장시간 응답 없음 팝업 무시");
             return;
         }
 
@@ -148,8 +139,6 @@ public class MiniGamePopup
             showTimeout: true,
             showMeaningError: false
         );
-
-        Debug.Log("장시간 응답 없음 팝업 표시");
     }
 
     /// <summary>
@@ -160,7 +149,6 @@ public class MiniGamePopup
         // 점검시간 팝업이 떠 있으면 의미 불명 팝업은 무시
         if (IsMaintenanceOpen)
         {
-            Debug.Log("점검시간 팝업이 우선이라 의미 불명 팝업 무시");
             return;
         }
 
@@ -185,8 +173,6 @@ public class MiniGamePopup
         {
             meaningErrorPopup.SetActive(true);
         }
-
-        Debug.Log("의미 불명 팝업 표시");
     }
 
     /// <summary>

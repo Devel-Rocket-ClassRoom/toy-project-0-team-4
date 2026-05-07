@@ -67,8 +67,6 @@ public class ButtonMashMiniGame : MonoBehaviour
 
         agreeButton.onClick.AddListener(OnAgreeClicked);
         disagreeButton.onClick.AddListener(OnDisagreeClicked);
-
-        Debug.Log($"[ButtonMash] 시작 / gaugeFill={gaugeFill.name}");
     }
 
     private void OnAgreeClicked()

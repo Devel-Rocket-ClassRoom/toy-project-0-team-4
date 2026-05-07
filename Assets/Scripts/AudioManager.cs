@@ -34,8 +34,6 @@ public class AudioManager : MonoBehaviour
 
         ApplyBgmSetting();
         SaveAudioSetting();
-
-        Debug.Log($"BGM 볼륨 설정: {bgmVolume}");
     }
 
     public void SetSfxVolume(float volume)
@@ -44,8 +42,6 @@ public class AudioManager : MonoBehaviour
 
         ApplySfxSetting();
         SaveAudioSetting();
-
-        Debug.Log($"효과음 볼륨 설정: {sfxVolume}");
     }
 
     // Toggle이 아니라 Toggle 상태값을 그대로 받는 함수
@@ -55,8 +51,6 @@ public class AudioManager : MonoBehaviour
 
         ApplyBgmSetting();
         SaveAudioSetting();
-
-        Debug.Log($"BGM 음소거 설정: {bgmMuted}");
     }
 
     // Toggle이 아니라 Toggle 상태값을 그대로 받는 함수
@@ -66,8 +60,6 @@ public class AudioManager : MonoBehaviour
 
         ApplySfxSetting();
         SaveAudioSetting();
-
-        Debug.Log($"효과음 음소거 설정: {sfxMuted}");
     }
 
     public void ToggleBgmMute()
@@ -76,8 +68,6 @@ public class AudioManager : MonoBehaviour
 
         ApplyBgmSetting();
         SaveAudioSetting();
-
-        Debug.Log($"BGM 음소거 토글: {bgmMuted}");
     }
 
     public void ToggleSfxMute()
@@ -86,8 +76,6 @@ public class AudioManager : MonoBehaviour
 
         ApplySfxSetting();
         SaveAudioSetting();
-
-        Debug.Log($"효과음 음소거 토글: {sfxMuted}");
     }
 
     private void ApplyBgmSetting()
@@ -148,13 +136,10 @@ public class AudioManager : MonoBehaviour
 
         if (sfxMuted)
         {
-            Debug.Log($"효과음 {index}번은 음소거 상태라 재생하지 않음");
             return;
         }
 
         sfx.Play();
-
-        Debug.Log($"효과음 {index}번 재생 / 볼륨: {sfxVolume}");
     }
 
     private void SaveAudioSetting()

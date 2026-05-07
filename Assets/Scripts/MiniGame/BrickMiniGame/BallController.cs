@@ -60,12 +60,8 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Trigger 감지: {other.name}");
-
         if (other.CompareTag("DeadZone"))
         {
-            Debug.Log("게임 오버");
-
             if (stageScreen == null)
             {
                 stageScreen = GetComponentInParent<StageScreen>();

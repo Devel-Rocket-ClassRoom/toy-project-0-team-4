@@ -53,12 +53,8 @@ public class BeadGameManager : MonoBehaviour
 
     public void CheckResult()
     {
-        Debug.Log($"CheckResult 실행 / 현재 단어: [{currentWord}] / 목표 단어: [{targetWord}]");
-
         if (currentWord == targetWord)
         {
-            Debug.Log("성공: 이용약관에 동의했습니다.");
-
             if (stageScreen == null)
             {
                 stageScreen = GetComponentInParent<StageScreen>(true);
@@ -70,8 +66,6 @@ public class BeadGameManager : MonoBehaviour
             }
             return;
         }
-
-        Debug.Log($"실패: {currentWord}는 {targetWord}와 다름");
 
         // ResetWord 전에 실패 단어 저장
         wrongWord = currentWord;
