@@ -187,9 +187,6 @@ public class OTPMiniGame : MonoBehaviour
 
         currentInput += digit.ToString();
         UpdateInputSlots();
-
-        if (currentInput.Length == OTP_LENGTH)
-            OnConfirm();
     }
 
     private void OnBackspace()

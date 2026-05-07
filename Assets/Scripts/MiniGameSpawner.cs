@@ -28,12 +28,12 @@ public class MiniGameSpawner : MonoBehaviour
     [SerializeField] private OnClickButton onClickButton;
 
     [Header("OTP (5개 스테이지 전부 클리어 시 표시)")]
-    [SerializeField] private GameObject otpPanel;
-    [SerializeField] private OTPMiniGame otpMiniGame;
+    [SerializeField] private OTPMiniGame otpPrefab;
     [SerializeField] private int totalStages = 5;
 
     private StageScreen currentMiniGame;
     private int currentStageNumber;
+    private OTPMiniGame otpInstance;
 
     private void Awake()
     {
@@ -174,18 +174,10 @@ public class MiniGameSpawner : MonoBehaviour
         popupController.HideAll();
         Time.timeScale = 1f;
 
-        Debug.Log($"[ShowOTP] otpPanel={otpPanel}, otpMiniGame={otpMiniGame}");
-
-        if (otpMiniGame != null)
+        if (otpPrefab != null)
         {
-            // 부모 계층이 비활성화되어 있어도 전부 활성화
-            Transform t = otpMiniGame.transform;
-            while (t != null)
-            {
-                t.gameObject.SetActive(true);
-                t = t.parent;
-            }
-            otpMiniGame.StartMiniGame();
+            otpInstance = Instantiate(otpPrefab, miniGameParent, false);
+            otpInstance.StartMiniGame();
         }
 
         MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
@@ -199,7 +191,7 @@ public class MiniGameSpawner : MonoBehaviour
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
-        if (otpPanel != null) otpPanel.SetActive(false);
+        if (otpInstance != null) Destroy(otpInstance.gameObject);
         popupController.ShowSuccess(gameClockTimer);
 
         Debug.Log("OTP 성공");
@@ -210,7 +202,7 @@ public class MiniGameSpawner : MonoBehaviour
         MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
         MiniGameManager.OnMiniGameFail    -= OnOTPFail;
 
-        if (otpPanel != null) otpPanel.SetActive(false);
+        if (otpInstance != null) Destroy(otpInstance.gameObject);
         popupController.ShowFail(gameClockTimer);
 
         Debug.Log("OTP 실패");
