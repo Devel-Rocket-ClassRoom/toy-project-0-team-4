@@ -58,7 +58,11 @@ public class LaserEnemy : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 30f);
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
-            Debug.Log("레이저 피격!");
+            DragController playerCtrl = hit.collider.GetComponent<DragController>();
+            if (playerCtrl != null)
+            {
+                playerCtrl.GetHit();
+            }
         }
 
         yield return new WaitForSeconds(laserDuration);

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class DragController : MonoBehaviour, IPointerClickHandler
 {
@@ -9,7 +10,10 @@ public class DragController : MonoBehaviour, IPointerClickHandler
     private RectTransform rectTransform;
     private RectTransform parentRect; 
     private Canvas canvas;
-    public PatternDirector patternDirector; // 인스펙터에서 PatternDirector를 연결해주세요.
+
+    public PatternDirector patternDirector; 
+    public SliderTimer sliderTimer; 
+    public StageScreen stageScreen;
 
     void Awake()
     {
@@ -29,6 +33,11 @@ public class DragController : MonoBehaviour, IPointerClickHandler
             if (patternDirector != null)
             {
                 patternDirector.StartGameSequence(); // 시퀀스 시작
+            }
+
+            if (sliderTimer != null)
+            {
+                sliderTimer.StartTimer();
             }
 
             Debug.Log("게임 시퀀스가 처음으로 시작되었습니다.");
@@ -68,8 +77,56 @@ public class DragController : MonoBehaviour, IPointerClickHandler
     {
         if (other.CompareTag("Bullet") && isFollowing)
         {
-            isFollowing = false;
+            GetHit();
             Debug.Log("게임 오버!");
         }
+    }
+
+    public void GetHit()
+    {
+        if (!isFollowing) return; // 이미 피격 중이면 무시
+
+        isFollowing = false;
+
+        // 1. 타이머 정지
+        if (sliderTimer != null)
+        {
+            sliderTimer.StopTimer();
+        }
+
+        if (patternDirector != null)
+        {
+            patternDirector.StopGameSequence();
+        }
+
+        // 2. 튕겨나가는 연출 시작
+        StartCoroutine(PlayerFlyAwayRoutine());
+
+        Debug.Log("플레이어 피격! 게임 종료 시퀀스 시작.");
+    }
+
+    IEnumerator PlayerFlyAwayRoutine()
+    {
+        // 중심에서 현재 위치 방향으로 튕겨나감
+        Vector3 exitDirection = (transform.localPosition).normalized;
+        if (exitDirection == Vector3.zero) exitDirection = Vector3.down;
+
+        float t = 0;
+        while (t < 1.0f)
+        {
+            transform.localPosition += exitDirection * 1200f * Time.deltaTime;
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        gameObject.SetActive(false); // 버튼 사라짐
+
+        stageScreen.GameOver(); 
+    }
+
+    public void StopFollowing()
+    {
+        isFollowing = false; // 마우스 추적 변수를 꺼버림
+        Debug.Log("서바이벌 성공: 마우스 추적을 중지합니다.");
     }
 }
