@@ -8,7 +8,6 @@ public class TransferPopup : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI amountText;
     [SerializeField] private Button confirmButton;
-    [SerializeField] private Button mainButton;
 
     private const float CountUpDuration = 2f;
     private Action onClose;
@@ -22,9 +21,6 @@ public class TransferPopup : MonoBehaviour
 
         confirmButton.onClick.RemoveAllListeners();
         confirmButton.onClick.AddListener(Close);
-
-        mainButton.onClick.RemoveAllListeners();
-        mainButton.onClick.AddListener(Close);
 
         StartCoroutine(CountUp(targetMan));
     }
