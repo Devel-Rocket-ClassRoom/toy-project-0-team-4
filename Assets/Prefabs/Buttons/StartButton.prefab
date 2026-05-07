@@ -120,19 +120,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4128217570468113510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OnClickButton, Assembly-CSharp
-        m_MethodName: OnClickStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3749899104411742117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +136,6 @@ MonoBehaviour:
   titleScreen: {fileID: 0}
   mainScreen: {fileID: 0}
   miniGameSpawner: {fileID: 0}
+  settingPopup: {fileID: 0}
+  audioManager: {fileID: 0}
+  gameClockTimer: {fileID: 0}

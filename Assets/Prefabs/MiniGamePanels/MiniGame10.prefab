@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
-  m_sharedMaterial: {fileID: -2030847852017020162, guid: a531a0ba5bc92fb48b2933ce80329e39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
+  m_sharedMaterial: {fileID: 8160505328579717921, guid: 77d32cac9e3d0a2468a37c0913c26caa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -443,8 +443,6 @@ MonoBehaviour:
   agreeButton: {fileID: 3017604996865350396}
   disagreeButton: {fileID: 6486563005369958187}
   scrollRect: {fileID: 5581802355336544204}
-  contentTMP: {fileID: 8477448817859325423}
-  jsonFileName: GameTexts
   disabledAlpha: 0.3
   scrollSensitivity: 10
   activateOffset: 50
