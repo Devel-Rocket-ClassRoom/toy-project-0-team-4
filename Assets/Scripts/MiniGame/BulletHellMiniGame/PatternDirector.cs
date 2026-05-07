@@ -8,6 +8,14 @@ public class PatternDirector : MonoBehaviour
     public Transform player;
     public RectTransform canvasRect;
 
+    private void Awake()
+    {
+        if (canvasRect == null)
+        {
+            canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+        }
+    }
+    
     public void StartGameSequence()
     {
         StartCoroutine(GameRoutine());
@@ -109,5 +117,36 @@ public class PatternDirector : MonoBehaviour
         }
 
         Debug.Log("모든 패턴 시퀀스 완료!");
+    }
+
+    public void StopGameSequence()
+    {
+        // 1. 실행 중인 모든 코루틴(GameRoutine 포함) 중지
+        StopAllCoroutines();
+
+        // 2. 모든 적 버튼의 발사 스크립트 비활성화 및 정리
+        foreach (var e in enemies)
+        {
+            if (e != null)
+            {
+                e.enabled = false; // 탄막 발사 중지
+
+                // 레이저가 켜져 있다면 강제로 끄기
+                LaserEnemy le = e.GetComponent<LaserEnemy>();
+                if (le != null && le.lineRenderer != null)
+                {
+                    le.StopAllCoroutines();
+                    le.lineRenderer.enabled = false;
+                }
+
+                // (선택 사항) 피격 즉시 적들도 화면 밖으로 사라지게 하고 싶다면 FlyAway 호출
+                // e.FlyAway(); 
+
+                // 또는 즉시 비활성화
+                e.gameObject.SetActive(false);
+            }
+        }
+
+        Debug.Log("플레이어 피격으로 인해 모든 공격 시퀀스가 중단되었습니다.");
     }
 }
