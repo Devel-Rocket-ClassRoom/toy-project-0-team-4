@@ -110,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JumpButtonGame
   agreePrefab: {fileID: 5974144146860978303}
   disagreePrefab: {fileID: 7347443026237404462}
-  disagree1Position: {x: -250, y: -40}
-  disagree2Position: {x: 250, y: -40}
+  disagree1Position: {x: -250, y: -350}
+  disagree2Position: {x: 250, y: -350}
   minDelay: 3
   maxDelay: 10
   gravity: 1800
