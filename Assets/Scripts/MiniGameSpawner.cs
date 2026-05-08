@@ -214,8 +214,9 @@ public class MiniGameSpawner : MonoBehaviour
 
         if (transferPopupPrefab != null)
         {
+            float ratio = gameClockTimer != null ? gameClockTimer.RemainingRatio : 1f;
             TransferPopup popup = Instantiate(transferPopupPrefab, miniGameParent, false);
-            popup.Show(ReturnToTitle);
+            popup.Show(ReturnToTitle, ratio);
         }
         else
         {
