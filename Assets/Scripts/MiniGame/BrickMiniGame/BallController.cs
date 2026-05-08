@@ -11,11 +11,19 @@ public class BallController : MonoBehaviour
     [SerializeField] private float minVelocity = 0.5f;
     [SerializeField] private float paddleInfluence = 0.05f;
 
+    [Header("오디오 매니저")]
+    [SerializeField] private AudioManager audioManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 1f;
         stageScreen = GetComponentInParent<StageScreen>();
+
+        if (audioManager == null)
+        {
+            audioManager = FindFirstObjectByType<AudioManager>();
+        }
     }
 
     private void FixedUpdate()
@@ -55,6 +63,11 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("Brick"))
         {
             Destroy(collision.gameObject);
+            audioManager.PlaySfx(5);
+        }
+        if (collision.gameObject.CompareTag("Paddle"))
+        {
+            audioManager.PlaySfx(6);
         }
     }
 

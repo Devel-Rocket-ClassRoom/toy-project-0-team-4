@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     [Header("BGM")]
     [SerializeField] private AudioSource bgmSource;
 
-    [Header("효과음 5개")]
+    [Header("효과음")]
     [SerializeField] private AudioSource[] sfxSources;
 
     private float bgmVolume = 1f;

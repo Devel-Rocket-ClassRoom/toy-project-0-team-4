@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5093912293287397280}
   - component: {fileID: 524055486360490547}
   - component: {fileID: 398862215792287899}
+  - component: {fileID: 733639407197213641}
   m_Layer: 0
   m_Name: check
   m_TagString: Untagged
@@ -119,7 +120,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 524055486360490547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 733639407197213641}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &733639407197213641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143483538426985794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 4
 --- !u!1 &2564580687297178999
 GameObject:
   m_ObjectHideFlags: 0

@@ -115,15 +115,16 @@ GameObject:
   m_Component:
   - component: {fileID: 6535348114547246193}
   - component: {fileID: 9216977744490133083}
-  - component: {fileID: 1884379427168557177}
   - component: {fileID: 6580278897365125192}
+  - component: {fileID: 2974157100870829876}
+  - component: {fileID: 137275444616247140}
   m_Layer: 5
   m_Name: Rejection POPUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6535348114547246193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -157,7 +158,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fail
   audioManager: {fileID: 0}
---- !u!223 &1884379427168557177
+--- !u!114 &6580278897365125192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116990496238716709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &2974157100870829876
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +198,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
---- !u!114 &6580278897365125192
+--- !u!114 &137275444616247140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,9 +246,9 @@ RectTransform:
   - {fileID: 124456367132783982}
   m_Father: {fileID: 7656659616476199271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -318.59833}
   m_SizeDelta: {x: 724.3, y: 326.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3550723665374068282
@@ -403,9 +421,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7656659616476199271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -560.8667}
   m_SizeDelta: {x: 160, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7619698671439890005
@@ -534,9 +552,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7656659616476199271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -71.66501}
   m_SizeDelta: {x: 200, y: 79.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2477251183472337945
