@@ -69,7 +69,6 @@ public class CarController : MonoBehaviour
             }
             else
             {
-                Debug.Log("구역 밖 - 리스폰 진행");
                 launcher.RequestRespawn();
                 Destroy(gameObject);
             }

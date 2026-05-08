@@ -64,32 +64,24 @@ public class SettingPopupUI : MonoBehaviour
 
     private void OnBgmVolumeChanged(float value)
     {
-        Debug.Log($"BGM 슬라이더 변경: {value}");
-
         if (audioManager != null)
             audioManager.SetBgmVolume(value);
     }
 
     private void OnSfxVolumeChanged(float value)
     {
-        Debug.Log($"효과음 슬라이더 변경: {value}");
-
         if (audioManager != null)
             audioManager.SetSfxVolume(value);
     }
 
     private void OnBgmMuteChanged(bool isMuted)
     {
-        Debug.Log($"BGM 음소거 상태 변경: {isMuted}");
-
         if (audioManager != null)
             audioManager.ToggleBgmMute();
     }
 
     private void OnSfxMuteChanged(bool isMuted)
     {
-        Debug.Log($"효과음 음소거 상태 변경: {isMuted}");
-
         if (audioManager != null)
             audioManager.ToggleSfxMute();
     }

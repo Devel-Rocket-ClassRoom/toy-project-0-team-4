@@ -31,9 +31,7 @@ public class PatternDirector : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
 
-        // ==========================================
         // 패턴 1: 인덱스 0, 1번 버튼 진입 및 탄막 공격
-        // ==========================================
         enemies[0].FlyIn(enemies[0].originalPosition);
         enemies[1].FlyIn(enemies[1].originalPosition);
 
@@ -48,10 +46,7 @@ public class PatternDirector : MonoBehaviour
         enemies[1].FlyAway();
         yield return new WaitForSeconds(1.0f); // 퇴장 대기
 
-
-        // ==========================================
         // 패턴 2: 랜덤 위치에서 레이저 공격 (4회)
-        // ==========================================
         for (int i = 0; i < 4; i++)
         {
             // 랜덤하게 적 하나 선택
@@ -79,10 +74,7 @@ public class PatternDirector : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // 다음 레이저 전 짧은 휴식
         }
 
-
-        // ==========================================
         // 패턴 3: 모든 적이 원래 자리로 진입하여 총공격
-        // ==========================================
         foreach (var e in enemies)
         {
             // 레이저 잔상이 남지 않도록 초기화
@@ -108,23 +100,21 @@ public class PatternDirector : MonoBehaviour
             e.enabled = true; // 0.5초 대기 후 일제히 발사
         }
 
-        yield return new WaitForSeconds(5.0f); // 5초간 지옥의 탄막
+        yield return new WaitForSeconds(5.0f); // 5초간 탄막
 
         // 모든 공격 종료 및 정지
         foreach (var e in enemies)
         {
             e.enabled = false;
         }
-
-        Debug.Log("모든 패턴 시퀀스 완료!");
     }
 
     public void StopGameSequence()
     {
-        // 1. 실행 중인 모든 코루틴(GameRoutine 포함) 중지
+        // 실행 중인 모든 코루틴(GameRoutine 포함) 중지
         StopAllCoroutines();
 
-        // 2. 모든 적 버튼의 발사 스크립트 비활성화 및 정리
+        // 모든 적 버튼의 발사 스크립트 비활성화 및 정리
         foreach (var e in enemies)
         {
             if (e != null)
@@ -138,15 +128,8 @@ public class PatternDirector : MonoBehaviour
                     le.StopAllCoroutines();
                     le.lineRenderer.enabled = false;
                 }
-
-                // (선택 사항) 피격 즉시 적들도 화면 밖으로 사라지게 하고 싶다면 FlyAway 호출
-                // e.FlyAway(); 
-
-                // 또는 즉시 비활성화
                 e.gameObject.SetActive(false);
             }
         }
-
-        Debug.Log("플레이어 피격으로 인해 모든 공격 시퀀스가 중단되었습니다.");
     }
 }

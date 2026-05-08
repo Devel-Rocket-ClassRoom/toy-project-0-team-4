@@ -50,11 +50,6 @@ public static class MiniGameRuntimeBinder
                 bindCount++;
             }
         }
-
-        if (bindCount > 0)
-        {
-            Debug.Log($"buttonHandler 자동 연결 완료 / 개수: {bindCount}");
-        }
     }
 
     public static void TryStartMiniGame(StageScreen currentMiniGame)
@@ -92,11 +87,7 @@ public static class MiniGameRuntimeBinder
 
             method.Invoke(behaviour, null);
 
-            Debug.Log($"{behaviour.GetType().Name}.StartMiniGame() 실행");
             return;
         }
-
-        // BrickMiniGame처럼 Start/Awake로 자동 실행되는 미니게임은 여기로 옴
-        Debug.Log($"{currentMiniGame.name}은 자동 실행형 미니게임입니다.");
     }
 }

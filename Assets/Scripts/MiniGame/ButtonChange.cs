@@ -27,6 +27,10 @@ public class ButtonChange : MonoBehaviour
     private RectTransform agreeRect;
     private RectTransform disagreeRect;
 
+    [Header("버튼 생성 위치")]
+    public Vector2 agreeSpawnPosition    = new(-150f, 0f);
+    public Vector2 disagreeSpawnPosition = new( 150f, 0f);
+
     [Header("미니게임4 - 동의 버튼 도망")]
     public float game4EscapeRadius = 150f;
     public float game4EscapeSpeed = 400f;
@@ -112,8 +116,8 @@ public class ButtonChange : MonoBehaviour
             // 화면 중앙 기준으로 좌우 배치
             agreeRect.anchorMin = agreeRect.anchorMax = new Vector2(0.5f, 0.5f);
             disagreeRect.anchorMin = disagreeRect.anchorMax = new Vector2(0.5f, 0.5f);
-            agreeRect.anchoredPosition = new Vector2(-150f, 0f);
-            disagreeRect.anchoredPosition = new Vector2(150f, 0f);
+            agreeRect.anchoredPosition    = agreeSpawnPosition;
+            disagreeRect.anchoredPosition = disagreeSpawnPosition;
         }
 
         agreeButton.gameObject.SetActive(true);
@@ -182,7 +186,6 @@ public class ButtonChange : MonoBehaviour
     // ─── 미니게임 5: 그리드 셀 중 숨겨진 동의 버튼 찾기 ─────────────
     void StartGame5()
     {
-        Debug.Log("[Game5] StartGame5 호출됨");
         currentState = MiniGameState.Game5;
 
         if (TryGetComponent<VerticalLayoutGroup>(out var vLayout)) vLayout.enabled = false;
@@ -191,7 +194,6 @@ public class ButtonChange : MonoBehaviour
         game5Grid = new GameObject("Game5Grid", typeof(RectTransform));
         game5Grid.transform.SetParent(transform, false);
         var gridRect = (RectTransform)game5Grid.transform;
-        Debug.Log($"[Game5] game5Grid 생성됨, 부모: {game5Grid.transform.parent.name}");
         gridRect.anchorMin = Vector2.zero;
         gridRect.anchorMax = Vector2.one;
         gridRect.offsetMin = Vector2.zero;

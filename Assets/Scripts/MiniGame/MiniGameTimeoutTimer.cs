@@ -114,8 +114,6 @@ public class MiniGameTimeoutTimer : MonoBehaviour
         isTimedOut = true;
         isRunning = false;
 
-        Debug.Log("미니게임 제한 시간 초과 - 장시간 응답 없음 팝업 요청");
-
         if (miniGameSpawner == null)
         {
             miniGameSpawner = FindFirstObjectByType<MiniGameSpawner>();

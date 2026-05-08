@@ -50,7 +50,6 @@ public class MovingMiniGame : MonoBehaviour
             var cr = canvas.GetComponent<RectTransform>();
             if (cr != null && cr.rect.width > 0f) halfWidth = cr.rect.width * 0.5f;
         }
-        Debug.Log($"[MiniGames] halfWidth={halfWidth}");
 
         SpawnDisagreeButtons();
 

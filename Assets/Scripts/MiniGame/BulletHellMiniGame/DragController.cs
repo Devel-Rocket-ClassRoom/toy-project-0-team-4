@@ -39,8 +39,6 @@ public class DragController : MonoBehaviour, IPointerClickHandler
             {
                 sliderTimer.StartTimer();
             }
-
-            Debug.Log("게임 시퀀스가 처음으로 시작되었습니다.");
         }
     }
 
@@ -78,7 +76,6 @@ public class DragController : MonoBehaviour, IPointerClickHandler
         if (other.CompareTag("Bullet") && isFollowing)
         {
             GetHit();
-            Debug.Log("게임 오버!");
         }
     }
 
@@ -101,8 +98,6 @@ public class DragController : MonoBehaviour, IPointerClickHandler
 
         // 2. 튕겨나가는 연출 시작
         StartCoroutine(PlayerFlyAwayRoutine());
-
-        Debug.Log("플레이어 피격! 게임 종료 시퀀스 시작.");
     }
 
     IEnumerator PlayerFlyAwayRoutine()
@@ -127,6 +122,5 @@ public class DragController : MonoBehaviour, IPointerClickHandler
     public void StopFollowing()
     {
         isFollowing = false; // 마우스 추적 변수를 꺼버림
-        Debug.Log("서바이벌 성공: 마우스 추적을 중지합니다.");
     }
 }

@@ -34,8 +34,6 @@ public class StageStartButton : MonoBehaviour
 
     private void OnClickStageStart()
     {
-        Debug.Log($"[StageStartButton] {stageNumber} 스테이지 시작");
-
         if (audioManager != null)
         {
             audioManager.PlaySfx(0);

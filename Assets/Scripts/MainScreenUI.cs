@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class MainScreenUI : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class MainScreenUI : MonoBehaviour
     {
         [Header("스테이지 번호")]
         public int stageNumber;
+
+        [Header("메인화면에 표시되는 단계 Text")]
+        public TMP_Text stageStepText;
+
+        [Header("메인화면에 표시되는 제목 Text")]
+        public TMP_Text stageTitleText;
 
         [Header("해당 스테이지 시작 버튼")]
         public GameObject startButton;
@@ -25,6 +32,15 @@ public class MainScreenUI : MonoBehaviour
     [Header("메인화면 스테이지 버튼 목록")]
     [SerializeField] private StageButtonInfo[] stageButtons;
 
+    [Header("클리어 프리팹 크기")]
+    [SerializeField] private Vector2 clearPrefabSize = new Vector2(160f, 60f);
+
+    [Header("클리어 프리팹 Z축 회전")]
+    [SerializeField] private float clearPrefabRotationZ = -5f;
+
+    [Header("단계와 제목 사이 구분자")]
+    [SerializeField] private string titleSeparator = " ";
+
     private void OnEnable()
     {
         RefreshStageButtons();
@@ -41,27 +57,87 @@ public class MainScreenUI : MonoBehaviour
         foreach (StageButtonInfo stageButton in stageButtons)
         {
             bool isCleared = stageClearManager.IsStageCleared(stageButton.stageNumber);
+            bool isUnlocked = IsStageUnlocked(stageButton.stageNumber);
 
             if (isCleared)
             {
                 ChangeToClearPrefab(stageButton);
             }
-            else
+            else if (isUnlocked)
             {
                 ChangeToStartButton(stageButton);
+            }
+            else
+            {
+                ChangeToLockedStage(stageButton);
             }
         }
     }
 
-    private void ChangeToClearPrefab(StageButtonInfo stageButton)
+    public string GetStageTitle(int stageNumber)
     {
-        if (stageButton.startButton != null)
+        foreach (StageButtonInfo stageButton in stageButtons)
         {
-            stageButton.startButton.SetActive(false);
+            if (stageButton.stageNumber != stageNumber)
+                continue;
+
+            string stepText = "";
+            string titleText = "";
+
+            if (stageButton.stageStepText != null)
+            {
+                stepText = stageButton.stageStepText.text.Trim();
+            }
+
+            if (stageButton.stageTitleText != null)
+            {
+                titleText = stageButton.stageTitleText.text.Trim();
+            }
+
+            if (string.IsNullOrEmpty(stepText))
+            {
+                stepText = $"{stageNumber}단계";
+            }
+
+            if (string.IsNullOrEmpty(titleText))
+            {
+                Debug.LogWarning($"{stageNumber} 스테이지 제목 Text가 비어있습니다.");
+                return stepText;
+            }
+
+            string result = $"{stepText}{titleSeparator}{titleText}";
+
+            return result;
         }
 
-        if (stageButton.spawnedClearObject != null)
+        Debug.LogWarning($"{stageNumber} 스테이지 정보를 찾지 못했습니다.");
+        return $"{stageNumber}단계";
+    }
+
+    private bool IsStageUnlocked(int stageNumber)
+    {
+        if (stageNumber <= 1)
+            return true;
+
+        return stageClearManager.IsStageCleared(stageNumber - 1);
+    }
+
+    private void ChangeToClearPrefab(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton == null)
+        {
+            Debug.LogWarning($"{stageButton.stageNumber} 스테이지 StartButton이 연결되지 않았습니다.");
             return;
+        }
+
+        stageButton.startButton.SetActive(false);
+
+        if (stageButton.spawnedClearObject != null)
+        {
+            ApplyClearPrefabTransform(stageButton);
+            stageButton.spawnedClearObject.SetActive(true);
+            return;
+        }
 
         if (stageButton.clearPrefab == null)
         {
@@ -71,26 +147,31 @@ public class MainScreenUI : MonoBehaviour
 
         Transform parent = stageButton.startButton.transform.parent;
 
-        stageButton.spawnedClearObject = Instantiate(
-            stageButton.clearPrefab,
-            parent
+        stageButton.spawnedClearObject = Instantiate(stageButton.clearPrefab, parent, false);
+
+        stageButton.spawnedClearObject.transform.SetSiblingIndex(
+            stageButton.startButton.transform.GetSiblingIndex()
         );
+
+        ApplyClearPrefabTransform(stageButton);
+
+        stageButton.spawnedClearObject.SetActive(true);
+    }
+
+    private void ApplyClearPrefabTransform(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton == null || stageButton.spawnedClearObject == null)
+            return;
 
         RectTransform startRect = stageButton.startButton.GetComponent<RectTransform>();
         RectTransform clearRect = stageButton.spawnedClearObject.GetComponent<RectTransform>();
 
-        if (startRect != null && clearRect != null)
-        {
-            clearRect.anchorMin = startRect.anchorMin;
-            clearRect.anchorMax = startRect.anchorMax;
-            clearRect.pivot = startRect.pivot;
-            clearRect.anchoredPosition = startRect.anchoredPosition;
-            clearRect.sizeDelta = startRect.sizeDelta;
-            clearRect.localScale = startRect.localScale;
-            clearRect.localRotation = startRect.localRotation;
-        }
+        if (startRect == null || clearRect == null)
+            return;
 
-        stageButton.spawnedClearObject.SetActive(true);
+        clearRect.sizeDelta = clearPrefabSize;
+
+        clearRect.localRotation = Quaternion.Euler(0f, 0f, clearPrefabRotationZ);
     }
 
     private void ChangeToStartButton(StageButtonInfo stageButton)
@@ -98,6 +179,20 @@ public class MainScreenUI : MonoBehaviour
         if (stageButton.startButton != null)
         {
             stageButton.startButton.SetActive(true);
+        }
+
+        if (stageButton.spawnedClearObject != null)
+        {
+            Destroy(stageButton.spawnedClearObject);
+            stageButton.spawnedClearObject = null;
+        }
+    }
+
+    private void ChangeToLockedStage(StageButtonInfo stageButton)
+    {
+        if (stageButton.startButton != null)
+        {
+            stageButton.startButton.SetActive(false);
         }
 
         if (stageButton.spawnedClearObject != null)

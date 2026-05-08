@@ -62,7 +62,6 @@ public class JumpButtonGame : MonoBehaviour
     {
         SpawnButton(disagreePrefab, disagree1Position, MiniGameManager.NotifyFail);
         SpawnButton(disagreePrefab, disagree2Position, MiniGameManager.NotifyFail);
-        Debug.Log("[JumpButtonGame] 거절 버튼 2개 생성됨");
     }
 
     void SpawnButton(GameObject prefab, Vector2 pos, UnityEngine.Events.UnityAction onClick)

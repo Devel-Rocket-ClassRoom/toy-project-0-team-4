@@ -12,13 +12,10 @@ public class StageClearManager : MonoBehaviour
     {
         if (clearedStages.Contains(stageNumber))
         {
-            Debug.Log($"{stageNumber} 스테이지는 이미 클리어됨");
             return;
         }
 
         clearedStages.Add(stageNumber);
-
-        Debug.Log($"{stageNumber} 스테이지 클리어 저장 완료");
 
         OnStageCleared?.Invoke(stageNumber);
     }
@@ -46,7 +43,5 @@ public class StageClearManager : MonoBehaviour
     public void ResetAll()
     {
         clearedStages.Clear();
-
-        Debug.Log("모든 스테이지 클리어 상태 초기화");
     }
 }
