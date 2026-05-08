@@ -258,7 +258,10 @@ MonoBehaviour:
     stageGroups:
     - stageNumber: 1
       miniGamePrefabs:
-      - {fileID: 4006440886550800599, guid: 2bcf54bad27a52745b6beabbdadc578d, type: 3}
+      - {fileID: 3000483862689402214, guid: f338318eaa362e040963ae5d8fcaed38, type: 3}
+      - {fileID: 4140518401417868971, guid: 7e9e046e81df79f4d995a00999cbc924, type: 3}
+      - {fileID: 3486320631883065774, guid: 94660b5d0fb09c44eb6d2aa5f2621cc1, type: 3}
+      - {fileID: 3076362969042246458, guid: 38145797dc6026d419feb67cf9c88711, type: 3}
     - stageNumber: 2
       miniGamePrefabs:
       - {fileID: -5835555982258864365, guid: 7bbf2fff1cdb7a14d9cfe3c600ced1be, type: 3}
@@ -3571,7 +3574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace5870c14dbd89408019ec39d0e94f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameClockTimer
-  limitTime: 300
+  limitTime: 240
   clockHourPivot: {fileID: 1144394797}
   clockMinutePivot: {fileID: 658800749}
   miniGameSpawner: {fileID: 210731800}
