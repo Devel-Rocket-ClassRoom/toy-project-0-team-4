@@ -23,8 +23,8 @@ public class TransferPopup : MonoBehaviour
     {
         this.onClose = onClose;
 
-        // 최소 1만원, 최대 10000만원, 남은 시간 비율로 고정 계산
-        int targetMan = Mathf.RoundToInt(Mathf.Lerp(1, 1000, timeRatio));
+        // 최소 1만원, 최대 5000만원, 남은 시간 비율로 고정 계산
+        int targetMan = Mathf.RoundToInt(Mathf.Lerp(1, 5000, timeRatio));
 
         if (confirmButton != null)
         {

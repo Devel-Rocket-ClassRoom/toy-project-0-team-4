@@ -62,6 +62,8 @@ public partial class MiniGameSpawner
 
         Time.timeScale = 0f;
 
+        float timeRatio = gameClockTimer != null ? gameClockTimer.RemainingRatio : 1f;
+
         if (gameClockTimer != null)
         {
             gameClockTimer.PauseTimer();
@@ -81,7 +83,7 @@ public partial class MiniGameSpawner
             TransferPopup transferPopup = Instantiate(transferPopupPrefab, miniGameParent, false);
 
             // 확인 버튼을 누르면 ShowTitleScreen() 실행
-            transferPopup.Show(ShowTitleScreen);
+            transferPopup.Show(ShowTitleScreen, timeRatio);
         }
         else
         {
