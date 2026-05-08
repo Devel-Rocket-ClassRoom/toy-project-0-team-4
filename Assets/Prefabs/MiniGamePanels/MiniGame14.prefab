@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5518374109864192323}
   - component: {fileID: 8986037469644431716}
+  - component: {fileID: 3387226531162309730}
   m_Layer: 5
   m_Name: Toggle (2)
   m_TagString: Untagged
@@ -159,8 +160,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3387226531162309730}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &3387226531162309730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563789546369579591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &646620937637677643
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482917005279380407}
   - component: {fileID: 1277184246930477856}
+  - component: {fileID: 6123653304289133584}
   m_Layer: 5
   m_Name: Toggle (1)
   m_TagString: Untagged
@@ -245,8 +273,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3387226531162309730}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &6123653304289133584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646620937637677643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &688961431117399384
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5874782998521548832}
   - component: {fileID: 2108899824563127526}
+  - component: {fileID: 5177345496424760425}
   m_Layer: 5
   m_Name: Toggle (8)
   m_TagString: Untagged
@@ -410,8 +465,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5177345496424760425}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &5177345496424760425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759153158176662019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &824735689087879574
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3888645588375862346}
   - component: {fileID: 4319956841015700323}
+  - component: {fileID: 6753101567398771105}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -683,8 +765,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6753101567398771105}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &6753101567398771105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859920263240777336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &1031509187547959098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,6 +1143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7930335475315529930}
   - component: {fileID: 5762477135029613575}
+  - component: {fileID: 8216033376687728151}
   m_Layer: 5
   m_Name: Toggle (5)
   m_TagString: Untagged
@@ -1109,8 +1218,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8216033376687728151}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &8216033376687728151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501956080038498115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &1647204901190764442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738470210637832102}
   - component: {fileID: 8071818151980695476}
+  - component: {fileID: 7768617087131476827}
   m_Layer: 5
   m_Name: Toggle (4)
   m_TagString: Untagged
@@ -1658,8 +1794,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7768617087131476827}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &7768617087131476827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419699103201668414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &3750625242892380448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,6 +2810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673946595314011158}
   - component: {fileID: 8376135150431093339}
+  - component: {fileID: 6631183497154287839}
   m_Layer: 5
   m_Name: Toggle (9)
   m_TagString: Untagged
@@ -2722,8 +2885,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6631183497154287839}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &6631183497154287839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791994600845274929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &7110604211153339683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,6 +3229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498666923334014140}
   - component: {fileID: 7790998749851968540}
+  - component: {fileID: 8538834826808731192}
   m_Layer: 5
   m_Name: Toggle (6)
   m_TagString: Untagged
@@ -3114,8 +3304,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8538834826808731192}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &8538834826808731192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083884223009810546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &8610670586160078895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,6 +3342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041456059869997154}
   - component: {fileID: 5742434893373854557}
+  - component: {fileID: 8896709738392912036}
   m_Layer: 5
   m_Name: Toggle (3)
   m_TagString: Untagged
@@ -3200,8 +3417,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8896709738392912036}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &8896709738392912036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610670586160078895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &8859888437896897564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,6 +3682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8658962977848989135}
   - component: {fileID: 2237530217896729635}
+  - component: {fileID: 2072539495318107937}
   m_Layer: 5
   m_Name: Toggle (7)
   m_TagString: Untagged
@@ -3513,8 +3757,34 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2072539495318107937}
+        m_TargetAssemblyTypeName: ClickSFX, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &2072539495318107937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019700395366829214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1380f27c971d0c24f89b3612accf6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSFX
+  audioManager: {fileID: 0}
+  clickSfxIndex: 0
 --- !u!1 &9073666817454873978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,6 +4463,10 @@ PrefabInstance:
     - target: {fileID: 606858519401747426, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392261756050023033, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
+      propertyPath: limitTime
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2903544253957164894, guid: d0bc80822a9125547b5fc1015a5ced99, type: 3}
       propertyPath: m_Name

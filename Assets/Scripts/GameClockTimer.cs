@@ -120,4 +120,6 @@ public class GameClockTimer : MonoBehaviour
     {
         isRunning = false;
     }
+
+    public float RemainingRatio => Mathf.Clamp01(1f - (currentTime / limitTime));
 }

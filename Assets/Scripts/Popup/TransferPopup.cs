@@ -19,11 +19,12 @@ public class TransferPopup : MonoBehaviour
 
     private bool countingUp;
 
-    public void Show(Action onClose)
+    public void Show(Action onClose, float timeRatio = 1f)
     {
         this.onClose = onClose;
 
-        int targetMan = UnityEngine.Random.Range(1, 10000);
+        // 최소 1만원, 최대 5000만원, 남은 시간 비율로 고정 계산
+        int targetMan = Mathf.RoundToInt(Mathf.Lerp(1, 5000, timeRatio));
 
         if (confirmButton != null)
         {
