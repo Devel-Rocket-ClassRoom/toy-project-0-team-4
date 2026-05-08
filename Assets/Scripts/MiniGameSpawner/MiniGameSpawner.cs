@@ -41,7 +41,7 @@ public partial class MiniGameSpawner : MonoBehaviour
     private int currentStageNumber;
     private OTPMiniGame otpInstance;
 
-    private static readonly WaitForSecondsRealtime WaitOTPSuccess = new WaitForSecondsRealtime(5f);
+    private static readonly WaitForSecondsRealtime WaitOTPSuccess = new WaitForSecondsRealtime(3f);
 
     private void Awake()
     {

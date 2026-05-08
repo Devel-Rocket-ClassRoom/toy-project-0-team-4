@@ -203,7 +203,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "OTP\uC778\uC99D\uC5D0 \uC131\uACF5\uD558\uC600\uC2B5\uB2C8\uB2E4!          
-    \uC790\uB3D9\uC73C\uB85C \uC774\uCCB4 \uB429\uB2C8\uB2E4 "
+    3\uCD08 \uB4A4 \uC790\uB3D9\uC73C\uB85C \uC774\uCCB4 \uB429\uB2C8\uB2E4 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
   m_sharedMaterial: {fileID: 4074703755839416731, guid: f21f6c10b4f096244bbb33ce089b4596, type: 2}
@@ -598,3 +598,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Succes
   audioManager: {fileID: 0}
+  successSfxIndex: 4
