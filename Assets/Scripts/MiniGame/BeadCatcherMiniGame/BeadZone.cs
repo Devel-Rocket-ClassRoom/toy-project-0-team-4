@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public enum ZoneType { RightEnd, Collector }
+public enum ZoneType
+{
+    RightEnd,
+    Collector,
+}
 
 public class BeadZone : MonoBehaviour
 {
@@ -10,7 +14,8 @@ public class BeadZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         BeadController bead = collision.GetComponent<BeadController>();
-        if (bead == null) return;
+        if (bead == null)
+            return;
 
         if (zoneType == ZoneType.Collector)
         {

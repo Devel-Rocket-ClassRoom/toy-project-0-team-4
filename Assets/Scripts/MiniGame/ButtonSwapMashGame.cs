@@ -5,21 +5,35 @@ using UnityEngine.UI;
 public class ButtonSwapMashGame : MonoBehaviour
 {
     [Header("UI 참조 (Inspector에서 연결)")]
-    [SerializeField] private Button agreeButton;
-    [SerializeField] private Button disagreeButton;
-    [SerializeField] private Image gaugeFill;
+    [SerializeField]
+    private Button agreeButton;
+
+    [SerializeField]
+    private Button disagreeButton;
+
+    [SerializeField]
+    private Image gaugeFill;
 
     [Header("게이지 설정")]
-    [SerializeField] private float fillPerClick = 0.05f;
-    [SerializeField] private float decayRate = 0.05f;
+    [SerializeField]
+    private float fillPerClick = 0.05f;
+
+    [SerializeField]
+    private float decayRate = 0.05f;
 
     [Header("스왑 설정")]
-    [SerializeField] private float swapIntervalMin = 1.5f;
-    [SerializeField] private float swapIntervalMax = 3.5f;
+    [SerializeField]
+    private float swapIntervalMin = 1.5f;
+
+    [SerializeField]
+    private float swapIntervalMax = 3.5f;
 
     [Header("스왑 이펙트")]
-    [SerializeField] private float punchScale = 1.4f;
-    [SerializeField] private float punchDuration = 0.25f;
+    [SerializeField]
+    private float punchScale = 1.4f;
+
+    [SerializeField]
+    private float punchDuration = 0.25f;
 
     private float gauge;
     private bool gameActive;
@@ -35,22 +49,37 @@ public class ButtonSwapMashGame : MonoBehaviour
         if (agreeButton == null)
         {
             Transform t = transform.Find("버튼/동의");
-            if (t != null) agreeButton = t.GetComponent<Button>();
+            if (t != null)
+                agreeButton = t.GetComponent<Button>();
         }
         if (disagreeButton == null)
         {
             Transform t = transform.Find("버튼/거절");
-            if (t != null) disagreeButton = t.GetComponent<Button>();
+            if (t != null)
+                disagreeButton = t.GetComponent<Button>();
         }
         if (gaugeFill == null)
         {
             Transform t = transform.Find("Image/Image");
-            if (t != null) gaugeFill = t.GetComponent<Image>();
+            if (t != null)
+                gaugeFill = t.GetComponent<Image>();
         }
 
-        if (agreeButton == null)    { Debug.LogError("[ButtonSwapMash] agreeButton 미연결"); return; }
-        if (disagreeButton == null) { Debug.LogError("[ButtonSwapMash] disagreeButton 미연결"); return; }
-        if (gaugeFill == null)      { Debug.LogError("[ButtonSwapMash] gaugeFill 미연결"); return; }
+        if (agreeButton == null)
+        {
+            Debug.LogError("[ButtonSwapMash] agreeButton 미연결");
+            return;
+        }
+        if (disagreeButton == null)
+        {
+            Debug.LogError("[ButtonSwapMash] disagreeButton 미연결");
+            return;
+        }
+        if (gaugeFill == null)
+        {
+            Debug.LogError("[ButtonSwapMash] gaugeFill 미연결");
+            return;
+        }
 
         gaugeFill.type = Image.Type.Filled;
         gaugeFill.fillMethod = Image.FillMethod.Vertical;
@@ -60,7 +89,7 @@ public class ButtonSwapMashGame : MonoBehaviour
         agreeButton.gameObject.SetActive(true);
         disagreeButton.gameObject.SetActive(true);
 
-        agreeRect    = agreeButton.GetComponent<RectTransform>();
+        agreeRect = agreeButton.GetComponent<RectTransform>();
         disagreeRect = disagreeButton.GetComponent<RectTransform>();
 
         agreeButton.onClick.AddListener(OnAgreeClicked);
@@ -71,7 +100,8 @@ public class ButtonSwapMashGame : MonoBehaviour
 
     private void OnAgreeClicked()
     {
-        if (!gameActive) return;
+        if (!gameActive)
+            return;
 
         gauge = Mathf.Min(gauge + fillPerClick, 1f);
         gaugeFill.fillAmount = gauge;
@@ -85,14 +115,16 @@ public class ButtonSwapMashGame : MonoBehaviour
 
     private void OnDisagreeClicked()
     {
-        if (!gameActive) return;
+        if (!gameActive)
+            return;
         gameActive = false;
         MiniGameManager.NotifyFail();
     }
 
     private void Update()
     {
-        if (!gameActive) return;
+        if (!gameActive)
+            return;
 
         if (decayRate > 0f && gauge > 0f)
         {
@@ -110,10 +142,10 @@ public class ButtonSwapMashGame : MonoBehaviour
 
     private void SwapButtonPositions()
     {
-        Vector2 agreePos    = agreeRect.localPosition;
+        Vector2 agreePos = agreeRect.localPosition;
         Vector2 disagreePos = disagreeRect.localPosition;
 
-        agreeRect.localPosition    = disagreePos;
+        agreeRect.localPosition = disagreePos;
         disagreeRect.localPosition = agreePos;
 
         StartCoroutine(PunchScale(agreeRect));

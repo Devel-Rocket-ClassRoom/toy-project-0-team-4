@@ -9,27 +9,27 @@ public class JumpButtonGame : MonoBehaviour
 
     [Header("거절 버튼 위치")]
     public Vector2 disagree1Position = new(-250f, -40f);
-    public Vector2 disagree2Position = new( 250f, -40f);
+    public Vector2 disagree2Position = new(250f, -40f);
 
     [Header("동의 버튼 등장 딜레이")]
     public float minDelay = 0.5f;
     public float maxDelay = 3f;
 
     [Header("포물선 설정")]
-    public float gravity       = 1500f;
-    public float minVelocityY  = 2200f;
-    public float maxVelocityY  = 2800f;
-    public float maxVelocityX  = 300f;
+    public float gravity = 1500f;
+    public float minVelocityY = 2200f;
+    public float maxVelocityY = 2800f;
+    public float maxVelocityX = 300f;
 
     [Header("시작 X 범위")]
     public float spawnRangeX = 350f;
 
     private RectTransform agreeRect;
-    private Vector2       velocity;
-    private float         startY;
-    private bool          jumping;
-    private float         agreeTimer;
-    private float         agreeDelay;
+    private Vector2 velocity;
+    private float startY;
+    private bool jumping;
+    private float agreeTimer;
+    private float agreeDelay;
 
     void Awake()
     {
@@ -53,7 +53,7 @@ public class JumpButtonGame : MonoBehaviour
 
         SpawnDisagreeButtons();
 
-        jumping    = false;
+        jumping = false;
         agreeTimer = 0f;
         agreeDelay = Random.Range(minDelay, maxDelay);
     }
@@ -67,7 +67,8 @@ public class JumpButtonGame : MonoBehaviour
     void SpawnButton(GameObject prefab, Vector2 pos, UnityEngine.Events.UnityAction onClick)
     {
         var go = Instantiate(prefab, transform);
-        if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+        if (go.TryGetComponent<ButtonChange>(out var bc))
+            bc.enabled = false;
 
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
@@ -82,14 +83,16 @@ public class JumpButtonGame : MonoBehaviour
     void LaunchAgreeButton()
     {
         var canvas = GetComponentInParent<Canvas>();
-        float halfH = canvas != null ? canvas.GetComponent<RectTransform>().rect.height * 0.5f : 400f;
+        float halfH =
+            canvas != null ? canvas.GetComponent<RectTransform>().rect.height * 0.5f : 400f;
 
         startY = -halfH - 60f;
 
         float spawnX = Random.Range(-spawnRangeX, spawnRangeX);
 
         var go = Instantiate(agreePrefab, transform);
-        if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+        if (go.TryGetComponent<ButtonChange>(out var bc))
+            bc.enabled = false;
 
         agreeRect = go.GetComponent<RectTransform>();
         agreeRect.anchorMin = agreeRect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -122,19 +125,20 @@ public class JumpButtonGame : MonoBehaviour
             return;
         }
 
-        if (agreeRect == null) return;
+        if (agreeRect == null)
+            return;
 
         velocity.y -= gravity * Time.deltaTime;
 
         var pos = agreeRect.anchoredPosition;
-        pos    += velocity * Time.deltaTime;
+        pos += velocity * Time.deltaTime;
         agreeRect.anchoredPosition = pos;
 
         if (pos.y < startY)
         {
             Destroy(agreeRect.gameObject);
             agreeRect = null;
-            jumping   = false;
+            jumping = false;
             MiniGameManager.NotifyFail();
         }
     }

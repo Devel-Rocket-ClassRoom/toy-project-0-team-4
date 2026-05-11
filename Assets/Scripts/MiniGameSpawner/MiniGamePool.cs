@@ -19,15 +19,14 @@ public class MiniGamePool
     }
 
     [Header("스테이지별 미니게임 목록")]
-    [SerializeField] private StageMiniGameGroup[] stageGroups;
+    [SerializeField]
+    private StageMiniGameGroup[] stageGroups;
 
     public bool HasStage(int stageNumber)
     {
         StageMiniGameGroup group = FindGroup(stageNumber);
 
-        return group != null &&
-               group.miniGamePrefabs != null &&
-               group.miniGamePrefabs.Length > 0;
+        return group != null && group.miniGamePrefabs != null && group.miniGamePrefabs.Length > 0;
     }
 
     public void ResetAllPools()

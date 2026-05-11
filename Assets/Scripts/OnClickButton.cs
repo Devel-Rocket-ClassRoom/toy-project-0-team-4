@@ -3,20 +3,27 @@ using UnityEngine;
 public class OnClickButton : MonoBehaviour
 {
     [Header("화면")]
-    [SerializeField] private GameObject titleScreen;
-    [SerializeField] private GameObject mainScreen;
+    [SerializeField]
+    private GameObject titleScreen;
+
+    [SerializeField]
+    private GameObject mainScreen;
 
     [Header("미니게임 생성 매니저")]
-    [SerializeField] private MiniGameSpawner miniGameSpawner;
+    [SerializeField]
+    private MiniGameSpawner miniGameSpawner;
 
     [Header("설정 팝업")]
-    [SerializeField] private GameObject settingPopup;
+    [SerializeField]
+    private GameObject settingPopup;
 
     [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField]
+    private AudioManager audioManager;
 
     [Header("전체 시계 타이머")]
-    [SerializeField] private GameClockTimer gameClockTimer;
+    [SerializeField]
+    private GameClockTimer gameClockTimer;
 
     private BeadGameManager beadGameManager;
 
@@ -106,7 +113,7 @@ public class OnClickButton : MonoBehaviour
 #if UNITY_2023_1_OR_NEWER
             miniGameSpawner = FindFirstObjectByType<MiniGameSpawner>();
 #else
-        miniGameSpawner = FindObjectOfType<MiniGameSpawner>();
+            miniGameSpawner = FindObjectOfType<MiniGameSpawner>();
 #endif
         }
 

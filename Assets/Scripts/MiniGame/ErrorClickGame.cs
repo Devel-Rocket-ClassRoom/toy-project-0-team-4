@@ -30,7 +30,8 @@ public class ErrorClickGame : MonoBehaviour
     {
         isFinished = false;
 
-        if (agreeRejectPanel != null) agreeRejectPanel.SetActive(true);
+        if (agreeRejectPanel != null)
+            agreeRejectPanel.SetActive(true);
         if (agreeButton != null)
         {
             agreeButton.interactable = false;
@@ -65,7 +66,10 @@ public class ErrorClickGame : MonoBehaviour
                 Vector2 pos = groupStart + offsetStep * i;
                 bool isSpecial = (currentTotal == specialTotal);
 
-                GameObject prefab = (isSpecial && specialPopupPrefab != null) ? specialPopupPrefab : errorPopupPrefab;
+                GameObject prefab =
+                    (isSpecial && specialPopupPrefab != null)
+                        ? specialPopupPrefab
+                        : errorPopupPrefab;
                 GameObject popup = Instantiate(prefab, popupContainer);
                 popup.GetComponent<RectTransform>().anchoredPosition = pos;
 
@@ -77,7 +81,7 @@ public class ErrorClickGame : MonoBehaviour
                 if (isSpecial && btns.Length >= 2)
                 {
                     btns[0].onClick.AddListener(() => OnClickPopup(currentPopup)); // 확인
-                    btns[1].onClick.AddListener(OnClickReject);                    // 거절
+                    btns[1].onClick.AddListener(OnClickReject); // 거절
                 }
                 else if (btns.Length >= 1)
                 {
@@ -94,7 +98,8 @@ public class ErrorClickGame : MonoBehaviour
 
     void OnClickPopup(GameObject popup)
     {
-        if (isFinished) return;
+        if (isFinished)
+            return;
 
         spawnedPopups.Remove(popup);
         Destroy(popup);
@@ -106,18 +111,21 @@ public class ErrorClickGame : MonoBehaviour
 
     void OnClickAgree()
     {
-        if (isFinished) return;
+        if (isFinished)
+            return;
         isFinished = true;
         MiniGameManager.NotifySuccess();
     }
 
     void OnClickReject()
     {
-        if (isFinished) return;
+        if (isFinished)
+            return;
         isFinished = true;
 
         foreach (var p in spawnedPopups)
-            if (p != null) Destroy(p);
+            if (p != null)
+                Destroy(p);
         spawnedPopups.Clear();
 
         MiniGameManager.NotifyFail();

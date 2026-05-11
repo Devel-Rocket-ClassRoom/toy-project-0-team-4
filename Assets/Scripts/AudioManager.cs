@@ -3,10 +3,12 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("BGM")]
-    [SerializeField] private AudioSource bgmSource;
+    [SerializeField]
+    private AudioSource bgmSource;
 
     [Header("효과음")]
-    [SerializeField] private AudioSource[] sfxSources;
+    [SerializeField]
+    private AudioSource[] sfxSources;
 
     private float bgmVolume = 1f;
     private float sfxVolume = 1f;

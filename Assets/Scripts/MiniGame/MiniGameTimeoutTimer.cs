@@ -1,11 +1,12 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class MiniGameTimeoutTimer : MonoBehaviour
 {
     [Header("미니게임 제한 시간")]
-    [SerializeField] private float limitTime = 10f;
+    [SerializeField]
+    private float limitTime = 10f;
 
     private MiniGameSpawner miniGameSpawner;
 

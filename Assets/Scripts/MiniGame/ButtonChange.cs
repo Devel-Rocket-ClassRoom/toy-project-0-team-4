@@ -12,7 +12,7 @@ public class ButtonChange : MonoBehaviour
     private Button disagreeButton;
 
     [Header("미니게임3 - 이미지 스왑")]
-    public Sprite agreeSprite;    // 동의 버튼에 원래 표시할 이미지
+    public Sprite agreeSprite; // 동의 버튼에 원래 표시할 이미지
     public Sprite disagreeSprite; // 동의하지않음 버튼에 원래 표시할 이미지
 
     [Header("미니게임1 - 버튼 시작 크기")]
@@ -28,8 +28,8 @@ public class ButtonChange : MonoBehaviour
     private RectTransform disagreeRect;
 
     [Header("버튼 생성 위치")]
-    public Vector2 agreeSpawnPosition    = new(-150f, 0f);
-    public Vector2 disagreeSpawnPosition = new( 150f, 0f);
+    public Vector2 agreeSpawnPosition = new(-150f, 0f);
+    public Vector2 disagreeSpawnPosition = new(150f, 0f);
 
     [Header("미니게임4 - 동의 버튼 도망")]
     public float game4EscapeRadius = 150f;
@@ -50,7 +50,16 @@ public class ButtonChange : MonoBehaviour
     [Header("이 프리팹이 담당할 게임 번호 (1~5)")]
     public int gameIndex = 1;
 
-    private enum MiniGameState { None, Game1, Game2, Game3, Game4, Game5 }
+    private enum MiniGameState
+    {
+        None,
+        Game1,
+        Game2,
+        Game3,
+        Game4,
+        Game5,
+    }
+
     private MiniGameState currentState = MiniGameState.None;
 
     void Awake()
@@ -66,38 +75,66 @@ public class ButtonChange : MonoBehaviour
     {
         switch (gameIndex)
         {
-            case 1: StartGame1(); break;
-            case 2: StartGame2(); break;
-            case 3: StartGame3(); break;
-            case 4: StartGame4(); break;
-            case 5: StartGame5(); break;
+            case 1:
+                StartGame1();
+                break;
+            case 2:
+                StartGame2();
+                break;
+            case 3:
+                StartGame3();
+                break;
+            case 4:
+                StartGame4();
+                break;
+            case 5:
+                StartGame5();
+                break;
         }
     }
 
     void OnEnable()
     {
-        if (gameIndex == 1) MiniGameManager.OnGame1Start += StartGame1;
-        if (gameIndex == 2) MiniGameManager.OnGame2Start += StartGame2;
-        if (gameIndex == 3) MiniGameManager.OnGame3Start += StartGame3;
-        if (gameIndex == 4) MiniGameManager.OnGame4Start += StartGame4;
-        if (gameIndex == 5) MiniGameManager.OnGame5Start += StartGame5;
+        if (gameIndex == 1)
+            MiniGameManager.OnGame1Start += StartGame1;
+        if (gameIndex == 2)
+            MiniGameManager.OnGame2Start += StartGame2;
+        if (gameIndex == 3)
+            MiniGameManager.OnGame3Start += StartGame3;
+        if (gameIndex == 4)
+            MiniGameManager.OnGame4Start += StartGame4;
+        if (gameIndex == 5)
+            MiniGameManager.OnGame5Start += StartGame5;
     }
 
     void OnDisable()
     {
-        if (gameIndex == 1) MiniGameManager.OnGame1Start -= StartGame1;
-        if (gameIndex == 2) MiniGameManager.OnGame2Start -= StartGame2;
-        if (gameIndex == 3) MiniGameManager.OnGame3Start -= StartGame3;
-        if (gameIndex == 4) MiniGameManager.OnGame4Start -= StartGame4;
-        if (gameIndex == 5) MiniGameManager.OnGame5Start -= StartGame5;
+        if (gameIndex == 1)
+            MiniGameManager.OnGame1Start -= StartGame1;
+        if (gameIndex == 2)
+            MiniGameManager.OnGame2Start -= StartGame2;
+        if (gameIndex == 3)
+            MiniGameManager.OnGame3Start -= StartGame3;
+        if (gameIndex == 4)
+            MiniGameManager.OnGame4Start -= StartGame4;
+        if (gameIndex == 5)
+            MiniGameManager.OnGame5Start -= StartGame5;
     }
 
     void ShowButtons()
     {
         if (agreeButton == null)
         {
-            if (agreePrefab == null) { Debug.LogError("[ButtonChange] agreePrefab이 비어있음"); return; }
-            if (disagreePrefab == null) { Debug.LogError("[ButtonChange] disagreePrefab이 비어있음"); return; }
+            if (agreePrefab == null)
+            {
+                Debug.LogError("[ButtonChange] agreePrefab이 비어있음");
+                return;
+            }
+            if (disagreePrefab == null)
+            {
+                Debug.LogError("[ButtonChange] disagreePrefab이 비어있음");
+                return;
+            }
 
             GameObject agreeGO = Instantiate(agreePrefab, transform);
             GameObject disagreeGO = Instantiate(disagreePrefab, transform);
@@ -105,8 +142,10 @@ public class ButtonChange : MonoBehaviour
             // 생성된 버튼의 ButtonChange가 또 버튼을 만들지 못하도록 비활성화
             var agreeBC = agreeGO.GetComponent<ButtonChange>();
             var disagreeBC = disagreeGO.GetComponent<ButtonChange>();
-            if (agreeBC != null) agreeBC.enabled = false;
-            if (disagreeBC != null) disagreeBC.enabled = false;
+            if (agreeBC != null)
+                agreeBC.enabled = false;
+            if (disagreeBC != null)
+                disagreeBC.enabled = false;
 
             agreeButton = agreeGO.GetComponent<Button>();
             disagreeButton = disagreeGO.GetComponent<Button>();
@@ -116,7 +155,7 @@ public class ButtonChange : MonoBehaviour
             // 화면 중앙 기준으로 좌우 배치
             agreeRect.anchorMin = agreeRect.anchorMax = new Vector2(0.5f, 0.5f);
             disagreeRect.anchorMin = disagreeRect.anchorMax = new Vector2(0.5f, 0.5f);
-            agreeRect.anchoredPosition    = agreeSpawnPosition;
+            agreeRect.anchoredPosition = agreeSpawnPosition;
             disagreeRect.anchoredPosition = disagreeSpawnPosition;
         }
 
@@ -133,7 +172,11 @@ public class ButtonChange : MonoBehaviour
         disagreeRect.localScale = Vector3.one * game1StartScale;
 
         RegisterListeners(
-            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
+            () =>
+            {
+                currentState = MiniGameState.None;
+                MiniGameManager.NotifySuccess();
+            },
             () => MiniGameManager.NotifyFail()
         );
     }
@@ -147,7 +190,11 @@ public class ButtonChange : MonoBehaviour
         agreeRect.localScale = Vector3.one;
         disagreeRect.localScale = Vector3.one * game2StartScale;
         RegisterListeners(
-            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
+            () =>
+            {
+                currentState = MiniGameState.None;
+                MiniGameManager.NotifySuccess();
+            },
             () => MiniGameManager.NotifyFail()
         );
     }
@@ -166,7 +213,11 @@ public class ButtonChange : MonoBehaviour
         // 이미지가 바뀌었으므로 역할도 반대로 등록
         RegisterListeners(
             () => MiniGameManager.NotifyFail(),
-            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); }
+            () =>
+            {
+                currentState = MiniGameState.None;
+                MiniGameManager.NotifySuccess();
+            }
         );
     }
 
@@ -178,7 +229,11 @@ public class ButtonChange : MonoBehaviour
         agreeRect.localScale = Vector3.one;
         disagreeRect.localScale = Vector3.one;
         RegisterListeners(
-            () => { currentState = MiniGameState.None; MiniGameManager.NotifySuccess(); },
+            () =>
+            {
+                currentState = MiniGameState.None;
+                MiniGameManager.NotifySuccess();
+            },
             () => MiniGameManager.NotifyFail()
         );
     }
@@ -188,7 +243,8 @@ public class ButtonChange : MonoBehaviour
     {
         currentState = MiniGameState.Game5;
 
-        if (TryGetComponent<VerticalLayoutGroup>(out var vLayout)) vLayout.enabled = false;
+        if (TryGetComponent<VerticalLayoutGroup>(out var vLayout))
+            vLayout.enabled = false;
 
         // 그리드 컨테이너 생성
         game5Grid = new GameObject("Game5Grid", typeof(RectTransform));
@@ -221,7 +277,12 @@ public class ButtonChange : MonoBehaviour
         for (int i = 0; i < total; i++)
         {
             int cellType = types[i];
-            var cellGO = new GameObject($"Cell_{i}", typeof(RectTransform), typeof(Image), typeof(Button));
+            var cellGO = new GameObject(
+                $"Cell_{i}",
+                typeof(RectTransform),
+                typeof(Image),
+                typeof(Button)
+            );
             cellGO.transform.SetParent(game5Grid.transform, false);
 
             var img = cellGO.GetComponent<Image>();
@@ -238,12 +299,14 @@ public class ButtonChange : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 clickCount++;
-                if (clickCount < 2) return;
+                if (clickCount < 2)
+                    return;
 
                 img.color = Color.clear;
                 btn.interactable = false;
 
-                if (cellType == 0) return;
+                if (cellType == 0)
+                    return;
 
                 var prefab = cellType == 1 ? agreePrefab : disagreePrefab;
                 var realGO = Instantiate(prefab, cellGO.transform);
@@ -252,7 +315,8 @@ public class ButtonChange : MonoBehaviour
                 rt.anchorMax = Vector2.one;
                 rt.offsetMin = rt.offsetMax = Vector2.zero;
 
-                if (realGO.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+                if (realGO.TryGetComponent<ButtonChange>(out var bc))
+                    bc.enabled = false;
 
                 var realBtn = realGO.GetComponent<Button>();
                 realBtn.onClick = new Button.ButtonClickedEvent();
@@ -280,7 +344,8 @@ public class ButtonChange : MonoBehaviour
         if (currentState == MiniGameState.Game4 && agreeRect != null)
         {
             var parentRect = agreeRect.parent as RectTransform;
-            if (parentRect == null) return;
+            if (parentRect == null)
+                return;
 
             Canvas canvas = GetComponentInParent<Canvas>();
             Camera uiCamera = canvas != null ? canvas.worldCamera : null;
@@ -309,7 +374,10 @@ public class ButtonChange : MonoBehaviour
     }
 
     // ─── 공통 유틸 ───────────────────────────────────────────────────
-    void RegisterListeners(UnityEngine.Events.UnityAction onAgree, UnityEngine.Events.UnityAction onDisagree)
+    void RegisterListeners(
+        UnityEngine.Events.UnityAction onAgree,
+        UnityEngine.Events.UnityAction onDisagree
+    )
     {
         agreeButton.onClick = new Button.ButtonClickedEvent();
         disagreeButton.onClick = new Button.ButtonClickedEvent();
@@ -322,5 +390,4 @@ public class ButtonChange : MonoBehaviour
         if (btn.targetGraphic is Image img)
             img.sprite = sprite;
     }
-
 }

@@ -6,8 +6,11 @@ public class PaddleController : MonoBehaviour
     public Slider uiSlider;
     private Rigidbody2D rb;
 
-    [SerializeField] private float minX = -450f;
-    [SerializeField] private float maxX = 455f;
+    [SerializeField]
+    private float minX = -450f;
+
+    [SerializeField]
+    private float maxX = 455f;
 
     private void Awake()
     {

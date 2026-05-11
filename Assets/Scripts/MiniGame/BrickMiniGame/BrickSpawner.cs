@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class BrickSpawner : MonoBehaviour
 {
@@ -40,7 +40,8 @@ public class BrickSpawner : MonoBehaviour
 
     private void PlaceButtonAtRandomBrick()
     {
-        if (spawnedBricks.Count == 0) return;
+        if (spawnedBricks.Count == 0)
+            return;
 
         int randomIndex = Random.Range(0, spawnedBricks.Count);
         GameObject targetBrick = spawnedBricks[randomIndex];

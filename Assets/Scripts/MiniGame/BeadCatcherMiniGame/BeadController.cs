@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class BeadController : MonoBehaviour
 {
@@ -19,7 +19,8 @@ public class BeadController : MonoBehaviour
     public void SetLetter(char newLetter)
     {
         letter = newLetter;
-        if (textDisplay != null) textDisplay.text = newLetter.ToString();
+        if (textDisplay != null)
+            textDisplay.text = newLetter.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

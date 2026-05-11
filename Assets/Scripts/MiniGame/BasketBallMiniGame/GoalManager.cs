@@ -9,7 +9,8 @@ public class GoalManager : MonoBehaviour
     public Color filledColor = Color.green;
 
     [Header("스테이지 화면")]
-    [SerializeField] private StageScreen stageScreen;
+    [SerializeField]
+    private StageScreen stageScreen;
     private int currentGoalCount = 0;
     private bool isCompleted = false;
 

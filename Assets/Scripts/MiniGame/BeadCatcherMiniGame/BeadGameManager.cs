@@ -1,15 +1,17 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class BeadGameManager : MonoBehaviour
 {
     public static BeadGameManager Current { get; private set; }
 
     [Header("UI 연결")]
-    [SerializeField] private TextMeshProUGUI agreeButtonText;
+    [SerializeField]
+    private TextMeshProUGUI agreeButtonText;
 
     [Header("데이터")]
-    [SerializeField] private string targetWord = "AGREE";
+    [SerializeField]
+    private string targetWord = "AGREE";
 
     private string currentWord = "";
     private string wrongWord = "";
@@ -19,7 +21,8 @@ public class BeadGameManager : MonoBehaviour
     public string TargetWord => targetWord;
 
     [Header("스테이지 화면")]
-    [SerializeField] private StageScreen stageScreen;
+    [SerializeField]
+    private StageScreen stageScreen;
 
     private void Awake()
     {

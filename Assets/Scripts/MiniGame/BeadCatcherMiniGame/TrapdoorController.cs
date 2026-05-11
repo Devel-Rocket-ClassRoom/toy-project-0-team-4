@@ -5,7 +5,7 @@ public class TrapdoorController : MonoBehaviour
     public RectTransform leftDoor;
     public RectTransform rightDoor;
 
-    public float openSpeed = 8f;   // ¹®ÀÌ ¿­¸®´Â ¼Óµµ (³ôÀ»¼ö·Ï ºü¸§)
+    public float openSpeed = 8f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 
     private float openAngle = 90f;
     private bool isOpen = false;

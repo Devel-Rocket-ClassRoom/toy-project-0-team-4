@@ -7,7 +7,7 @@ public class CarLauncher : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [Header("UI References")]
     public Slider powerSlider;
-    public Transform gameScreen; 
+    public Transform gameScreen;
 
     [Header("Object References")]
     public GameObject carPrefab;
@@ -33,13 +33,15 @@ public class CarLauncher : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (isCharging && currentCar != null)
         {
             powerSlider.value += Time.deltaTime * chargeSpeed;
-            if (powerSlider.value >= 1f) powerSlider.value = 0f;
+            if (powerSlider.value >= 1f)
+                powerSlider.value = 0f;
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (currentCar != null) isCharging = true;
+        if (currentCar != null)
+            isCharging = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -94,7 +96,8 @@ public class CarLauncher : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         currentCar.transform.localScale = Vector3.one;
 
         Rigidbody2D rb = currentCar.GetComponent<Rigidbody2D>();
-        if (rb != null) rb.simulated = false;
+        if (rb != null)
+            rb.simulated = false;
 
         isSpawnRoutineRunning = false;
     }

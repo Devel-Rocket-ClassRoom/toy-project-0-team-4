@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -16,19 +16,23 @@ public class MiniGameManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void ResetStaticState()
     {
-        Instance        = null;
-        OnGame1Start    = null;
-        OnGame2Start    = null;
-        OnGame3Start    = null;
-        OnGame4Start    = null;
-        OnGame5Start    = null;
+        Instance = null;
+        OnGame1Start = null;
+        OnGame2Start = null;
+        OnGame3Start = null;
+        OnGame4Start = null;
+        OnGame5Start = null;
         OnMiniGameSuccess = null;
-        OnMiniGameFail    = null;
+        OnMiniGameFail = null;
     }
 
     void Awake()
     {
-        if (Instance != null) { Destroy(this); return; }
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
         Instance = this;
     }
 
@@ -36,15 +40,28 @@ public class MiniGameManager : MonoBehaviour
     {
         switch (index)
         {
-            case 1: OnGame1Start?.Invoke(); break;
-            case 2: OnGame2Start?.Invoke(); break;
-            case 3: OnGame3Start?.Invoke(); break;
-            case 4: OnGame4Start?.Invoke(); break;
-            case 5: OnGame5Start?.Invoke(); break;
-            default: Debug.LogWarning($"[MiniGameManager] 처리되지 않은 gameIndex: {index}"); break;
+            case 1:
+                OnGame1Start?.Invoke();
+                break;
+            case 2:
+                OnGame2Start?.Invoke();
+                break;
+            case 3:
+                OnGame3Start?.Invoke();
+                break;
+            case 4:
+                OnGame4Start?.Invoke();
+                break;
+            case 5:
+                OnGame5Start?.Invoke();
+                break;
+            default:
+                Debug.LogWarning($"[MiniGameManager] 처리되지 않은 gameIndex: {index}");
+                break;
         }
     }
 
     public static void NotifySuccess() => OnMiniGameSuccess?.Invoke();
-    public static void NotifyFail()    => OnMiniGameFail?.Invoke();
+
+    public static void NotifyFail() => OnMiniGameFail?.Invoke();
 }

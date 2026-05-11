@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class StageScreen : MonoBehaviour
 {
     [Header("버튼")]
-    [SerializeField] private Button clearButton;
+    [SerializeField]
+    private Button clearButton;
 
     public event Action<int> OnStageClearButtonClicked;
     public event Action OnGameOver;
@@ -22,13 +23,13 @@ public class StageScreen : MonoBehaviour
     private void OnEnable()
     {
         MiniGameManager.OnMiniGameSuccess += ClearStage;
-        MiniGameManager.OnMiniGameFail    += GameOver;
+        MiniGameManager.OnMiniGameFail += GameOver;
     }
 
     private void OnDisable()
     {
         MiniGameManager.OnMiniGameSuccess -= ClearStage;
-        MiniGameManager.OnMiniGameFail    -= GameOver;
+        MiniGameManager.OnMiniGameFail -= GameOver;
     }
 
     private void OnDestroy()

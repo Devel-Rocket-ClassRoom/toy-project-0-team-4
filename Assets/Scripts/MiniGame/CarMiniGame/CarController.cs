@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
@@ -9,8 +9,11 @@ public class CarController : MonoBehaviour
     private bool isProcessing = false;
     private string currentZoneTag = "";
 
-    [SerializeField] private float stopThreshold = 0.1f;
-    [SerializeField] private StageScreen stageScreen;
+    [SerializeField]
+    private float stopThreshold = 0.1f;
+
+    [SerializeField]
+    private StageScreen stageScreen;
 
     void Awake()
     {

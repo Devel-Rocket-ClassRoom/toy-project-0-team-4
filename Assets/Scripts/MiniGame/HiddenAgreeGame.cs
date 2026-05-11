@@ -37,7 +37,8 @@ public class HiddenAgreeGame : MonoBehaviour
 
     public void StartMiniGame()
     {
-        if (TryGetComponent<VerticalLayoutGroup>(out var vl)) vl.enabled = false;
+        if (TryGetComponent<VerticalLayoutGroup>(out var vl))
+            vl.enabled = false;
 
         SpawnDisagreeButton();
 
@@ -49,7 +50,8 @@ public class HiddenAgreeGame : MonoBehaviour
     void SpawnDisagreeButton()
     {
         var go = Instantiate(disagreePrefab, transform);
-        if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+        if (go.TryGetComponent<ButtonChange>(out var bc))
+            bc.enabled = false;
 
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
@@ -64,7 +66,8 @@ public class HiddenAgreeGame : MonoBehaviour
     void SpawnAgreeButton()
     {
         var go = Instantiate(agreePrefab, transform);
-        if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+        if (go.TryGetComponent<ButtonChange>(out var bc))
+            bc.enabled = false;
 
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
@@ -92,7 +95,8 @@ public class HiddenAgreeGame : MonoBehaviour
 
     void Update()
     {
-        if (agreeSpawned) return;
+        if (agreeSpawned)
+            return;
 
         agreeTimer += Time.deltaTime;
         if (agreeTimer >= agreeDelay)

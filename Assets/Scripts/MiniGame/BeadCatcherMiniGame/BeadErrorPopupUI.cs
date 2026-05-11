@@ -1,18 +1,21 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class BeadErrorPopupUI : MonoBehaviour
 {
     public static BeadErrorPopupUI Instance { get; private set; }
 
     [Header("팝업 루트")]
-    [SerializeField] private GameObject popupRoot;
+    [SerializeField]
+    private GameObject popupRoot;
 
     [Header("의미불명 팝업")]
-    [SerializeField] private GameObject errorPanel;
+    [SerializeField]
+    private GameObject errorPanel;
 
     [Header("팝업 문구 텍스트")]
-    [SerializeField] private TMP_Text errorContentText;
+    [SerializeField]
+    private TMP_Text errorContentText;
 
     private void Awake()
     {

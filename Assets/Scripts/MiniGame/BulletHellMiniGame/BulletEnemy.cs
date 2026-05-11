@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class BulletEnemy : MonoBehaviour
 {
@@ -71,7 +71,8 @@ public class BulletEnemy : MonoBehaviour
 
         // 시작 위치 설정: 목표 지점 방향의 화면 바깥쪽
         Vector3 direction = targetPos.normalized;
-        if (direction == Vector3.zero) direction = Vector3.up;
+        if (direction == Vector3.zero)
+            direction = Vector3.up;
         transform.localPosition = targetPos + (direction * 1000f);
 
         // 3. 목표 위치로 이동 (0.5초 동안 빠르게 진입)

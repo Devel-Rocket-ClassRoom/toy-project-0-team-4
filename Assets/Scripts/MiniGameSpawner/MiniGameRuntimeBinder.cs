@@ -4,7 +4,6 @@ using UnityEngine;
 /// <summary>
 /// buttonHandler 자동 연결 + StartMiniGame 자동 실행
 /// </summary>
-
 public static class MiniGameRuntimeBinder
 {
     public static void BindButtonHandler(StageScreen currentMiniGame, OnClickButton onClickButton)
@@ -33,10 +32,12 @@ public static class MiniGameRuntimeBinder
             }
 
             // buttonHandler라는 필드를 찾음
-            FieldInfo field = behaviour.GetType().GetField(
-                "buttonHandler",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
-            );
+            FieldInfo field = behaviour
+                .GetType()
+                .GetField(
+                    "buttonHandler",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                );
 
             if (field == null)
             {
@@ -69,10 +70,12 @@ public static class MiniGameRuntimeBinder
                 continue;
             }
 
-            MethodInfo method = behaviour.GetType().GetMethod(
-                "StartMiniGame",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
-            );
+            MethodInfo method = behaviour
+                .GetType()
+                .GetMethod(
+                    "StartMiniGame",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                );
 
             if (method == null)
             {

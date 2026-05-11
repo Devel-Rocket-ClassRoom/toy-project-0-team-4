@@ -4,13 +4,15 @@ public class BezierMovement : MonoBehaviour
 {
     [Header("Area Settings")]
     public RectTransform moveArea; // 이동을 제한할 패널의 RectTransform
-    public float padding = 50f;    // 패널 테두리에서 얼마나 떨어져 있을지
+    public float padding = 50f; // 패널 테두리에서 얼마나 떨어져 있을지
 
     [Header("Movement Settings")]
     private float duration;
     private float timer = 0f;
 
-    private Vector3 p0, p1, p2;
+    private Vector3 p0,
+        p1,
+        p2;
     private RectTransform myRect;
 
     void Start()

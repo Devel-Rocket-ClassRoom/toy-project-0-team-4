@@ -9,7 +9,7 @@ public class ButtonRaycaster : MonoBehaviour
     public LayerMask targetLayer;
 
     [Header("State")]
-    public bool isAgree = false; // ÇöÀç µ¿ÀÇ »óÅÂÀÎÁö ¿©ºÎ
+    public bool isAgree = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     [Header("UI References")]
     public LineRenderer lineRenderer;
@@ -20,19 +20,24 @@ public class ButtonRaycaster : MonoBehaviour
 
     void Update()
     {
-        // 1. ·¹ÀÌÄ³½ºÆ® ¹ß»ç
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin.position, Vector2.up, maxDistance, targetLayer);
+        // 1. ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ® ï¿½ß»ï¿½
+        RaycastHit2D hit = Physics2D.Raycast(
+            rayOrigin.position,
+            Vector2.up,
+            maxDistance,
+            targetLayer
+        );
 
-        // 2. LineRenderer ½ÃÀÛÁ¡
+        // 2. LineRenderer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         lineRenderer.SetPosition(0, Vector3.zero);
 
         if (hit.collider != null)
         {
-            // Ãæµ¹ ÁöÁ¡ °è»ê ¹× ¼± ±×¸®±â
+            // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
             Vector3 localHitPoint = rayOrigin.InverseTransformPoint(hit.point);
             lineRenderer.SetPosition(1, localHitPoint);
 
-            // ÅÂ±×¿¡ µû¸¥ »óÅÂ ¾÷µ¥ÀÌÆ®
+            // ï¿½Â±×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             if (hit.collider.CompareTag("Agree"))
             {
                 SetButtonState(true);

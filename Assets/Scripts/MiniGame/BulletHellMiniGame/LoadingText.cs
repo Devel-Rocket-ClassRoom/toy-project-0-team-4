@@ -1,12 +1,17 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class LoadingText : MonoBehaviour
 {
     [Header("설정")]
-    [SerializeField] private float pulseSpeed = 1.2f; // 깜빡이는 속도
-    [SerializeField] private float minAlpha = 0.1f;    // 최소 투명도
-    [SerializeField] private float maxAlpha = 1.0f;    // 최대 투명도
+    [SerializeField]
+    private float pulseSpeed = 1.2f; // 깜빡이는 속도
+
+    [SerializeField]
+    private float minAlpha = 0.1f; // 최소 투명도
+
+    [SerializeField]
+    private float maxAlpha = 1.0f; // 최대 투명도
 
     private TextMeshProUGUI loadingText;
     private bool isPulsing = false;
@@ -20,7 +25,8 @@ public class LoadingText : MonoBehaviour
 
     void Update()
     {
-        if (!isPulsing) return;
+        if (!isPulsing)
+            return;
 
         // 시간에 따라 0~1 사이를 왕복하는 값 계산
         float pingPong = Mathf.PingPong(Time.time * pulseSpeed, 1.0f);

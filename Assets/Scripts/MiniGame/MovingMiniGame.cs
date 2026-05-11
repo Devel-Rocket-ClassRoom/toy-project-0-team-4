@@ -40,7 +40,8 @@ public class MovingMiniGame : MonoBehaviour
 
     public void StartMiniGame()
     {
-        if (TryGetComponent<VerticalLayoutGroup>(out var vl)) vl.enabled = false;
+        if (TryGetComponent<VerticalLayoutGroup>(out var vl))
+            vl.enabled = false;
 
         // Canvas 크기 기준으로 이동 범위 계산
         halfWidth = 600f;
@@ -48,7 +49,8 @@ public class MovingMiniGame : MonoBehaviour
         if (canvas != null)
         {
             var cr = canvas.GetComponent<RectTransform>();
-            if (cr != null && cr.rect.width > 0f) halfWidth = cr.rect.width * 0.5f;
+            if (cr != null && cr.rect.width > 0f)
+                halfWidth = cr.rect.width * 0.5f;
         }
 
         SpawnDisagreeButtons();
@@ -72,7 +74,8 @@ public class MovingMiniGame : MonoBehaviour
     Button SpawnButton(GameObject prefab, Vector2 pos)
     {
         var go = Instantiate(prefab, transform);
-        if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+        if (go.TryGetComponent<ButtonChange>(out var bc))
+            bc.enabled = false;
 
         var rt = go.GetComponent<RectTransform>();
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
@@ -84,13 +87,15 @@ public class MovingMiniGame : MonoBehaviour
 
     void SpawnAgreeButton()
     {
-        if (agreeRect != null) return;
+        if (agreeRect != null)
+            return;
 
         agreeDirection = Random.value > 0.5f ? 1f : -1f;
         float startX = agreeDirection > 0f ? -halfWidth - 100f : halfWidth + 100f;
 
         var go = Instantiate(agreePrefab, transform);
-        if (go.TryGetComponent<ButtonChange>(out var bc)) bc.enabled = false;
+        if (go.TryGetComponent<ButtonChange>(out var bc))
+            bc.enabled = false;
 
         agreeRect = go.GetComponent<RectTransform>();
         agreeRect.anchorMin = agreeRect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -114,7 +119,8 @@ public class MovingMiniGame : MonoBehaviour
             return;
         }
 
-        if (agreeRect == null) return;
+        if (agreeRect == null)
+            return;
 
         var pos = agreeRect.anchoredPosition;
         pos.x += agreeDirection * agreeSpeed * Time.deltaTime;

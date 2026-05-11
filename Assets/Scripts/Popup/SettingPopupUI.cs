@@ -4,15 +4,22 @@ using UnityEngine.UI;
 public class SettingPopupUI : MonoBehaviour
 {
     [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField]
+    private AudioManager audioManager;
 
     [Header("BGM")]
-    [SerializeField] private Slider bgmVolumeSlider;
-    [SerializeField] private Toggle bgmMuteToggle;
+    [SerializeField]
+    private Slider bgmVolumeSlider;
+
+    [SerializeField]
+    private Toggle bgmMuteToggle;
 
     [Header("효과음")]
-    [SerializeField] private Slider sfxVolumeSlider;
-    [SerializeField] private Toggle sfxMuteToggle;
+    [SerializeField]
+    private Slider sfxVolumeSlider;
+
+    [SerializeField]
+    private Toggle sfxMuteToggle;
 
     private void OnEnable()
     {

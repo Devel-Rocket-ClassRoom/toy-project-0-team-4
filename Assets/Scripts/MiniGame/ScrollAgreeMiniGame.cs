@@ -8,22 +8,34 @@ using UnityEngine.UI;
 public class ScrollAgreeMiniGame : MonoBehaviour
 {
     [Header("UI 참조 (Inspector에서 연결)")]
-    [SerializeField] private Button agreeButton;
-    [SerializeField] private Button disagreeButton;
-    [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private TextMeshProUGUI contentTMP;
+    [SerializeField]
+    private Button agreeButton;
+
+    [SerializeField]
+    private Button disagreeButton;
+
+    [SerializeField]
+    private ScrollRect scrollRect;
+
+    [SerializeField]
+    private TextMeshProUGUI contentTMP;
 
     [Header("JSON 설정")]
-    [SerializeField] private string jsonFileName = "GameTexts"; // Resources 폴더 내 파일명
+    [SerializeField]
+    private string jsonFileName = "GameTexts"; // Resources 폴더 내 파일명
 
     [Header("비활성 상태 투명도 (0=완전투명, 1=불투명)")]
-    [SerializeField] [Range(0f, 1f)] private float disabledAlpha = 0.3f;
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float disabledAlpha = 0.3f;
 
     [Header("스크롤 감도")]
-    [SerializeField] private float scrollSensitivity = 3f;
+    [SerializeField]
+    private float scrollSensitivity = 3f;
 
     [Header("활성화 오프셋 (양수=더 내려야 활성화)")]
-    [SerializeField] private float activateOffset = 30f;
+    [SerializeField]
+    private float activateOffset = 30f;
 
     private float textHeight;
 
@@ -49,7 +61,8 @@ public class ScrollAgreeMiniGame : MonoBehaviour
     private void LoadAndCombineText()
     {
         TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);
-        if (jsonFile == null) return;
+        if (jsonFile == null)
+            return;
 
         TermsData data = JsonUtility.FromJson<TermsData>(jsonFile.text);
         StringBuilder sb = new StringBuilder();
@@ -86,7 +99,8 @@ public class ScrollAgreeMiniGame : MonoBehaviour
     private IEnumerator FitContent()
     {
         yield return new WaitForEndOfFrame();
-        if (contentTMP == null) yield break;
+        if (contentTMP == null)
+            yield break;
 
         contentTMP.ForceMeshUpdate();
 
@@ -103,7 +117,10 @@ public class ScrollAgreeMiniGame : MonoBehaviour
         }
 
         // 텍스트와 컨텐츠 영역 크기 동기화
-        contentTMP.rectTransform.sizeDelta = new Vector2(contentTMP.rectTransform.sizeDelta.x, textHeight);
+        contentTMP.rectTransform.sizeDelta = new Vector2(
+            contentTMP.rectTransform.sizeDelta.x,
+            textHeight
+        );
         scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, textHeight);
 
         yield return null;
@@ -139,16 +156,18 @@ public class ScrollAgreeMiniGame : MonoBehaviour
 
     private void DisableDrag()
     {
-        if (scrollRect == null) return;
+        if (scrollRect == null)
+            return;
 
         if (scrollRect.verticalScrollbar != null)
             scrollRect.verticalScrollbar.interactable = false;
 
         scrollRect.horizontal = false;
 
-        RectTransform viewport = scrollRect.viewport != null
-            ? scrollRect.viewport
-            : scrollRect.GetComponent<RectTransform>();
+        RectTransform viewport =
+            scrollRect.viewport != null
+                ? scrollRect.viewport
+                : scrollRect.GetComponent<RectTransform>();
 
         GameObject blocker = new("DragBlocker", typeof(RectTransform));
         blocker.transform.SetParent(viewport, false);
@@ -168,7 +187,8 @@ public class ScrollAgreeMiniGame : MonoBehaviour
 
     private void Update()
     {
-        if (scrollRect == null || agreeButton.interactable || textHeight <= 0f) return;
+        if (scrollRect == null || agreeButton.interactable || textHeight <= 0f)
+            return;
 
         float viewportH = scrollRect.viewport.rect.height;
         float scrolled = scrollRect.content.anchoredPosition.y;

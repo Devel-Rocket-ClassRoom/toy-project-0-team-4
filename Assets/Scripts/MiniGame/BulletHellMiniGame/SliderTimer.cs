@@ -1,16 +1,19 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SliderTimer : MonoBehaviour
 {
     [Header("미니게임 제한 시간")]
-    [SerializeField] private float limitTime = 25f;
+    [SerializeField]
+    private float limitTime = 25f;
 
     [Header("진행 상황 슬라이더")]
-    [SerializeField] private Slider timerSlider; // 슬라이더 컴포넌트 연결용
+    [SerializeField]
+    private Slider timerSlider; // 슬라이더 컴포넌트 연결용
 
-    [SerializeField] private LoadingText loadingText; // 인스펙터에서 연결
+    [SerializeField]
+    private LoadingText loadingText; // 인스펙터에서 연결
 
     private MiniGameSpawner miniGameSpawner;
     private TMP_Text tmpText;
@@ -72,7 +75,8 @@ public class SliderTimer : MonoBehaviour
     public void StartTimer()
     {
         ResetTimer();
-        if (loadingText != null) loadingText.StartPulsing();
+        if (loadingText != null)
+            loadingText.StartPulsing();
     }
 
     private void ResetTimer()
@@ -107,13 +111,16 @@ public class SliderTimer : MonoBehaviour
 
     private void SetText(string text)
     {
-        if (tmpText != null) tmpText.text = text;
-        if (uiText != null) uiText.text = text;
+        if (tmpText != null)
+            tmpText.text = text;
+        if (uiText != null)
+            uiText.text = text;
     }
 
     private void Timeout()
     {
-        if (isTimedOut) return;
+        if (isTimedOut)
+            return;
 
         isTimedOut = true;
         isRunning = false;
@@ -124,16 +131,19 @@ public class SliderTimer : MonoBehaviour
             playerCtrl.StopFollowing();
         }
 
-        if (loadingText != null) loadingText.StopPulsing();
+        if (loadingText != null)
+            loadingText.StopPulsing();
         stageScreen.ClearStage();
     }
 
     public void StopTimer()
     {
         isRunning = false; // 시간을 멈춤
-        if (loadingText != null) loadingText.StopPulsing();
+        if (loadingText != null)
+            loadingText.StopPulsing();
     }
 
     private void OnStageClear(int stageNumber) => isRunning = false;
+
     private void OnStageGameOver() => isRunning = false;
 }

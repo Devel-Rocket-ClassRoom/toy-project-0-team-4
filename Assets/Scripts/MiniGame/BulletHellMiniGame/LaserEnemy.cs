@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class LaserEnemy : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class LaserEnemy : MonoBehaviour
 
     public void StartLaserAttack()
     {
-        if (gameObject.activeInHierarchy) 
+        if (gameObject.activeInHierarchy)
         {
             StartCoroutine(LaserRoutine());
         }

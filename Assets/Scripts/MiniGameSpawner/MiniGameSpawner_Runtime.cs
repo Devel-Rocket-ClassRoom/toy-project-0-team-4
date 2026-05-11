@@ -42,7 +42,9 @@ public partial class MiniGameSpawner
 
         string stageTitle = mainScreenUI.GetStageTitle(stageNumber);
 
-        MiniGameTitleText[] titleTexts = currentMiniGame.GetComponentsInChildren<MiniGameTitleText>(true);
+        MiniGameTitleText[] titleTexts = currentMiniGame.GetComponentsInChildren<MiniGameTitleText>(
+            true
+        );
 
         if (titleTexts == null || titleTexts.Length == 0)
         {

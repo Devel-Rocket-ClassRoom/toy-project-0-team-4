@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 public class DragController : MonoBehaviour, IPointerClickHandler
 {
@@ -8,11 +8,11 @@ public class DragController : MonoBehaviour, IPointerClickHandler
     private bool gameStarted = false;
 
     private RectTransform rectTransform;
-    private RectTransform parentRect; 
+    private RectTransform parentRect;
     private Canvas canvas;
 
-    public PatternDirector patternDirector; 
-    public SliderTimer sliderTimer; 
+    public PatternDirector patternDirector;
+    public SliderTimer sliderTimer;
     public StageScreen stageScreen;
 
     void Awake()
@@ -22,7 +22,7 @@ public class DragController : MonoBehaviour, IPointerClickHandler
         parentRect = rectTransform.parent as RectTransform; // 부모 RectTransform 참조
     }
 
-    public void OnPointerClick(PointerEventData eventData) 
+    public void OnPointerClick(PointerEventData eventData)
     {
         // 1. 아직 게임이 시작되지 않았을 때만 실행
         if (!gameStarted)
@@ -44,7 +44,7 @@ public class DragController : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        if (isFollowing) 
+        if (isFollowing)
         {
             // 스크린 좌표를 UI 좌표로 변환
             Vector2 localPoint;
@@ -71,7 +71,7 @@ public class DragController : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet") && isFollowing)
         {
@@ -81,7 +81,8 @@ public class DragController : MonoBehaviour, IPointerClickHandler
 
     public void GetHit()
     {
-        if (!isFollowing) return; // 이미 피격 중이면 무시
+        if (!isFollowing)
+            return; // 이미 피격 중이면 무시
 
         isFollowing = false;
 
@@ -104,7 +105,8 @@ public class DragController : MonoBehaviour, IPointerClickHandler
     {
         // 중심에서 현재 위치 방향으로 튕겨나감
         Vector3 exitDirection = (transform.localPosition).normalized;
-        if (exitDirection == Vector3.zero) exitDirection = Vector3.down;
+        if (exitDirection == Vector3.zero)
+            exitDirection = Vector3.down;
 
         float t = 0;
         while (t < 1.0f)
@@ -116,7 +118,7 @@ public class DragController : MonoBehaviour, IPointerClickHandler
 
         gameObject.SetActive(false); // 버튼 사라짐
 
-        stageScreen.GameOver(); 
+        stageScreen.GameOver();
     }
 
     public void StopFollowing()

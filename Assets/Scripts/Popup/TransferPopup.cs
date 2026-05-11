@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class TransferPopup : MonoBehaviour
 {
     [Header("송금 금액 텍스트")]
-    [SerializeField] private TextMeshProUGUI amountText;
+    [SerializeField]
+    private TextMeshProUGUI amountText;
 
     [Header("확인 버튼")]
-    [SerializeField] private Button confirmButton;
+    [SerializeField]
+    private Button confirmButton;
 
     private const float CountUpDuration = 2f;
 

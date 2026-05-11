@@ -4,14 +4,19 @@ using UnityEngine.UI;
 public class CheckboxAgreeMiniGame : MonoBehaviour
 {
     [Header("체크박스 (Toggle 10개)")]
-    [SerializeField] private Toggle[] checkboxes;
+    [SerializeField]
+    private Toggle[] checkboxes;
 
     [Header("버튼")]
-    [SerializeField] private Button agreeButton;
-    [SerializeField] private Button disagreeButton;
+    [SerializeField]
+    private Button agreeButton;
+
+    [SerializeField]
+    private Button disagreeButton;
 
     [Header("거절 버튼 추적 설정")]
-    [SerializeField] private float smoothTime = 0.15f;
+    [SerializeField]
+    private float smoothTime = 0.15f;
 
     private const int TotalCount = 10;
     private const int ChaseThreshold = 5;
@@ -32,7 +37,8 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
 
         AutoFindComponents();
 
-        if (!Validate()) return;
+        if (!Validate())
+            return;
 
         canvas = GetComponentInParent<Canvas>();
         disagreeRect = disagreeButton.GetComponent<RectTransform>();
@@ -69,13 +75,15 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
         if (agreeButton == null)
         {
             Transform t = transform.Find("버튼/동의");
-            if (t != null) agreeButton = t.GetComponent<Button>();
+            if (t != null)
+                agreeButton = t.GetComponent<Button>();
         }
 
         if (disagreeButton == null)
         {
             Transform t = transform.Find("버튼/거절");
-            if (t != null) disagreeButton = t.GetComponent<Button>();
+            if (t != null)
+                disagreeButton = t.GetComponent<Button>();
         }
     }
 
@@ -83,21 +91,33 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
     {
         if (checkboxes == null || checkboxes.Length < TotalCount)
         {
-            Debug.LogError($"[CheckboxAgree] Toggle이 {TotalCount}개 필요합니다. 현재: {checkboxes?.Length}");
+            Debug.LogError(
+                $"[CheckboxAgree] Toggle이 {TotalCount}개 필요합니다. 현재: {checkboxes?.Length}"
+            );
             return false;
         }
-        if (agreeButton == null)  { Debug.LogError("[CheckboxAgree] agreeButton 미연결");    return false; }
-        if (disagreeButton == null) { Debug.LogError("[CheckboxAgree] disagreeButton 미연결"); return false; }
+        if (agreeButton == null)
+        {
+            Debug.LogError("[CheckboxAgree] agreeButton 미연결");
+            return false;
+        }
+        if (disagreeButton == null)
+        {
+            Debug.LogError("[CheckboxAgree] disagreeButton 미연결");
+            return false;
+        }
         return true;
     }
 
     private void OnToggleChanged(bool isOn)
     {
-        if (!gameActive) return;
+        if (!gameActive)
+            return;
 
         checkedCount = 0;
         foreach (var toggle in checkboxes)
-            if (toggle.isOn) checkedCount++;
+            if (toggle.isOn)
+                checkedCount++;
 
         // 5개 체크 시 거절 버튼 마우스 추적 시작
         if (!chasing && checkedCount >= ChaseThreshold)
@@ -112,14 +132,16 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
 
     private void OnAgreeClicked()
     {
-        if (!gameActive) return;
+        if (!gameActive)
+            return;
         gameActive = false;
         MiniGameManager.NotifySuccess();
     }
 
     private void OnDisagreeClicked()
     {
-        if (!gameActive) return;
+        if (!gameActive)
+            return;
         gameActive = false;
         MiniGameManager.NotifyFail();
     }
@@ -138,17 +160,31 @@ public class CheckboxAgreeMiniGame : MonoBehaviour
 
     private void Update()
     {
-        if (!gameActive || !chasing || disagreeRect == null || canvas == null) return;
+        if (!gameActive || !chasing || disagreeRect == null || canvas == null)
+            return;
 
-        Camera uiCam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+        Camera uiCam =
+            canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
         RectTransform parentRect = disagreeRect.parent as RectTransform;
-        if (parentRect == null) return;
+        if (parentRect == null)
+            return;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                parentRect, Input.mousePosition, uiCam, out Vector2 localMouse))
+        if (
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parentRect,
+                Input.mousePosition,
+                uiCam,
+                out Vector2 localMouse
+            )
+        )
         {
             Vector2 current = disagreeRect.localPosition;
-            disagreeRect.localPosition = Vector2.SmoothDamp(current, localMouse, ref followVelocity, smoothTime);
+            disagreeRect.localPosition = Vector2.SmoothDamp(
+                current,
+                localMouse,
+                ref followVelocity,
+                smoothTime
+            );
         }
     }
 }

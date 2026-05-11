@@ -25,12 +25,18 @@ public class JsonLoader : MonoBehaviour
 {
     [Header("UI References (UGUI)")]
     // Canvas UI 시스템에서는 TextMeshProUGUI를 사용합니다.
-    [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI effectiveDateText;
-    [SerializeField] private TextMeshProUGUI contentText;
+    [SerializeField]
+    private TextMeshProUGUI titleText;
+
+    [SerializeField]
+    private TextMeshProUGUI effectiveDateText;
+
+    [SerializeField]
+    private TextMeshProUGUI contentText;
 
     [Header("Data File")]
-    [SerializeField] private string fileName = "GameTexts";
+    [SerializeField]
+    private string fileName = "GameTexts";
 
     void Start()
     {
@@ -51,8 +57,10 @@ public class JsonLoader : MonoBehaviour
         TermsData data = JsonUtility.FromJson<TermsData>(jsonFile.text);
 
         // UI 텍스트 업데이트
-        if (titleText != null) titleText.text = data.documentTitle;
-        if (effectiveDateText != null) effectiveDateText.text = $"시행일: {data.effectiveDate}";
+        if (titleText != null)
+            titleText.text = data.documentTitle;
+        if (effectiveDateText != null)
+            effectiveDateText.text = $"시행일: {data.effectiveDate}";
 
         // 본문 내용 최적화 합치기
         StringBuilder sb = new StringBuilder();

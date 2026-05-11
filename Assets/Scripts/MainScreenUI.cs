@@ -1,6 +1,6 @@
 using System;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class MainScreenUI : MonoBehaviour
 {
@@ -27,19 +27,24 @@ public class MainScreenUI : MonoBehaviour
     }
 
     [Header("스테이지 클리어 매니저")]
-    [SerializeField] private StageClearManager stageClearManager;
+    [SerializeField]
+    private StageClearManager stageClearManager;
 
     [Header("메인화면 스테이지 버튼 목록")]
-    [SerializeField] private StageButtonInfo[] stageButtons;
+    [SerializeField]
+    private StageButtonInfo[] stageButtons;
 
     [Header("클리어 프리팹 크기")]
-    [SerializeField] private Vector2 clearPrefabSize = new Vector2(160f, 60f);
+    [SerializeField]
+    private Vector2 clearPrefabSize = new Vector2(160f, 60f);
 
     [Header("클리어 프리팹 Z축 회전")]
-    [SerializeField] private float clearPrefabRotationZ = -5f;
+    [SerializeField]
+    private float clearPrefabRotationZ = -5f;
 
     [Header("단계와 제목 사이 구분자")]
-    [SerializeField] private string titleSeparator = " ";
+    [SerializeField]
+    private string titleSeparator = " ";
 
     private void OnEnable()
     {
@@ -126,7 +131,9 @@ public class MainScreenUI : MonoBehaviour
     {
         if (stageButton.startButton == null)
         {
-            Debug.LogWarning($"{stageButton.stageNumber} 스테이지 StartButton이 연결되지 않았습니다.");
+            Debug.LogWarning(
+                $"{stageButton.stageNumber} 스테이지 StartButton이 연결되지 않았습니다."
+            );
             return;
         }
 
@@ -141,7 +148,9 @@ public class MainScreenUI : MonoBehaviour
 
         if (stageButton.clearPrefab == null)
         {
-            Debug.LogWarning($"{stageButton.stageNumber} 스테이지 ClearPrefab이 연결되지 않았습니다.");
+            Debug.LogWarning(
+                $"{stageButton.stageNumber} 스테이지 ClearPrefab이 연결되지 않았습니다."
+            );
             return;
         }
 

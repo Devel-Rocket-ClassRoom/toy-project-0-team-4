@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PatternDirector : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class PatternDirector : MonoBehaviour
             canvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
         }
     }
-    
+
     public void StartGameSequence()
     {
         StartCoroutine(GameRoutine());

@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 // 버튼을 누르고 있는 동안 힘을 모으고, 버튼을 뗄 때 공을 발사하는 농구 미니게임
 public class BasketballGame : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -18,7 +18,8 @@ public class BasketballGame : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     // 발사된 공이 유지될 부모
     // 비워두면 이 BasketballGame 오브젝트 아래에 유지됨
-    [SerializeField] private Transform ballParent;
+    [SerializeField]
+    private Transform ballParent;
 
     [Header("Settings")]
     public float rotationSpeed = 2f;

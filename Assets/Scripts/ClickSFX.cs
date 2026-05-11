@@ -3,10 +3,12 @@ using UnityEngine;
 public class ClickSFX : MonoBehaviour
 {
     [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField]
+    private AudioManager audioManager;
 
     [Header("클릭 효과음 인덱스")]
-    [SerializeField] private int clickSfxIndex = 0;   // 클릭 효과음 인덱스 (예: 0)
+    [SerializeField]
+    private int clickSfxIndex = 0; // 클릭 효과음 인덱스 (예: 0)
 
     private void Awake()
     {

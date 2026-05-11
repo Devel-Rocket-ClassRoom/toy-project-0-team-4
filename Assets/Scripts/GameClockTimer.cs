@@ -3,14 +3,19 @@ using UnityEngine;
 public class GameClockTimer : MonoBehaviour
 {
     [Header("전체 제한 시간")]
-    [SerializeField] private float limitTime = 300f; // 5분 = 300초
+    [SerializeField]
+    private float limitTime = 300f; // 5분 = 300초
 
     [Header("시계 회전축")]
-    [SerializeField] private RectTransform clockHourPivot;
-    [SerializeField] private RectTransform clockMinutePivot;
+    [SerializeField]
+    private RectTransform clockHourPivot;
+
+    [SerializeField]
+    private RectTransform clockMinutePivot;
 
     [Header("미니게임 생성 매니저")]
-    [SerializeField] private MiniGameSpawner miniGameSpawner;
+    [SerializeField]
+    private MiniGameSpawner miniGameSpawner;
 
     private float currentTime;
     private bool isRunning;

@@ -3,10 +3,12 @@ using UnityEngine;
 public class Succes : MonoBehaviour
 {
     [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField]
+    private AudioManager audioManager;
 
     [Header("성공 효과음 인덱스")]
-    [SerializeField] private int successSfxIndex = 4;
+    [SerializeField]
+    private int successSfxIndex = 4;
 
     private void Awake()
     {

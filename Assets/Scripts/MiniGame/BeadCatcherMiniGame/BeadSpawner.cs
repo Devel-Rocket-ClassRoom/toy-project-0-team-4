@@ -7,7 +7,8 @@ public class BeadSpawner : MonoBehaviour
     public Transform canvasTransform;
     public float spawnInterval = 2f;
 
-    [Range(0f, 1f)] public float priorityChance = 0.4f;
+    [Range(0f, 1f)]
+    public float priorityChance = 0.4f;
     private string targetLetters = "AGRE";
 
     void Start()
@@ -17,7 +18,12 @@ public class BeadSpawner : MonoBehaviour
 
     void SpawnBead()
     {
-        GameObject newBead = Instantiate(beadPrefab, spawnPoint.position, Quaternion.identity, spawnPoint);
+        GameObject newBead = Instantiate(
+            beadPrefab,
+            spawnPoint.position,
+            Quaternion.identity,
+            spawnPoint
+        );
 
         char selectedLetter;
 

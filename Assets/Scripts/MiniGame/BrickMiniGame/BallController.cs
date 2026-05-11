@@ -7,12 +7,18 @@ public class BallController : MonoBehaviour
 
     private bool isGameStarted = false;
 
-    [SerializeField] private float constantSpeed = 5f;
-    [SerializeField] private float minVelocity = 0.5f;
-    [SerializeField] private float paddleInfluence = 0.05f;
+    [SerializeField]
+    private float constantSpeed = 5f;
+
+    [SerializeField]
+    private float minVelocity = 0.5f;
+
+    [SerializeField]
+    private float paddleInfluence = 0.05f;
 
     [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField]
+    private AudioManager audioManager;
 
     private void Awake()
     {

@@ -4,13 +4,16 @@ using UnityEngine.UI;
 public class StageStartButton : MonoBehaviour
 {
     [Header("스테이지 번호")]
-    [SerializeField] private int stageNumber;
+    [SerializeField]
+    private int stageNumber;
 
     [Header("미니게임 생성 매니저")]
-    [SerializeField] private MiniGameSpawner miniGameSpawner;
+    [SerializeField]
+    private MiniGameSpawner miniGameSpawner;
 
     [Header("오디오 매니저")]
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField]
+    private AudioManager audioManager;
 
     private Button button;
 
