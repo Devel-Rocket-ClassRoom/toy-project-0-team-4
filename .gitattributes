@@ -1,0 +1,23 @@
+# 모든 텍스트 파일을 LF로 정규화
+* text=auto eol=lf
+
+# 명시적 바이너리 — 변환 없음
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
+*.tga binary
+*.tiff binary
+*.tif binary
+*.psd binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.exe binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.fbx -text
+*.ttf binary
+*.otf binary
