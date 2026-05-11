@@ -139,7 +139,9 @@ lightning_logs/
 ####################
 # Claude Code
 [Cc][Ll][Aa][Uu][Dd][Ee].md
-.claude/
+/.claude/settings.json
+/.claude/CLAUDE.local.md
 
 # MCP 설정
 **.mcp.**
+
