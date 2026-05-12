@@ -56,20 +56,22 @@ public partial class MiniGameSpawner : MonoBehaviour
     private int currentStageNumber;
     private OTPMiniGame otpInstance;
 
+    private PopupGate gate;
+    private ScreenRouter router;
+
     private static readonly WaitForSecondsRealtime WaitOTPSuccess = new WaitForSecondsRealtime(5f);
 
     private void Awake()
     {
+        gate = new PopupGate(popupController);
+        router = new ScreenRouter(titleScreen, mainScreen);
+
         if (miniGamePool != null)
         {
             miniGamePool.ResetAllPools();
         }
 
-        if (popupController != null)
-        {
-            popupController.ResetState();
-            popupController.HideAll();
-        }
+        gate.ResetAndHide();
     }
 
     public void StartStage(int stageNumber)
@@ -80,22 +82,13 @@ public partial class MiniGameSpawner : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         currentStageNumber = stageNumber;
 
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
 
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
-        }
-
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(false);
-        }
+        router.ShowTitleOnly();
 
         DestroyCurrentMiniGame();
         DestroyOTPInstance();

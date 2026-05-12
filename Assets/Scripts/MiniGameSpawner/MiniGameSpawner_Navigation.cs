@@ -4,23 +4,13 @@ public partial class MiniGameSpawner
 {
     public void ConfirmSuccess()
     {
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
-        popupController.ResetState();
+        gate.ResetAndHide();
 
         DestroyCurrentMiniGame();
 
-        popupController.HideAll();
-
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
-        }
-
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(true);
-        }
+        router.ShowTitleWithMain();
 
         if (mainScreenUI != null)
         {
@@ -47,14 +37,13 @@ public partial class MiniGameSpawner
 
     public void ShowTitleScreen()
     {
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         StopAllCoroutines();
 
         UnsubscribeOTPEvents();
 
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
 
         if (gameClockTimer != null)
         {
@@ -76,15 +65,7 @@ public partial class MiniGameSpawner
             miniGamePool.ResetAllPools();
         }
 
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
-        }
-
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(false);
-        }
+        router.ShowTitleOnly();
 
         if (mainScreenUI != null)
         {
@@ -96,7 +77,6 @@ public partial class MiniGameSpawner
 
     public void HideResultObjects()
     {
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
     }
 }
