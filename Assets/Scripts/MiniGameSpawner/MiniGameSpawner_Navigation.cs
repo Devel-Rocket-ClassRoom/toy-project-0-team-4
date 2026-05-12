@@ -10,15 +10,7 @@ public partial class MiniGameSpawner
 
         DestroyCurrentMiniGame();
 
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
-        }
-
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(true);
-        }
+        router.ShowTitleWithMain();
 
         if (mainScreenUI != null)
         {
@@ -73,15 +65,7 @@ public partial class MiniGameSpawner
             miniGamePool.ResetAllPools();
         }
 
-        if (titleScreen != null)
-        {
-            titleScreen.SetActive(true);
-        }
-
-        if (mainScreen != null)
-        {
-            mainScreen.SetActive(false);
-        }
+        router.ShowTitleOnly();
 
         if (mainScreenUI != null)
         {
