@@ -16,6 +16,9 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float paddleInfluence = 0.05f;
 
+    [SerializeField]
+    private float maxBounceAngle = 60f;
+
     [Header("오디오 매니저")]
     [SerializeField]
     private AudioManager audioManager;
@@ -62,8 +65,8 @@ public class BallController : MonoBehaviour
         {
             isGameStarted = true;
             rb.gravityScale = 0f;
-
             rb.linearVelocity = new Vector2(Random.Range(-2f, 2f), constantSpeed);
+            return;
         }
 
         if (collision.gameObject.CompareTag("Brick"))
@@ -71,9 +74,24 @@ public class BallController : MonoBehaviour
             Destroy(collision.gameObject);
             audioManager.PlaySfx(5);
         }
+
         if (collision.gameObject.CompareTag("Paddle"))
         {
             audioManager.PlaySfx(6);
+
+            float paddleHalfWidth = collision.collider.bounds.extents.x;
+            float normalizedHit = Mathf.Clamp(
+                (transform.position.x - collision.transform.position.x) / paddleHalfWidth,
+                -1f,
+                1f
+            );
+
+            if (Mathf.Abs(normalizedHit) > 0.9f)
+            {
+                float angleRad = normalizedHit * maxBounceAngle * Mathf.Deg2Rad;
+                rb.linearVelocity =
+                    new Vector2(Mathf.Sin(angleRad), Mathf.Cos(angleRad)) * constantSpeed;
+            }
         }
     }
 
