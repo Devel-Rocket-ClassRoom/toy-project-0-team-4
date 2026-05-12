@@ -9,7 +9,7 @@ public partial class MiniGameSpawner
 
         gate.ResetAndHide();
 
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         if (otpPrefab != null)
         {
@@ -21,10 +21,9 @@ public partial class MiniGameSpawner
             Debug.LogWarning("OTP Prefab이 연결되지 않았습니다.");
         }
 
-        MiniGameManager.OnMiniGameSuccess -= OnOTPSuccess;
-        MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
+        UnsubscribeOTPEvents();
 
-        MiniGameManager.OnMiniGameFail -= OnOTPFail;
+        MiniGameManager.OnMiniGameSuccess += OnOTPSuccess;
         MiniGameManager.OnMiniGameFail += OnOTPFail;
 
         Debug.Log("모든 스테이지 클리어 - OTP 미니게임 시작");
@@ -75,7 +74,7 @@ public partial class MiniGameSpawner
             Destroy(successPopup);
         }
 
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         if (transferPopupPrefab != null)
         {

@@ -82,7 +82,7 @@ public partial class MiniGameSpawner : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         currentStageNumber = stageNumber;
 

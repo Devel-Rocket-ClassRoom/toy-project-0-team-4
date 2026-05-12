@@ -59,4 +59,6 @@ public partial class MiniGameSpawner
 
         Debug.Log($"{stageNumber} 스테이지 제목 적용: {stageTitle}");
     }
+
+    private void NormalizeTimeScale() => Time.timeScale = 1f;
 }

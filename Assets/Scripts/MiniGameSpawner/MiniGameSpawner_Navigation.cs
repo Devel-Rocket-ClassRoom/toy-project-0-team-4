@@ -4,7 +4,7 @@ public partial class MiniGameSpawner
 {
     public void ConfirmSuccess()
     {
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         gate.ResetAndHide();
 
@@ -37,7 +37,7 @@ public partial class MiniGameSpawner
 
     public void ShowTitleScreen()
     {
-        Time.timeScale = 1f;
+        NormalizeTimeScale();
 
         StopAllCoroutines();
 
