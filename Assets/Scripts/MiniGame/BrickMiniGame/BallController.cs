@@ -85,9 +85,13 @@ public class BallController : MonoBehaviour
                 -1f,
                 1f
             );
-            float angleRad = normalizedHit * maxBounceAngle * Mathf.Deg2Rad;
-            rb.linearVelocity =
-                new Vector2(Mathf.Sin(angleRad), Mathf.Cos(angleRad)) * constantSpeed;
+
+            if (Mathf.Abs(normalizedHit) > 0.9f)
+            {
+                float angleRad = normalizedHit * maxBounceAngle * Mathf.Deg2Rad;
+                rb.linearVelocity =
+                    new Vector2(Mathf.Sin(angleRad), Mathf.Cos(angleRad)) * constantSpeed;
+            }
         }
     }
 
