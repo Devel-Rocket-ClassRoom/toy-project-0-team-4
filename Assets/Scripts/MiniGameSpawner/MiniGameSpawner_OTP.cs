@@ -7,8 +7,7 @@ public partial class MiniGameSpawner
     {
         DestroyCurrentMiniGame();
 
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
 
         Time.timeScale = 1f;
 
@@ -46,7 +45,7 @@ public partial class MiniGameSpawner
 
         DestroyOTPInstance();
 
-        popupController.ShowFail(gameClockTimer);
+        gate.ShowFail(gameClockTimer);
 
         Debug.Log("OTP 실패 - 실패 팝업 표시");
     }

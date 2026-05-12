@@ -56,20 +56,20 @@ public partial class MiniGameSpawner : MonoBehaviour
     private int currentStageNumber;
     private OTPMiniGame otpInstance;
 
+    private PopupGate gate;
+
     private static readonly WaitForSecondsRealtime WaitOTPSuccess = new WaitForSecondsRealtime(5f);
 
     private void Awake()
     {
+        gate = new PopupGate(popupController);
+
         if (miniGamePool != null)
         {
             miniGamePool.ResetAllPools();
         }
 
-        if (popupController != null)
-        {
-            popupController.ResetState();
-            popupController.HideAll();
-        }
+        gate.ResetAndHide();
     }
 
     public void StartStage(int stageNumber)
@@ -84,8 +84,7 @@ public partial class MiniGameSpawner : MonoBehaviour
 
         currentStageNumber = stageNumber;
 
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
 
         if (titleScreen != null)
         {

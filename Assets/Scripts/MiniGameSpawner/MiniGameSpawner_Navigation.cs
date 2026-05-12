@@ -6,11 +6,9 @@ public partial class MiniGameSpawner
     {
         Time.timeScale = 1f;
 
-        popupController.ResetState();
+        gate.ResetAndHide();
 
         DestroyCurrentMiniGame();
-
-        popupController.HideAll();
 
         if (titleScreen != null)
         {
@@ -53,8 +51,7 @@ public partial class MiniGameSpawner
 
         UnsubscribeOTPEvents();
 
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
 
         if (gameClockTimer != null)
         {
@@ -96,7 +93,6 @@ public partial class MiniGameSpawner
 
     public void HideResultObjects()
     {
-        popupController.ResetState();
-        popupController.HideAll();
+        gate.ResetAndHide();
     }
 }
