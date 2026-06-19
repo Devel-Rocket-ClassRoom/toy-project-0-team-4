@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,54 @@ using UnityEngine.UI;
 
 public class ScrollAgreeMiniGame : MonoBehaviour
 {
+    // 로딩 화면 등에서 명시적으로 호출. 약관 텍스트의 글리프를 미리 atlas에 등록해
+    // 첫 스폰 시 TMP 메시 빌드 spike를 줄인다. 자동 호출되지 않음 — 호출 시점은 본인 통제.
+    // 호출 예: ScrollAgreeMiniGame.PrewarmGlyphs(myFontAsset);
+    public static void PrewarmGlyphs(TMP_FontAsset font, string jsonFileName = "GameTexts")
+    {
+        if (font == null)
+            return;
+
+        string text = BuildCombinedTextStatic(jsonFileName);
+        if (string.IsNullOrEmpty(text))
+            return;
+
+        HashSet<uint> unique = new HashSet<uint>();
+        foreach (char c in text)
+            unique.Add(c);
+
+        uint[] codepoints = new uint[unique.Count];
+        int i = 0;
+        foreach (uint u in unique)
+            codepoints[i++] = u;
+
+        font.TryAddCharacters(codepoints);
+    }
+
+    private static string BuildCombinedTextStatic(string fileName)
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>(fileName);
+        if (jsonFile == null)
+            return null;
+
+        TermsData data = JsonUtility.FromJson<TermsData>(jsonFile.text);
+        StringBuilder sb = new StringBuilder(jsonFile.text.Length + 256);
+
+        sb.AppendLine($"<size=140%><b>{data.documentTitle}</b></size>");
+        sb.AppendLine($"<size=90%><color=#aaaaaa>최종 수정일: {data.effectiveDate}</color></size>");
+        sb.AppendLine();
+        sb.AppendLine();
+
+        foreach (var item in data.termsList)
+        {
+            sb.AppendLine($"<b>{item.article} ({item.title})</b>");
+            sb.AppendLine(item.content);
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+
     [Header("UI 참조 (Inspector에서 연결)")]
     [SerializeField]
     private Button agreeButton;

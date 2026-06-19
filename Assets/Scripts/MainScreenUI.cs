@@ -46,6 +46,17 @@ public class MainScreenUI : MonoBehaviour
     [SerializeField]
     private string titleSeparator = " ";
 
+    [Header("ScrollAgree 약관 미니게임 글리프 prewarm용 폰트")]
+    [SerializeField]
+    private TMP_FontAsset scrollAgreeFont;
+
+    private void Start()
+    {
+        // 메인 화면이 떠 있는 동안 약관 글리프를 atlas에 미리 등록 → 첫 ScrollAgree 스폰 시 TMP mesh build spike 감소.
+        // scrollAgreeFont 슬롯이 비어 있으면 prewarm 건너뜀 (안전).
+        ScrollAgreeMiniGame.PrewarmGlyphs(scrollAgreeFont);
+    }
+
     private void OnEnable()
     {
         RefreshStageButtons();
