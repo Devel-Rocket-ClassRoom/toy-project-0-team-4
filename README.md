@@ -1,11 +1,13 @@
-# 다크패턴 체험 미니게임 (Team 4)
+# 계좌 이체 게임 (Team 4)
 
-Unity 6 기반의 **보이스피싱 · 다크패턴 인식 교육용 미니게임 모음**입니다.
-가짜 체크박스, 도망가는 거절 버튼, 끝없는 약관 스크롤, 가짜 점검 팝업, OTP 입력 화면 등
-실제 기만적 UI 패턴(Dark Pattern)을 직접 겪어보며 "왜 당하는지"를 체감하도록 설계했습니다.
+Unity 6 기반의 **계좌 이체 미니게임**입니다.
 
-플레이어는 제한 시간 **5분** 안에 5개 스테이지를 모두 통과해야 하고,
-마지막에는 OTP 입력과 송금 팝업으로 이어지는 엔딩을 마주합니다.
+플레이어는 은행 앱에서 송금을 완료하려 하지만, 이체 절차 5단계마다
+가짜 체크박스 · 도망가는 거절 버튼 · 끝없는 약관 스크롤 · 가짜 점검 팝업 같은
+방해 요소가 가로막습니다. 5단계를 모두 통과하면 OTP 입력을 거쳐 송금이 완료됩니다.
+
+전체 제한 시간은 **5분**이고, **남은 시간이 많을수록 송금 금액이 커집니다**
+(최소 1만원 ~ 최대 5,000만원). 시간이 다 되면 송금 대신 "점검시간" 팝업이 뜹니다.
 
 ---
 
@@ -42,7 +44,7 @@ StageScreen.OnStageClearButtonClicked / OnGameOver
       ↓
 MiniGameSpawner_Events → PopupGate → 성공 / 실패 / 점검 / 타임아웃 팝업
       ↓
-StageClearManager.ClearStage(n) → AllCleared(5) 이면 OTP 엔딩
+StageClearManager.ClearStage(n) → AllCleared(5) 이면 OTP → TransferPopup(송금 완료)
 ```
 
 - 미니게임과 메인 시스템은 **전부 이벤트 기반**으로 통신합니다. 하드코딩된 크로스 의존성이 없습니다.
@@ -57,7 +59,7 @@ StageClearManager.ClearStage(n) → AllCleared(5) 이면 OTP 엔딩
 | 클래스 | 경로 | 역할 |
 |---|---|---|
 | `MiniGameManager` | `Scripts/MiniGameManager.cs` | 정적 이벤트 허브. `OnGame1~5Start`, `OnMiniGameSuccess`, `OnMiniGameFail` |
-| `MiniGameSpawner` | `Scripts/MiniGameSpawner/` (partial 5개) | 스테이지 진행, 미니게임 스폰, 팝업 디스패치, OTP 엔딩 |
+| `MiniGameSpawner` | `Scripts/MiniGameSpawner/` (partial 5개) | 스테이지 진행, 미니게임 스폰, 팝업 디스패치, OTP·송금 엔딩 |
 | `MiniGamePool` | `Scripts/MiniGameSpawner/MiniGamePool.cs` | 스테이지별 프리팹 배열. 중복 없이 무작위 선택, 소진 시 풀 리셋 |
 | `MiniGameRuntimeBinder` | `Scripts/MiniGameSpawner/MiniGameRuntimeBinder.cs` | 리플렉션으로 `buttonHandler` 필드 자동 연결 및 `StartMiniGame()` 호출 |
 | `PopupGate` / `ScreenRouter` | `Scripts/MiniGameSpawner/` | 팝업 가드·리셋, 타이틀/메인 화면 전환을 캡슐화 |
@@ -65,6 +67,7 @@ StageClearManager.ClearStage(n) → AllCleared(5) 이면 OTP 엔딩
 | `StageClearManager` | `Scripts/StageClearManager.cs` | 클리어 스테이지 추적(`HashSet<int>`), `AllCleared()` |
 | `GameClockTimer` | `Scripts/GameClockTimer.cs` | 전역 5분 카운트다운 + 시계 바늘 회전. `unscaledDeltaTime` 사용 |
 | `MiniGamePopup` | `Scripts/Popup/` (partial 4개) | 성공·실패·점검·타임아웃·의미불명 팝업. `IsMaintenanceOpen`이 최우선 플래그 |
+| `TransferPopup` | `Scripts/Popup/TransferPopup.cs` | 최종 송금 팝업. 남은 시간 비율로 금액(1~5,000만원) 결정 후 카운트업 |
 | `AudioManager` | `Scripts/AudioManager.cs` | BGM/SFX 제어. 뮤트 상태를 `PlayerPrefs`에 저장 |
 | `JsonLoader` | `Scripts/JsonLoader.cs` | `Resources/GameTexts.json`에서 약관·개인정보처리방침 텍스트 로드 |
 
@@ -72,7 +75,7 @@ StageClearManager.ClearStage(n) → AllCleared(5) 이면 OTP 엔딩
 
 ## 수록 미니게임
 
-**다크패턴 계열** (`Assets/Scripts/MiniGame/`)
+**이체 절차 방해 계열** (`Assets/Scripts/MiniGame/`)
 
 | 스크립트 | 패턴 |
 |---|---|
@@ -84,7 +87,7 @@ StageClearManager.ClearStage(n) → AllCleared(5) 이면 OTP 엔딩
 | `WallButtonGame` | 12×10 버튼 격자 속에 섞인 진짜 동의 버튼 찾기 |
 | `ErrorClickGame` | 수십 개 에러 팝업 더미 속 진짜 팝업 찾기 |
 | `ButtonMashMiniGame` / `ButtonSwapMashGame` | 게이지를 채우는 연타, 도중에 버튼 위치가 뒤바뀜 |
-| `OTPMiniGame` | 엔딩 OTP 입력 화면 |
+| `OTPMiniGame` | 6자리 OTP를 5초간 보여준 뒤 15초 안에 입력 |
 
 **아케이드 계열** (하위 폴더)
 
